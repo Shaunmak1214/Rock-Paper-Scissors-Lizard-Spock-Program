@@ -19,6 +19,7 @@ import java.awt.GridBagConstraints;
 public class MainFrame extends JFrame
 {
         JFrame f = new JFrame();
+        JFrame f2 = new JFrame();
 
         JComboBox cb;
 
@@ -40,7 +41,7 @@ public class MainFrame extends JFrame
         firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
 
 
-                this.add(firstpanel,BorderLayout.NORTH);//panel position
+                f.add(firstpanel,BorderLayout.NORTH);//panel position
                 firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
                 firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE
                 upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
@@ -57,7 +58,7 @@ public class MainFrame extends JFrame
                 //f.setLayout(new GridBagLayout());
                 //secondpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
                 secondpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
-                this.add(secondpanel,BorderLayout.CENTER);
+                f.add(secondpanel,BorderLayout.CENTER);
 
                 secondpanel.setPreferredSize(new Dimension(1000,550));
 
@@ -97,9 +98,9 @@ public class MainFrame extends JFrame
                 secondpanel.add(descriptionlabel);//description added
                 secondpanel.add(cb,BorderLayout.CENTER);//COMBOBOX ADDED
 
-                //this.add(secondpanel);
+                //f.add(secondpanel);
 
-                //this.setLayout(new FlowLayout());
+                //f.setLayout(new FlowLayout());
 
 
 
@@ -108,25 +109,35 @@ public class MainFrame extends JFrame
                 thirdpanel.setLayout(new GridBagLayout());
                 thirdpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
 
-                this.add(thirdpanel,BorderLayout.PAGE_END);
+                f.add(thirdpanel,BorderLayout.PAGE_END);
                 //thirdpanel.setBackground(Color.BLACK);
                 thirdpanel.setPreferredSize(new Dimension(1000,150));
 
-                proceed.setPreferredSize(new Dimension(100,30));
-                proceed.setFont(new Font("Verdana",Font.BOLD,12));
+                proceed.setPreferredSize(new Dimension(100,30));//BUTTON SIZE
+                proceed.setFont(new Font("Verdana",Font.BOLD,12));//SIZE OF THE TEXT INSIDE BUTTON
 
-                thirdpanel.add(proceed);
-
+                thirdpanel.add(proceed);//BUTTON ADDED
 
                 // JFrame = GUI window
-                this.setTitle("Rock Paper Scissors");//set title
-                this.setResizable(false);//cant resize
-                this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//exit application
+                f.setTitle("Rock Paper Scissors");//set title
+                f.setResizable(false);//cant resize
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//exit application
 
-                this.setVisible(true);//make the frame appear
+                f.setVisible(true);//make the frame appear
 
+                /*
+                proceed.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                f.setVisible(false);
+                                f2.setVisible(true);
 
-                this.setSize(1000, 700);//frame size
+                                f2.setSize(1000,700);
+                        }
+                });
+*/
+
+                f.setSize(1000, 700);//frame size
         }
 
 
@@ -138,31 +149,31 @@ public class MainFrame extends JFrame
                 {
                         case "Red":
                         secondpanel.setBackground(Color.RED);
-                        //this.getContentPane().setBackground(Color.RED);
+                        //f.getContentPane().setBackground(Color.RED);
                                 thirdpanel.setBackground(Color.RED);
                         break;
 
                         case "Green":
                         secondpanel.setBackground(Color.GREEN);
-                        //this.getContentPane().setBackground(Color.GREEN);
+                        //f.getContentPane().setBackground(Color.GREEN);
                                 thirdpanel.setBackground(Color.GREEN);
                         break;
 
                         case "Blue":
                         secondpanel.setBackground(Color.BLUE);
-                        //this.getContentPane().setBackground(Color.BLUE);
+                        //f.getContentPane().setBackground(Color.BLUE);
                                 thirdpanel.setBackground(Color.BLUE);
                         break;
 
                         case "Yellow":
                         secondpanel.setBackground(Color.YELLOW);
-                        //this.getContentPane().setBackground(Color.YELLOW);
+                        //f.getContentPane().setBackground(Color.YELLOW);
                                 thirdpanel.setBackground(Color.YELLOW);
                         break;
 
                         case "Grey":
                         secondpanel.setBackground(Color.GRAY);
-                        //this.getContentPane().setBackground(Color.GRAY);
+                        //f.getContentPane().setBackground(Color.GRAY);
                                 thirdpanel.setBackground(Color.GRAY);
                         break;
                 }
