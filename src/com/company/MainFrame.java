@@ -13,16 +13,24 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
 
 
 public class MainFrame extends JFrame
 {
         JFrame f = new JFrame();
+
         JComboBox cb;
+
         JPanel firstpanel = new JPanel();
         JPanel secondpanel = new JPanel();
+        JPanel thirdpanel = new JPanel();
+
         JLabel upperlabel = new JLabel();
         JLabel welcomelabel = new JLabel();
+        JLabel descriptionlabel = new JLabel();
+
+        JButton proceed = new JButton("PROCEED");
 
         MainFrame()
         {
@@ -34,9 +42,9 @@ public class MainFrame extends JFrame
 
                 this.add(firstpanel,BorderLayout.NORTH);//panel position
                 firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
-                firstpanel.setPreferredSize(new Dimension(1000,80));//FIRST PANEL SIZE
+                firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE
                 upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
-                upperlabel.setFont(new Font("Verdana",Font.PLAIN,20));//font of text
+                upperlabel.setFont(new Font("Verdana",Font.PLAIN,18));//font of text
                 upperlabel.setBackground(Color.ORANGE);//text background color
 
                 firstpanel.add(upperlabel);// ADD LABEL INTO THE PANEL
@@ -45,9 +53,28 @@ public class MainFrame extends JFrame
                 //f.setLayout(null);
 
 ///////////////// SECOND PANEL BELOW////////////////////////////
-                //JComboBox = dropdown list
-                welcomelabel.setText("<html>Welcome!<br>Please select the background colour before you proceed: <br></html>");
-                secondpanel.add(welcomelabel);
+
+                //f.setLayout(new GridBagLayout());
+                //secondpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
+                secondpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
+                this.add(secondpanel,BorderLayout.CENTER);
+
+                secondpanel.setPreferredSize(new Dimension(1000,550));
+
+                welcomelabel.setBorder((BorderFactory.createEmptyBorder(50,500,0,500)));//PANEL LAYOUT FOR LABEL
+                descriptionlabel.setBorder((BorderFactory.createEmptyBorder(0,500,5,500)));//PANEL LAYOUT FOR LABEL
+
+                welcomelabel.setFont(new Font("Verdana",Font.PLAIN,22));
+                descriptionlabel.setFont(new Font("Verdana",Font.PLAIN,22));
+
+                //proceed.setBorder((BorderFactory.createEmptyBorder(900,0,900,0)));
+                //cb.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
+
+                welcomelabel.setText("Welcome!");
+                descriptionlabel.setText("Please select the background colour before you proceed: ");
+
+                //secondpanel.setLayout(new BoxLayout(secondpanel,BoxLayout.Y_AXIS));
+
                 String [] color =
                         {
                                 "Red",
@@ -56,28 +83,45 @@ public class MainFrame extends JFrame
                                 "Yellow",
                                 "Grey"
                         };
+                //JComboBox = dropdown list
 
                 cb = new JComboBox(color);
                 cb.addActionListener(this::actionPerformed);
 
-
-
-                secondpanel.add(cb,BorderLayout.CENTER);//COMBOBOX ADDED
                 //secondpanel.add(cb);
                 //secondpanel.add(cb).setBounds(500,400,1000,80);
+                cb.setPreferredSize(new Dimension(80,30));
 
 
-                this.add(secondpanel);
+                secondpanel.add(welcomelabel,BorderLayout.CENTER);//welcome added
+                secondpanel.add(descriptionlabel);//description added
+                secondpanel.add(cb,BorderLayout.CENTER);//COMBOBOX ADDED
+
+                //this.add(secondpanel);
 
                 //this.setLayout(new FlowLayout());
+
+
+
+///////////////////////THIRD PANEL BELOW////////////////////////////
+
+                thirdpanel.setLayout(new GridBagLayout());
+                thirdpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
+
+                this.add(thirdpanel,BorderLayout.PAGE_END);
+                //thirdpanel.setBackground(Color.BLACK);
+                thirdpanel.setPreferredSize(new Dimension(1000,150));
+
+                proceed.setPreferredSize(new Dimension(100,30));
+                proceed.setFont(new Font("Verdana",Font.BOLD,12));
+
+                thirdpanel.add(proceed);
+
 
                 // JFrame = GUI window
                 this.setTitle("Rock Paper Scissors");//set title
                 this.setResizable(false);//cant resize
                 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//exit application
-
-
-
 
                 this.setVisible(true);//make the frame appear
 
@@ -95,28 +139,34 @@ public class MainFrame extends JFrame
                         case "Red":
                         secondpanel.setBackground(Color.RED);
                         //this.getContentPane().setBackground(Color.RED);
+                                thirdpanel.setBackground(Color.RED);
                         break;
 
                         case "Green":
                         secondpanel.setBackground(Color.GREEN);
                         //this.getContentPane().setBackground(Color.GREEN);
+                                thirdpanel.setBackground(Color.GREEN);
                         break;
 
                         case "Blue":
                         secondpanel.setBackground(Color.BLUE);
                         //this.getContentPane().setBackground(Color.BLUE);
+                                thirdpanel.setBackground(Color.BLUE);
                         break;
 
                         case "Yellow":
                         secondpanel.setBackground(Color.YELLOW);
                         //this.getContentPane().setBackground(Color.YELLOW);
+                                thirdpanel.setBackground(Color.YELLOW);
                         break;
 
                         case "Grey":
                         secondpanel.setBackground(Color.GRAY);
                         //this.getContentPane().setBackground(Color.GRAY);
+                                thirdpanel.setBackground(Color.GRAY);
                         break;
                 }
 
         }
+
 }
