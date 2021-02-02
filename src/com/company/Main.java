@@ -11,9 +11,10 @@ public class Main {
          MainFrame frame = new MainFrame();
          SecondFrame frame2 = new SecondFrame();
 
-        frame.cb.addActionListener(frame::actionPerformed);
+        //frame.cb.addActionListener(frame::actionPerformed);
 
-        public void actionPerformed(ActionEvent Object e)
+        /*
+        public void actionPerformed(ActionEvent b)
         {
 
             String colorSelect = (String) frame.cb.getSelectedItem();
@@ -46,6 +47,7 @@ public class Main {
             }
 
         }
+        */
 
         frame.proceed.addActionListener(new ActionListener() {
             @Override
