@@ -19,7 +19,8 @@ import java.awt.GridBagConstraints;
 public class MainFrame extends JFrame
 {
         JFrame f = new JFrame();
-        JFrame f2 = new JFrame();
+
+        public String colorSelected;
 
         JComboBox cb;
 
@@ -37,9 +38,8 @@ public class MainFrame extends JFrame
         {
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
-        firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-        firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
-
+                firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
+                firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
 
                 f.add(firstpanel,BorderLayout.NORTH);//panel position
                 firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
@@ -145,6 +145,8 @@ public class MainFrame extends JFrame
         {
 
                 String colorSelect = (String) cb.getSelectedItem();
+                this.colorSelected = colorSelect;
+
                 switch (colorSelect)
                 {
                         case "Red":
@@ -177,6 +179,12 @@ public class MainFrame extends JFrame
                                 thirdpanel.setBackground(Color.GRAY);
                         break;
                 }
+
+        }
+
+        public String getSelectedColor(){
+
+                return this.colorSelected;
 
         }
 
