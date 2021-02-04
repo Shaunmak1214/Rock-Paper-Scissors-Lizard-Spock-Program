@@ -19,8 +19,7 @@ import java.awt.GridBagConstraints;
 public class MainFrame extends JFrame
 {
         JFrame f = new JFrame();
-
-        public String colorSelected;
+        JFrame f2 = new JFrame();
 
         JComboBox cb;
 
@@ -38,8 +37,9 @@ public class MainFrame extends JFrame
         {
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
-                firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-                firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
+        firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
+        firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
+
 
                 f.add(firstpanel,BorderLayout.NORTH);//panel position
                 firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
@@ -145,46 +145,38 @@ public class MainFrame extends JFrame
         {
 
                 String colorSelect = (String) cb.getSelectedItem();
-                this.colorSelected = colorSelect;
-
                 switch (colorSelect)
                 {
                         case "Red":
-                                secondpanel.setBackground(Color.RED);
-                                //f.getContentPane().setBackground(Color.RED);
+                        secondpanel.setBackground(Color.RED);
+                        //f.getContentPane().setBackground(Color.RED);
                                 thirdpanel.setBackground(Color.RED);
-                                break;
+                        break;
 
                         case "Green":
-                                secondpanel.setBackground(Color.GREEN);
-                                //f.getContentPane().setBackground(Color.GREEN);
+                        secondpanel.setBackground(Color.GREEN);
+                        //f.getContentPane().setBackground(Color.GREEN);
                                 thirdpanel.setBackground(Color.GREEN);
-                                break;
+                        break;
 
                         case "Blue":
-                                secondpanel.setBackground(Color.BLUE);
-                                //f.getContentPane().setBackground(Color.BLUE);
+                        secondpanel.setBackground(Color.BLUE);
+                        //f.getContentPane().setBackground(Color.BLUE);
                                 thirdpanel.setBackground(Color.BLUE);
-                                break;
+                        break;
 
                         case "Yellow":
-                                secondpanel.setBackground(Color.YELLOW);
-                                //f.getContentPane().setBackground(Color.YELLOW);
+                        secondpanel.setBackground(Color.YELLOW);
+                        //f.getContentPane().setBackground(Color.YELLOW);
                                 thirdpanel.setBackground(Color.YELLOW);
-                                break;
+                        break;
 
                         case "Grey":
-                                secondpanel.setBackground(Color.GRAY);
-                                //f.getContentPane().setBackground(Color.GRAY);
+                        secondpanel.setBackground(Color.GRAY);
+                        //f.getContentPane().setBackground(Color.GRAY);
                                 thirdpanel.setBackground(Color.GRAY);
-                                break;
+                        break;
                 }
-
-        }
-
-        public String getSelectedColor(){
-
-                return this.colorSelected;
 
         }
 
