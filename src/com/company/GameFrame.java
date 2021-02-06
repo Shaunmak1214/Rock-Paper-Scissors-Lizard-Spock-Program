@@ -3,14 +3,14 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 
-public class ThirdFrame extends SecondFrame {
+public class GameFrame extends SecondFrame {
 
     JFrame f3 = new JFrame();
 
     JPanel firstpanel = new JPanel();
     JPanel secondpanel = new JPanel();
 
-    ThirdFrame()
+    GameFrame()
     {
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
