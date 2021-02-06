@@ -87,7 +87,7 @@ public class GameFrame extends SecondFrame {
 
         name1Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
         name1Label.setFont(new Font("Verdana",Font.PLAIN,22));
-        name1Label.setText("Jin Lai");
+        name1Label.setText("Poh Kang");
         name1Label.setOpaque(true);
         name1Label.setVerticalAlignment(JLabel.CENTER);
         name1Label.setBackground(Color.ORANGE);
