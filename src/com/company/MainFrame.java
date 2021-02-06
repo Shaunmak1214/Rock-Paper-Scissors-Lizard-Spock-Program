@@ -124,19 +124,6 @@ public class MainFrame extends JFrame
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//exit application
 
                 f.setVisible(true);//make the frame appear
-
-                /*
-                proceed.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                                f.setVisible(false);
-                                f2.setVisible(true);
-
-                                f2.setSize(1000,700);
-                        }
-                });
-*/
-
                 f.setSize(1000, 700);//frame size
         }
 
