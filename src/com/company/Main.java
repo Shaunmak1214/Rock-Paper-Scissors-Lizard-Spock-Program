@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 public class Main{
 
     public static void main(String[] args) {
-         MainFrame frame = new MainFrame();
-         SecondFrame frame2 = new SecondFrame();
+        MainFrame frame = new MainFrame();
+        SecondFrame frame2 = new SecondFrame();
 
         frame.cb.addActionListener(frame::actionPerformed);
 
@@ -23,26 +23,32 @@ public class Main{
 
                 frame.f.setVisible(false);//frame 1 visible false
                 frame2.f2.setSize(1000,700);
+                frame2.f2.setResizable(false);
                 switch (colorSelected)
                 {
                     case "Red":
                         frame2.secondpanel.setBackground(Color.RED);
+                        frame2.thirdpanel.setBackground(Color.RED);
                         break;
 
                     case "Green":
                         frame2.secondpanel.setBackground(Color.GREEN);
+                        frame2.thirdpanel.setBackground(Color.GREEN);
                         break;
 
                     case "Blue":
                         frame2.secondpanel.setBackground(Color.BLUE);
+                        frame2.thirdpanel.setBackground(Color.BLUE);
                         break;
 
                     case "Yellow":
                         frame2.secondpanel.setBackground(Color.YELLOW);
+                        frame2.thirdpanel.setBackground(Color.YELLOW);
                         break;
 
                     case "Grey":
                         frame2.secondpanel.setBackground(Color.GRAY);
+                        frame2.thirdpanel.setBackground(Color.GRAY);
                         break;
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true

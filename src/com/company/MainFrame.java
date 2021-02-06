@@ -137,34 +137,34 @@ public class MainFrame extends JFrame
                 switch (colorSelect)
                 {
                         case "Red":
-                        secondpanel.setBackground(Color.RED);
-                        //f.getContentPane().setBackground(Color.RED);
+                                secondpanel.setBackground(Color.RED);
+                                //f.getContentPane().setBackground(Color.RED);
                                 thirdpanel.setBackground(Color.RED);
-                        break;
+                                break;
 
                         case "Green":
-                        secondpanel.setBackground(Color.GREEN);
-                        //f.getContentPane().setBackground(Color.GREEN);
+                                secondpanel.setBackground(Color.GREEN);
+                                //f.getContentPane().setBackground(Color.GREEN);
                                 thirdpanel.setBackground(Color.GREEN);
-                        break;
+                                break;
 
                         case "Blue":
-                        secondpanel.setBackground(Color.BLUE);
-                        //f.getContentPane().setBackground(Color.BLUE);
+                                secondpanel.setBackground(Color.BLUE);
+                                //f.getContentPane().setBackground(Color.BLUE);
                                 thirdpanel.setBackground(Color.BLUE);
-                        break;
+                                break;
 
                         case "Yellow":
-                        secondpanel.setBackground(Color.YELLOW);
-                        //f.getContentPane().setBackground(Color.YELLOW);
+                                secondpanel.setBackground(Color.YELLOW);
+                                //f.getContentPane().setBackground(Color.YELLOW);
                                 thirdpanel.setBackground(Color.YELLOW);
-                        break;
+                                break;
 
                         case "Grey":
-                        secondpanel.setBackground(Color.GRAY);
-                        //f.getContentPane().setBackground(Color.GRAY);
+                                secondpanel.setBackground(Color.GRAY);
+                                //f.getContentPane().setBackground(Color.GRAY);
                                 thirdpanel.setBackground(Color.GRAY);
-                        break;
+                                break;
                 }
 
         }
