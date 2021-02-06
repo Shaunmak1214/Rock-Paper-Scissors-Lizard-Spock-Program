@@ -10,6 +10,7 @@ public class Main{
     public static void main(String[] args) {
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
+        GameFrame gameFrame = new GameFrame();
 
         frame.cb.addActionListener(frame::actionPerformed);
 
@@ -52,6 +53,9 @@ public class Main{
                         break;
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true
+                gameFrame.f3.setVisible(true);
+                gameFrame.f3.setSize(1000,700);
+                gameFrame.f3.setResizable(false);
 
             }
         });
