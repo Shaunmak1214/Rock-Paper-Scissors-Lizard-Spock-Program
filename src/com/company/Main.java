@@ -27,8 +27,8 @@ public class Main{
                 switch (colorSelected)
                 {
                     case "Red":
-                        frame2.secondpanel.setBackground(Color.RED);
-                        frame2.thirdpanel.setBackground(Color.RED);
+                        frame2.secondpanel.setBackground(Color.gray);
+                        frame2.thirdpanel.setBackground(Color.blue);
                         break;
 
                     case "Green":
