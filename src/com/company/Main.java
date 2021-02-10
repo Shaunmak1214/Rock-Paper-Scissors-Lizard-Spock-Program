@@ -1,6 +1,6 @@
 package com.company;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,5 +59,17 @@ public class Main{
 
             }
         });
+
+        gameFrame.boom1button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                gameFrame.boom2button.setEnabled(false);
+                gameFrame.renderImageRight("assets/lizard.png");
+                gameFrame.renderImageLeft("assets/scissors.png");
+
+            }
+        });
+
     }
 }
