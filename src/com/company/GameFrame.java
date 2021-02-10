@@ -158,6 +158,18 @@ public class GameFrame extends SecondFrame {
 
     }
 
+    public void changeName1(String s){
+
+        name1Label.setText(s);
+
+    }
+
+    public void changeName2(String s){
+
+        name2Label.setText(s);
+
+    }
+
     public void renderImageRight(String s) {
 
         BufferedImage img1 = null;

@@ -67,6 +67,8 @@ public class Main{
                 gameFrame.boom2button.setEnabled(false);
                 gameFrame.renderImageRight("assets/lizard.png");
                 gameFrame.renderImageLeft("assets/scissors.png");
+                gameFrame.changeName1("Ong Sin Yin");
+                gameFrame.changeName2("Mak Yen Wei");
 
             }
         });
