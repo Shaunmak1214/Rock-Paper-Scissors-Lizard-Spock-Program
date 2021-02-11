@@ -56,6 +56,8 @@ public class Main{
                 gameFrame.f3.setVisible(true);
                 gameFrame.f3.setSize(1000,700);
                 gameFrame.f3.setResizable(false);
+                gameFrame.f3.setBackground(Color.BLUE);
+                gameFrame.setBackgrounds();
 
             }
         });
