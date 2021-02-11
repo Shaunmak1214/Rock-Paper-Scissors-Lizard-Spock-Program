@@ -17,6 +17,8 @@ public class GameFrame extends SecondFrame {
     JPanel thirdeastpanel = new JPanel();
     JPanel thirdwestpanel = new JPanel();
     JPanel forthpanel = new JPanel();
+    JPanel fortheastpanel = new JPanel();
+    JPanel forthwestpanel = new JPanel();
     JPanel wrapperpanel = new JPanel();
 
     JLabel upperlabel = new JLabel();
@@ -24,8 +26,10 @@ public class GameFrame extends SecondFrame {
     JLabel name1Label = new JLabel();
     JLabel name2Label = new JLabel();
     JLabel icon1Label = new JLabel();
+    JLabel icon2Label = new JLabel();
 
     JButton boom1button = new JButton("BOOM");
+    JButton boom2button = new JButton("BOOM");
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
@@ -51,7 +55,7 @@ public class GameFrame extends SecondFrame {
         secondpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
         f3.add(secondpanel, BorderLayout.BEFORE_LINE_BEGINS);
         secondpanel.setPreferredSize(new Dimension(1000,250));
-        secondpanel.setBackground(Color.GRAY);
+        //secondpanel.setBackground(Color.GRAY);
 
         roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
         roundCountLabel.setFont(new Font("Verdana",Font.PLAIN,22));
@@ -73,7 +77,7 @@ public class GameFrame extends SecondFrame {
 
         thirdpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
         thirdpanel.setPreferredSize(new Dimension(450,250));
-        thirdpanel.setBackground(Color.ORANGE);
+        //thirdpanel.setBackground(Color.ORANGE);
 
         thirdpanel.add(thirdeastpanel, BorderLayout.EAST);
         thirdpanel.add(thirdwestpanel, BorderLayout.WEST);
@@ -82,7 +86,7 @@ public class GameFrame extends SecondFrame {
 
         thirdeastpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
         thirdeastpanel.setPreferredSize(new Dimension(100,200));
-        thirdeastpanel.setBackground(Color.ORANGE);
+        //thirdeastpanel.setBackground(Color.ORANGE);
         //thirdeastpanel.setAlignmentY();
 
         name1Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
@@ -90,7 +94,7 @@ public class GameFrame extends SecondFrame {
         name1Label.setText("Poh Kang");
         name1Label.setOpaque(true);
         name1Label.setVerticalAlignment(JLabel.CENTER);
-        name1Label.setBackground(Color.ORANGE);
+        //name1Label.setBackground(Color.ORANGE);
 
         boom1button.setPreferredSize(new Dimension(100,30));
         boom1button.setFont(new Font("Verdana",Font.BOLD,12));
@@ -109,9 +113,88 @@ public class GameFrame extends SecondFrame {
         icon1Label.setOpaque(true);
         icon1Label.setSize(190, 190);
 
+        renderImageLeft("assets/rock.png");
+
+//////////////// FORTH PANEL BELOW //////////////////////////
+
+        forthpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
+        forthpanel.setPreferredSize(new Dimension(450,250));
+        //forthpanel.setBackground(Color.RED);
+
+        forthpanel.add(fortheastpanel, BorderLayout.EAST);
+        forthpanel.add(forthwestpanel, BorderLayout.WEST);
+
+//////////////// FORTH EAST PANEL BELOW /////////////////////////
+
+        fortheastpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
+        fortheastpanel.setPreferredSize(new Dimension(200,200));
+        fortheastpanel.setBackground(Color.BLACK);
+
+        icon2Label.setText("");
+        icon2Label.setOpaque(true);
+        icon2Label.setSize(190, 190);
+
+        renderImageRight("assets/rock.png");
+
+//////////////// FORTH WEST PANEL BELOW /////////////////////////
+
+        forthwestpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
+        forthwestpanel.setPreferredSize(new Dimension(100,200));
+        //forthwestpanel.setBackground(Color.ORANGE);
+
+        name2Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
+        name2Label.setFont(new Font("Verdana",Font.PLAIN,22));
+        name2Label.setText("Poh Kang");
+        name2Label.setOpaque(true);
+        name2Label.setVerticalAlignment(JLabel.CENTER);
+        //name2Label.setBackground(Color.ORANGE);
+
+        boom2button.setPreferredSize(new Dimension(100,30));
+        boom2button.setFont(new Font("Verdana",Font.BOLD,12));
+        boom2button.setVerticalAlignment(JLabel.CENTER);
+
+        forthwestpanel.add(name2Label, BorderLayout.CENTER);
+        forthwestpanel.add(boom2button, BorderLayout.CENTER);
+
+    }
+
+    public void changeName1(String s){
+
+        name1Label.setText(s);
+
+    }
+
+    public void changeName2(String s){
+
+        name2Label.setText(s);
+
+    }
+
+    public void renderImageRight(String s) {
+
+        BufferedImage img1 = null;
+        try {
+            img1 = ImageIO.read(new File(s));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image resImage1 = img1.getScaledInstance(icon2Label.getWidth(), icon2Label.getHeight(),
+                Image.SCALE_SMOOTH);
+
+        ImageIcon player2 = new ImageIcon(resImage1);
+
+        icon2Label.setIcon(player2);
+
+        fortheastpanel.add(icon2Label, BorderLayout.CENTER);
+
+    }
+
+    public void renderImageLeft(String s){
+
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("assets/paper.png"));
+            img = ImageIO.read(new File(s));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,18 +208,17 @@ public class GameFrame extends SecondFrame {
 
         thirdwestpanel.add(icon1Label, BorderLayout.CENTER);
 
-//////////////// FORTH PANEL BELOW //////////////////////////
+    }
 
-        forthpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
-        forthpanel.setPreferredSize(new Dimension(450,250));
-        forthpanel.setBackground(Color.RED);
+    public void setBackgrounds(){
 
-        name2Label.setBorder((BorderFactory.createEmptyBorder()));
-        name2Label.setFont(new Font("Verdana",Font.PLAIN,22));
-        name2Label.setText("Shaun Mak");
+        Color background;
 
-        forthpanel.add(name2Label, BorderLayout.CENTER);
-        name2Label.setOpaque(true);
+        background = f3.getBackground();
+
+        wrapperpanel.setBackground(background);
+        thirdpanel.setBackground(background);
+        forthpanel.setBackground(background);
 
     }
 

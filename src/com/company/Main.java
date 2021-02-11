@@ -1,6 +1,6 @@
 package com.company;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ public class Main{
     public static void main(String[] args) {
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
-        //GameFrame gameFrame = new GameFrame();
+        GameFrame gameFrame = new GameFrame();
 
         frame.cb.addActionListener(frame::actionPerformed);
 
@@ -85,11 +85,27 @@ public class Main{
                 frame2.f2.setVisible(true);//frame 2 visible true
 
 
-                //gameFrame.f3.setVisible(true);
-                //gameFrame.f3.setSize(1000,700);
-                //gameFrame.f3.setResizable(false);
+
+                gameFrame.f3.setVisible(true);
+                gameFrame.f3.setSize(1000,700);
+                gameFrame.f3.setResizable(false);
+
 
             }
         });
+
+        gameFrame.boom1button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                gameFrame.boom2button.setEnabled(false);
+                gameFrame.renderImageRight("assets/lizard.png");
+                gameFrame.renderImageLeft("assets/scissors.png");
+                gameFrame.changeName1("Ong Sin Yin");
+                gameFrame.changeName2("Mak Yen Wei");
+
+            }
+        });
+
     }
 }
