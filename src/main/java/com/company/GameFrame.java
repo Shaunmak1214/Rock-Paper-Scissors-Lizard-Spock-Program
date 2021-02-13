@@ -1,3 +1,14 @@
+/**
+ * Class Section: TT3V
+ * Trimester 2 2020/21
+ * Members:
+ * Mak Yen Wei         | 1181203334 | 018-9495849
+ * Reynard Kok Jin Yik | 1181203212 | 017-2890325
+ * Ong Sin Yin         | 1181203333 | 018-4093684
+ * Tew Jing Lai        | 1181203035 | 018-3101858
+ * Koong Poh Kang      | 1181203314 | 017-6971339
+ */
+
 package com.company;
 
 import javax.swing.*;
@@ -185,6 +196,7 @@ public class GameFrame extends SecondFrame {
         ImageIcon player2 = new ImageIcon(resImage1);
 
         icon2Label.setIcon(player2);
+        icon2Label.setBackground(Color.decode("#589595"));
 
         fortheastpanel.add(icon2Label, BorderLayout.CENTER);
 
@@ -205,6 +217,7 @@ public class GameFrame extends SecondFrame {
         ImageIcon player1 = new ImageIcon(resImage);
 
         icon1Label.setIcon(player1);
+        icon1Label.setBackground(Color.decode("#589595"));
 
         thirdwestpanel.add(icon1Label, BorderLayout.CENTER);
 
