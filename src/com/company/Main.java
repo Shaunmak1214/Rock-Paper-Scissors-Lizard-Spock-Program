@@ -95,8 +95,37 @@ public class Main{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //gameFrame.boom2button.setEnabled(false);
-                gameFrame.setButtonState(true, gameFrame.boom2button);
+                if(gameFrame.boom1button.isEnabled()){
+                    gameFrame.setButtonState(false, gameFrame.boom1button);
+                    gameFrame.setButtonState(true, gameFrame.boom2button);
+                    System.out.println("nimama");
+                }else{
+                    gameFrame.setButtonState(true, gameFrame.boom1button);
+                    gameFrame.setButtonState(false, gameFrame.boom2button);
+                    System.out.println("nimama");
+                }
+
+                gameFrame.renderImageRight("assets/lizard.png");
+                gameFrame.renderImageLeft("assets/scissors.png");
+                gameFrame.changeName1("Ong Sin Yin");
+                gameFrame.changeName2("Mak Yen Wei");
+
+            }
+        });
+
+        gameFrame.boom2button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(gameFrame.boom2button.isEnabled()){
+                    gameFrame.setButtonState(true, gameFrame.boom1button);
+                    gameFrame.setButtonState(false, gameFrame.boom2button);
+                }else{
+                    gameFrame.setButtonState(false, gameFrame.boom1button);
+                    gameFrame.setButtonState(true, gameFrame.boom2button);
+                    System.out.println("nimama");
+                }
+
                 gameFrame.renderImageRight("assets/lizard.png");
                 gameFrame.renderImageLeft("assets/scissors.png");
                 gameFrame.changeName1("Ong Sin Yin");
