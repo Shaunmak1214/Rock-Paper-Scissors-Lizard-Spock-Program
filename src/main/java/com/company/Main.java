@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main{
 
@@ -23,7 +24,10 @@ public class Main{
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
         GameFrame gameFrame = new GameFrame();
+
+        String[][] playername = new String[2][2];
         FinalFrame finalFrame = new FinalFrame();
+
 
         frame.cb.addActionListener(frame::actionPerformed);
 
@@ -131,6 +135,9 @@ public class Main{
                 }
                 else
                 {
+
+
+
                     frame2.results1.setText("Ready!");
 
                     if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
@@ -139,7 +146,19 @@ public class Main{
                         gameFrame.f3.setVisible(true);
                         gameFrame.f3.setSize(1000,700);
                         gameFrame.f3.setResizable(false);
+
+                        playername[0][0] = frame2.team1player1.getText();
+                        playername[0][1] = frame2.team1player2.getText();
+
+                        playername[1][0] = frame2.team2player1.getText();
+                        playername[1][1] = frame2.team2player2.getText();
+
+                        System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
                     }
+
+
+
+
                 }
             }
         });
@@ -172,7 +191,13 @@ public class Main{
                         Color background = frame2.f2.getBackground();
                         gameFrame.setBackgrounds(background);
 
-                        List playerdata = new List();
+                        playername[0][0] = frame2.team1player1.getText();
+                        playername[0][1] = frame2.team1player2.getText();
+
+                        playername[1][0] = frame2.team2player1.getText();
+                        playername[1][1] = frame2.team2player2.getText();
+
+                        System.out.println(Arrays.deepToString(playername)); //DELETE THIS AFTER FINISH PROJECT
                     }
                 }
             }
