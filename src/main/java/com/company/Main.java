@@ -13,7 +13,10 @@ public class Main{
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
         GameFrame gameFrame = new GameFrame();
+
         String[][] playername = new String[2][2];
+        FinalFrame finalFrame = new FinalFrame();
+
 
         frame.cb.addActionListener(frame::actionPerformed);
 
@@ -86,6 +89,7 @@ public class Main{
                         break;
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true
+                finalFrame.f.setVisible(true);
             }
         });
 
@@ -173,6 +177,8 @@ public class Main{
                         gameFrame.f3.setVisible(true);
                         gameFrame.f3.setSize(1000,700);
                         gameFrame.f3.setResizable(false);
+                        Color background = frame2.f2.getBackground();
+                        gameFrame.setBackgrounds(background);
 
                         playername[0][0] = frame2.team1player1.getText();
                         playername[0][1] = frame2.team1player2.getText();
@@ -213,7 +219,22 @@ public class Main{
         gameFrame.changeName2(name2);
     }
 
+    public static void gameEnd(GameFrame gameFrame){
+        gameFrame.setButtonState(false, gameFrame.boom1button);
+        gameFrame.setButtonState(false, gameFrame.boom2button);
+    }
 
+    public static void storeData(){
+
+    }
+
+    public static void setRoundCount(GameFrame gameFrame, Number roundCount){
+        gameFrame.roundCountLabel.setText(String.valueOf(roundCount));
+    }
+
+    public static void displayTable(GameFrame gameFrame){
+        gameFrame.setTable();
+    }
 
 }
 
