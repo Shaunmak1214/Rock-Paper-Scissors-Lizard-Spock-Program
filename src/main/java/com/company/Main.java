@@ -195,7 +195,9 @@ public class Main{
         gameFrame.setButtonState(false, gameFrame.boom2button);
     }
 
+    public static void storeData(){
 
+    }
 
 }
 
