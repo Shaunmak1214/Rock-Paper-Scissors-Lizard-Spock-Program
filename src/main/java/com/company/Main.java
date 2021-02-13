@@ -205,5 +205,9 @@ public class Main{
         gameFrame.roundCountLabel.setText(String.valueOf(roundCount));
     }
 
+    public static void displayTable(GameFrame gameFrame){
+        gameFrame.setTable();
+    }
+
 }
 
