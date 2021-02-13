@@ -12,6 +12,7 @@ public class Main{
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
         GameFrame gameFrame = new GameFrame();
+        FinalFrame finalFrame = new FinalFrame();
 
         frame.cb.addActionListener(frame::actionPerformed);
 
@@ -84,6 +85,7 @@ public class Main{
                         break;
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true
+                finalFrame.f.setVisible(true);
             }
         });
 
