@@ -222,4 +222,10 @@ public class GameFrame extends SecondFrame {
 
     }
 
+    public void setButtonState(boolean buttonState, JButton buttonName){
+
+        buttonName.setEnabled(buttonState);
+
+    }
+
 }
