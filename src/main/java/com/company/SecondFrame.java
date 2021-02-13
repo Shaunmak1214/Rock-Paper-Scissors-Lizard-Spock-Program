@@ -118,7 +118,7 @@ public class SecondFrame {
         button1.setPreferredSize(new Dimension(100,30));
         button1.setForeground(Color.BLUE);
 
-
+        //button1.addActionListener(this::btn1Check);
         team1btn.add(button1);
 
 ///////////////// DISPLAY RESULTS FOR TEAM 1
@@ -129,7 +129,7 @@ public class SecondFrame {
 //        JLabel testing = new JLabel("Testing");
         //display1.add(testing);
 
-        button1.addActionListener(this::btn1Check);
+
 
 //////////////// FOURTH PANEL BELOW///////////////////////////
         fourthpanel.setBorder((BorderFactory.createEmptyBorder(100,0,0,0)));
@@ -165,7 +165,7 @@ public class SecondFrame {
         button2.setPreferredSize(new Dimension(100,30));
         button2.setForeground(Color.BLUE);
 
-        button2.addActionListener(this::btn2Check);
+        //button2.addActionListener(this::btn2Check);
         team2btn.add(button2);
 
 //////////////// DISPLAY RESULTS FOR TEAM 2 /////////////////////////////////
@@ -173,58 +173,39 @@ public class SecondFrame {
         display2.setBorder(BorderFactory.createEmptyBorder(10,250,0,250));
 
         display2.add(results2);
-    }
 
-    public void btn1Check(ActionEvent btn1)
-    {
-        if(team1player1.getText().trim().isEmpty() && team1player2.getText().trim().isEmpty())
-        {
-            results1.setText("Please enter name for both Player");
-        }
-        else if(team1player1.getText().trim().isEmpty())
-        {
-            results1.setText("Please enter name for Player 1");
-        }
-        else if(team1player2.getText().trim().isEmpty())
-        {
-            results1.setText("Please enter name for Player 2");
-        }
-        else
-        {
-            results1.setText("Ready!");
+///////////////// (TEAM 1) ///////////////////////////////////
+//        JSONObject Team1Player = new JSONObject();
+//        Team1Player.put("Player 1",team1player1);
+//        Team1Player.put("Player 2",team1player2);
+//
+//        JSONObject Team1 = new JSONObject();
+//        Team1.put("Team 1",Team1Player);
 
-            if(results1.getText().equals("Ready!") && results2.getText().equals("Ready!"))
-            {
+/////////////////(TEAM 2)//////////////////////////////////////
+//        JSONObject Team2Player = new JSONObject();
+//        Team2Player.put("Player 1",team2player1);
+//        Team2Player.put("Player 2",team1player2);
+//
+//        JSONObject Team2 = new JSONObject();
+//        Team2.put("Team 2",Team2Player);
 
-            }
-        }
-    }
-
-    public void btn2Check(ActionEvent btn2)
-    {
-        if(team2player1.getText().trim().isEmpty() && team2player2.getText().trim().isEmpty())
-        {
-            results2.setText("Please enter name for both Player");
-        }
-        else if(team2player1.getText().trim().isEmpty())
-        {
-            results2.setText("Please enter name for Player 1");
-        }
-        else if(team2player2.getText().trim().isEmpty())
-        {
-            results2.setText("Please enter name for Player 2");
-        }
-        else
-        {
-            results2.setText("Ready!");
-
-            if(results1.getText().equals("Ready!") && results2.getText().equals("Ready!"))
-            {
-
-            }
-        }
-
+///////////////// ADDING PLAYER TO ARRAY /////////////////////////////
+//        JSONArray playername = new JSONArray();
+//        playername.put(Team1Player);
+//        playername.put(Team2Player);
+//
+//        try(FileWriter file = new FileWriter("player.json");)
+//        {
+//             file.write(playername.toJSONString());
+//             file.flush();
+//        }
+//        catch (IOException e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     }
-
 }
