@@ -121,7 +121,7 @@ public class SecondFrame {
         //button1.addActionListener(this::btn1Check);
         team1btn.add(button1);
 
-///////////////// DISPLAY RESULTS FOR TEAM 1
+///////////////// DISPLAY RESULTS FOR TEAM 1 ///////////////////////////
         secondpanel.add(display1);
 
         display1.setBorder(BorderFactory.createEmptyBorder(0,250,20,250));
@@ -174,38 +174,16 @@ public class SecondFrame {
 
         display2.add(results2);
 
-///////////////// (TEAM 1) ///////////////////////////////////
-//        JSONObject Team1Player = new JSONObject();
-//        Team1Player.put("Player 1",team1player1);
-//        Team1Player.put("Player 2",team1player2);
-//
-//        JSONObject Team1 = new JSONObject();
-//        Team1.put("Team 1",Team1Player);
+//////////////////////////// 2D ARRAY //////////////////////////////////////
 
-/////////////////(TEAM 2)//////////////////////////////////////
-//        JSONObject Team2Player = new JSONObject();
-//        Team2Player.put("Player 1",team2player1);
-//        Team2Player.put("Player 2",team1player2);
-//
-//        JSONObject Team2 = new JSONObject();
-//        Team2.put("Team 2",Team2Player);
+        String[][] playername = new String[2][2];
 
-///////////////// ADDING PLAYER TO ARRAY /////////////////////////////
-//        JSONArray playername = new JSONArray();
-//        playername.put(Team1Player);
-//        playername.put(Team2Player);
-//
-//        try(FileWriter file = new FileWriter("player.json");)
-//        {
-//             file.write(playername.toJSONString());
-//             file.flush();
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//    }
+        playername[0][0] = team1player1.getText();
+        playername[0][1] = team1player2.getText();
+
+        playername[1][0] = team2player1.getText();
+        playername[1][1] = team2player2.getText();
+
 
     }
 }
