@@ -42,14 +42,14 @@ public class MainFrame extends JFrame
                 firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
 
                 f.add(firstpanel,BorderLayout.NORTH);//panel position
-                firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
+                firstpanel.setBackground(new Color(253, 105, 0));//BACKGROUND COLOR OF FIRST PANEL
                 firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE
                 upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
-                upperlabel.setFont(new Font("Verdana",Font.PLAIN,18));//font of text
-                upperlabel.setBackground(Color.ORANGE);//text background color
+                upperlabel.setFont(new Font("Sans Serif",Font.BOLD,18));//font of text
+                //upperlabel.setBackground(Color.ORANGE);
 
                 firstpanel.add(upperlabel);// ADD LABEL INTO THE PANEL
-                upperlabel.setOpaque(true);// MAKE LABEL VISIBLE
+                //upperlabel.setOpaque(true);
 
                 //f.setLayout(null);
 
@@ -107,14 +107,15 @@ public class MainFrame extends JFrame
 ///////////////////////THIRD PANEL BELOW////////////////////////////
 
                 thirdpanel.setLayout(new GridBagLayout());
-                thirdpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
+                thirdpanel.setBorder((BorderFactory.createEmptyBorder(0,10,10,10)));
 
                 f.add(thirdpanel,BorderLayout.PAGE_END);
                 //thirdpanel.setBackground(Color.BLACK);
                 thirdpanel.setPreferredSize(new Dimension(1000,150));
 
                 proceed.setPreferredSize(new Dimension(100,30));//BUTTON SIZE
-                proceed.setFont(new Font("Verdana",Font.BOLD,12));//SIZE OF THE TEXT INSIDE BUTTON
+                proceed.setFont(new Font("Sans Serif",Font.BOLD,12));//SIZE OF THE TEXT INSIDE BUTTON
+                proceed.setForeground(Color.BLUE);
 
                 thirdpanel.add(proceed);//BUTTON ADDED
 
