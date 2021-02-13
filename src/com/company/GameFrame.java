@@ -129,7 +129,9 @@ public class GameFrame extends SecondFrame {
 
         forthpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
         forthpanel.setPreferredSize(new Dimension(450,250));
-        forthpanel.setBackground(Color.RED);
+        forthpanel.setBackground(Color.BLACK);
+
+
 
         name2Label.setBorder((BorderFactory.createEmptyBorder()));
         name2Label.setFont(new Font("Verdana",Font.PLAIN,22));
