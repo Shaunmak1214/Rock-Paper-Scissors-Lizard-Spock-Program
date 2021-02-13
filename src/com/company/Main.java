@@ -133,4 +133,9 @@ public class Main{
         gameFrame.changeName2(name2);
     }
 
+    public static void gameEnd(GameFrame gameFrame){
+        gameFrame.setButtonState(false, gameFrame.boom1button);
+        gameFrame.setButtonState(false, gameFrame.boom2button);
+    }
+
 }
