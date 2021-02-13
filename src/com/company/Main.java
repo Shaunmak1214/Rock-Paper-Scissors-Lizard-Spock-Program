@@ -94,25 +94,26 @@ public class Main{
         gameFrame.boom1button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 gameInit(gameFrame);
-
             }
         });
 
         gameFrame.boom2button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 gameInit(gameFrame);
-
             }
         });
 
     }
 
     private static void gameInit(GameFrame gameFrame) {
+        setButton(gameFrame);
+        setImage(gameFrame, "assets/lizard.png", "assets/scissors.png");
+        setName(gameFrame, "makyenwei", "ongsinyin");
+    }
 
+    public static void setButton(GameFrame gameFrame){
         if(gameFrame.boom2button.isEnabled()){
             gameFrame.setButtonState(true, gameFrame.boom1button);
             gameFrame.setButtonState(false, gameFrame.boom2button);
@@ -120,11 +121,16 @@ public class Main{
             gameFrame.setButtonState(false, gameFrame.boom1button);
             gameFrame.setButtonState(true, gameFrame.boom2button);
         }
-
-        gameFrame.renderImageRight("assets/lizard.png");
-        gameFrame.renderImageLeft("assets/scissors.png");
-        gameFrame.changeName1("Ong Sin Yin");
-        gameFrame.changeName2("Mak Yen Wei");
-
     }
+
+    public static void setImage(GameFrame gameFrame, String ImageLeftPath, String ImageRightPath){
+        gameFrame.renderImageRight(ImageLeftPath);
+        gameFrame.renderImageLeft(ImageRightPath);
+    }
+
+    public static void setName(GameFrame gameFrame, String name1, String name2){
+        gameFrame.changeName1(name1);
+        gameFrame.changeName2(name2);
+    }
+
 }
