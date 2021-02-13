@@ -158,6 +158,8 @@ public class Main{
                         gameFrame.f3.setVisible(true);
                         gameFrame.f3.setSize(1000,700);
                         gameFrame.f3.setResizable(false);
+                        Color background = frame2.f2.getBackground();
+                        gameFrame.setBackgrounds(background);
 
                         List playerdata = new List();
                     }

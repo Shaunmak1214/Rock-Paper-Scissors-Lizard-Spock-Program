@@ -210,15 +210,14 @@ public class GameFrame extends SecondFrame {
 
     }
 
-    public void setBackgrounds(){
+    public void setBackgrounds(Color backgrounds){
 
-        Color background;
+        f2.setBackground(backgrounds);
+        wrapperpanel.setBackground(backgrounds);
+        thirdpanel.setBackground(backgrounds);
+        forthpanel.setBackground(backgrounds);
 
-        background = f3.getBackground();
-
-        wrapperpanel.setBackground(background);
-        thirdpanel.setBackground(background);
-        forthpanel.setBackground(background);
+        System.out.println(backgrounds);
 
     }
 
