@@ -84,12 +84,9 @@ public class Main{
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true
 
-
-
                 gameFrame.f3.setVisible(true);
                 gameFrame.f3.setSize(1000,700);
                 gameFrame.f3.setResizable(false);
-
 
             }
         });
@@ -98,7 +95,8 @@ public class Main{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                gameFrame.boom2button.setEnabled(false);
+                //gameFrame.boom2button.setEnabled(false);
+                gameFrame.setButtonState(true, gameFrame.boom2button);
                 gameFrame.renderImageRight("assets/lizard.png");
                 gameFrame.renderImageLeft("assets/scissors.png");
                 gameFrame.changeName1("Ong Sin Yin");
