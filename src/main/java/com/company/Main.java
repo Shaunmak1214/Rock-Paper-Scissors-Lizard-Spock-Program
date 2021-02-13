@@ -206,28 +206,28 @@ public class Main{
 
     private static void gameInit(GameFrame gameFrame) {
         setButton(gameFrame);
-        setImage(gameFrame, "assets/lizard.png", "assets/scissors.png");
-        setName(gameFrame, "makyenwei", "ongsinyin");
+        setImage(gameFrame);
+        setName(gameFrame);
     }
 
     public static void setButton(GameFrame gameFrame){
         if(gameFrame.boom2button.isEnabled()){
             gameFrame.setButtonState(true, gameFrame.boom1button);
             gameFrame.setButtonState(false, gameFrame.boom2button);
-        }else{
+        }else if(gameFrame.boom1button.isEnabled()){
             gameFrame.setButtonState(false, gameFrame.boom1button);
             gameFrame.setButtonState(true, gameFrame.boom2button);
         }
     }
 
-    public static void setImage(GameFrame gameFrame, String ImageLeftPath, String ImageRightPath){
-        gameFrame.renderImageRight(ImageLeftPath);
-        gameFrame.renderImageLeft(ImageRightPath);
+    public static void setImage(GameFrame gameFrame){
+        gameFrame.renderImageRight();
+        gameFrame.renderImageLeft();
     }
 
-    public static void setName(GameFrame gameFrame, String name1, String name2){
-        gameFrame.changeName1(name1);
-        gameFrame.changeName2(name2);
+    public static void setName(GameFrame gameFrame){
+        gameFrame.changeName1();
+        gameFrame.changeName2();
     }
 
     public static void gameEnd(GameFrame gameFrame){

@@ -39,8 +39,8 @@ public class GameFrame extends SecondFrame {
     JLabel icon1Label = new JLabel();
     JLabel icon2Label = new JLabel();
 
-    JButton boom1button = new JButton("BOOM");
-    JButton boom2button = new JButton("BOOM");
+    JButton boom1button = new JButton("BOOM!");
+    JButton boom2button = new JButton("BOOM!");
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
@@ -71,7 +71,7 @@ public class GameFrame extends SecondFrame {
         roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
         roundCountLabel.setFont(new Font("Verdana",Font.PLAIN,22));
 
-        roundCountLabel.setText("ROUND 1 !");
+        roundCountLabel.setText("ROUND 1");
 
         secondpanel.add(roundCountLabel, BorderLayout.CENTER);
         roundCountLabel.setOpaque(true);
@@ -102,7 +102,8 @@ public class GameFrame extends SecondFrame {
 
         name1Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
         name1Label.setFont(new Font("Verdana",Font.PLAIN,22));
-        name1Label.setText("Poh Kang");
+
+        name1Label.setText(team1player1.getText());
         name1Label.setOpaque(true);
         name1Label.setVerticalAlignment(JLabel.CENTER);
         //name1Label.setBackground(Color.ORANGE);
@@ -117,14 +118,14 @@ public class GameFrame extends SecondFrame {
 //////////////// THIRD WEST PANEL BELOW /////////////////////////
 
         thirdwestpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        thirdwestpanel.setPreferredSize(new Dimension(200,200));
+        thirdwestpanel.setPreferredSize(new Dimension(160,160));
         thirdwestpanel.setBackground(Color.BLACK);
 
         icon1Label.setText("");
         icon1Label.setOpaque(true);
-        icon1Label.setSize(190, 190);
+        icon1Label.setSize(150, 150);
 
-        renderImageLeft("assets/rock.png");
+        renderImageLeft();
 
 //////////////// FORTH PANEL BELOW //////////////////////////
 
@@ -138,14 +139,14 @@ public class GameFrame extends SecondFrame {
 //////////////// FORTH EAST PANEL BELOW /////////////////////////
 
         fortheastpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        fortheastpanel.setPreferredSize(new Dimension(200,200));
+        fortheastpanel.setPreferredSize(new Dimension(160,160));
         fortheastpanel.setBackground(Color.BLACK);
 
         icon2Label.setText("");
         icon2Label.setOpaque(true);
-        icon2Label.setSize(190, 190);
+        icon2Label.setSize(150, 150);
 
-        renderImageRight("assets/rock.png");
+        renderImageRight();
 
 //////////////// FORTH WEST PANEL BELOW /////////////////////////
 
@@ -155,7 +156,7 @@ public class GameFrame extends SecondFrame {
 
         name2Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
         name2Label.setFont(new Font("Verdana",Font.PLAIN,22));
-        name2Label.setText("Poh Kang");
+        name2Label.setText(team1player2.getText());
         name2Label.setOpaque(true);
         name2Label.setVerticalAlignment(JLabel.CENTER);
         //name2Label.setBackground(Color.ORANGE);
@@ -169,23 +170,52 @@ public class GameFrame extends SecondFrame {
 
     }
 
-    public void changeName1(String s){
+    public void changeName1(){
 
-        name1Label.setText(s);
-
-    }
-
-    public void changeName2(String s){
-
-        name2Label.setText(s);
+        name1Label.setText(team1player2.getText());
 
     }
 
-    public void renderImageRight(String s) {
+    public void changeName2(){
+
+        name2Label.setText(team2player2.getText());
+
+    }
+
+    public String randomizeImage(){
+
+        double max = 5, min = 1;
+        String imageName = "";
+        int imageNo = 0;
+
+        imageNo = (int)((Math.random()*((max-min)+1))+min);
+
+        //1 - Rock
+        //2 - Paper
+        //3 - Scissors
+        //4 - Lizard
+        //5 - Spock
+        switch(imageNo)
+        {
+            case 1: imageName = "assets/rock.png"; break;
+            case 2: imageName = "assets/paper.png"; break;
+            case 3: imageName = "assets/scissors.png"; break;
+            case 4: imageName = "assets/lizard.png"; break;
+            case 5: imageName = "assets/spock.png"; break;
+            default: System.out.println("Failed to display image."); break;
+        }
+
+        return imageName;
+
+    }
+
+    public void renderImageRight() {
+
+        String imgName = randomizeImage();
 
         BufferedImage img1 = null;
         try {
-            img1 = ImageIO.read(new File(s));
+            img1 = ImageIO.read(new File(imgName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -202,11 +232,13 @@ public class GameFrame extends SecondFrame {
 
     }
 
-    public void renderImageLeft(String s){
+    public void renderImageLeft(){
+
+        String imgName = randomizeImage();
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File(s));
+            img = ImageIO.read(new File(imgName));
         } catch (IOException e) {
             e.printStackTrace();
         }
