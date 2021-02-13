@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Main{
 
@@ -83,11 +84,6 @@ public class Main{
                         break;
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true
-
-                gameFrame.f3.setVisible(true);
-                gameFrame.f3.setSize(1000,700);
-                gameFrame.f3.setResizable(false);
-
             }
         });
 
@@ -105,6 +101,67 @@ public class Main{
             }
         });
 
+        frame2.button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(frame2.team1player1.getText().trim().isEmpty() && frame2.team1player2.getText().trim().isEmpty())
+                {
+                    frame2.results1.setText("Please enter name for both Player");
+                }
+                else if(frame2.team1player1.getText().trim().isEmpty())
+                {
+                    frame2.results1.setText("Please enter name for Player 1");
+                }
+                else if(frame2.team1player2.getText().trim().isEmpty())
+                {
+                    frame2.results1.setText("Please enter name for Player 2");
+                }
+                else
+                {
+                    frame2.results1.setText("Ready!");
+
+                    if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
+                    {
+                        frame2.f2.setVisible(false);
+                        gameFrame.f3.setVisible(true);
+                        gameFrame.f3.setSize(1000,700);
+                        gameFrame.f3.setResizable(false);
+                    }
+                }
+            }
+        });
+
+        frame2.button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(frame2.team2player1.getText().trim().isEmpty() && frame2.team2player2.getText().trim().isEmpty())
+                {
+                    frame2.results2.setText("Please enter name for both Player");
+                }
+                else if(frame2.team2player1.getText().trim().isEmpty())
+                {
+                    frame2.results2.setText("Please enter name for Player 1");
+                }
+                else if(frame2.team2player2.getText().trim().isEmpty())
+                {
+                    frame2.results2.setText("Please enter name for Player 2");
+                }
+                else
+                {
+                    frame2.results2.setText("Ready!");
+
+                    if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
+                    {
+                        frame2.f2.setVisible(false);
+                        gameFrame.f3.setVisible(true);
+                        gameFrame.f3.setSize(1000,700);
+                        gameFrame.f3.setResizable(false);
+
+                        List playerdata = new List();
+                    }
+                }
+            }
+        });
     }
 
     private static void gameInit(GameFrame gameFrame) {
@@ -138,4 +195,7 @@ public class Main{
         gameFrame.setButtonState(false, gameFrame.boom2button);
     }
 
+
+
 }
+
