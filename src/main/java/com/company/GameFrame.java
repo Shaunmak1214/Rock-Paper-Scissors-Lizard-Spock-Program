@@ -321,7 +321,7 @@ public class GameFrame extends SecondFrame {
 
     public void setTable(){
 
-
+s
 
         }
 
