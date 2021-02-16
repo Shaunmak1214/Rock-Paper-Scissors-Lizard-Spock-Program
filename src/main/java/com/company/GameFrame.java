@@ -22,6 +22,14 @@ import java.io.File;
 
 public class GameFrame extends SecondFrame {
 
+    String team1[][] = {
+            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+            {"Team 1 : Sheldon", "1", "1", "0", "2"},
+            {"Team 2 : Howard", "0", "0", "1", "1"}
+    };
+
+    String c[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+
     JFrame f3 = new JFrame();
 
     JPanel firstpanel = new JPanel();
@@ -44,6 +52,10 @@ public class GameFrame extends SecondFrame {
 
     JButton boom1button = new JButton("BOOM!");
     JButton boom2button = new JButton("BOOM!");
+
+    JTable resultstable = new JTable(team1,c);
+
+    JScrollPane jsp = new JScrollPane(resultstable);
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
@@ -171,6 +183,36 @@ public class GameFrame extends SecondFrame {
         forthwestpanel.add(name2Label, BorderLayout.CENTER);
         forthwestpanel.add(boom2button, BorderLayout.CENTER);
 
+//////////////// SCORE TABLE PANEL BELOW /////////////////////////
+
+        resultspanel.setLayout(new BorderLayout(2,1));
+        resultspanel.setBorder((BorderFactory.createEmptyBorder(0,10,0,10)));
+
+        f3.add(resultspanel, BorderLayout.SOUTH);
+
+        resultstable.setTableHeader(null);
+        resultstable.setFont(new Font("Verdana", Font.PLAIN, 19 ));
+        resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
+        resultstable.setRowHeight(50);
+
+        ///// Alignment /////
+        DefaultTableCellRenderer crenderer = new DefaultTableCellRenderer();
+        crenderer.setHorizontalAlignment(JLabel.CENTER);
+        resultstable.getColumnModel().getColumn(0).setCellRenderer(crenderer);
+        resultstable.getColumnModel().getColumn(1).setCellRenderer(crenderer);
+        resultstable.getColumnModel().getColumn(2).setCellRenderer(crenderer);
+        resultstable.getColumnModel().getColumn(3).setCellRenderer(crenderer);
+        resultstable.getColumnModel().getColumn(4).setCellRenderer(crenderer);
+
+        resultstable.getColumnModel().getColumn(0).setPreferredWidth(300);
+        resultstable.getColumnModel().getColumn(1).setPreferredWidth(15);
+        resultstable.getColumnModel().getColumn(2).setPreferredWidth(15);
+        resultstable.getColumnModel().getColumn(3).setPreferredWidth(15);
+        resultstable.getColumnModel().getColumn(4).setPreferredWidth(15);
+
+        resultspanel.add(jsp, SwingConstants.CENTER);
+
+
     }
 
     public void changeName1(){
@@ -279,40 +321,7 @@ public class GameFrame extends SecondFrame {
 
     public void setTable(){
 
-        String team1[][] = {
-                {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-                {"Team 1 : Sheldon", "1", "1", "0", "2"},
-                {"Team 2 : Howard", "0", "0", "1", "1"}
-        };
 
-        String c[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
-
-        resultspanel.setLayout(new BorderLayout(2,1));
-        resultspanel.setBorder((BorderFactory.createEmptyBorder(0,10,0,10)));
-
-        f3.add(resultspanel, BorderLayout.SOUTH);
-
-        JTable resultstable = new JTable(team1,c);
-        JScrollPane jsp = new JScrollPane(resultstable);
-        resultstable.setTableHeader(null);
-        resultstable.setFont(new Font("Verdana", Font.PLAIN, 19 ));
-        resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
-        resultstable.setRowHeight(50);
-
-        ///// Alignment /////
-        DefaultTableCellRenderer crenderer = new DefaultTableCellRenderer();
-        crenderer.setHorizontalAlignment(JLabel.CENTER);
-        resultstable.getColumnModel().getColumn(0).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(1).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(2).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(3).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(4).setCellRenderer(crenderer);
-
-        resultstable.getColumnModel().getColumn(0).setPreferredWidth(300);
-        resultstable.getColumnModel().getColumn(1).setPreferredWidth(15);
-        resultstable.getColumnModel().getColumn(2).setPreferredWidth(15);
-        resultstable.getColumnModel().getColumn(3).setPreferredWidth(15);
-        resultstable.getColumnModel().getColumn(4).setPreferredWidth(15);
 
         }
 
