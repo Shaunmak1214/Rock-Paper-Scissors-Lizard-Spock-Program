@@ -28,7 +28,6 @@ public class Main{
         String[][] playername = new String[2][2];
         FinalFrame finalFrame = new FinalFrame();
 
-
         frame.cb.addActionListener(frame::actionPerformed);
 
         frame.proceed.addActionListener(new ActionListener() {
@@ -136,8 +135,6 @@ public class Main{
                 else
                 {
 
-
-
                     frame2.results1.setText("Ready!");
 
                     if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
@@ -155,10 +152,6 @@ public class Main{
 
                         System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
                     }
-
-
-
-
                 }
             }
         });
