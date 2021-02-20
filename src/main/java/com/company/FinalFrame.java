@@ -17,9 +17,7 @@ import javax.swing.*;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.border.TitledBorder;
 
 public class FinalFrame {
 
@@ -38,12 +36,14 @@ public class FinalFrame {
             }
         });
 
-        ImageIcon image = new ImageIcon("party2.png");
+
+        ImageIcon image = new ImageIcon("assets/party2.png");
 
         JPanel firstpanel = new JPanel();
         JPanel secondpanel = new JPanel();
         JPanel thirdpanel = new JPanel();
-        JPanel subPanel = new JPanel();
+        JPanel fourpanel = new JPanel();
+        JPanel fifthpanel = new JPanel();
 
         /////secondpanel labels/////
         JLabel upperlabel = new JLabel();
@@ -62,16 +62,16 @@ public class FinalFrame {
                 {"Team 2 : Howard", "0", "0", "1", "1"}
         };
 
-        String column[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+        String column[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
 
         ///Table 2 data////
         String data2[][] = {
-                {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+                {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"},
                 {"Team 1 : Sheldon", "1", "1", "0", "2"},
                 {"Team 2 : Howard", "0", "0", "1", "1"}
         };
 
-        String column2[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+        String column2[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
 
 
 /////////////////// FIRST PANEL BELOW/////////////////////////////
@@ -144,19 +144,22 @@ public class FinalFrame {
 
 /////////////////// Third PANEL BELOW/////////////////////////////
 
-        thirdpanel.setLayout(new BorderLayout(2, 1));
-        thirdpanel.setBorder((BorderFactory.createEmptyBorder(0, 10, 0, 10)));
+        fifthpanel.setLayout(new GridLayout(2,1));
+        fifthpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        thirdpanel.setLayout(new GridLayout());
+        thirdpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 30, 0)));
+        fourpanel.setLayout(new GridLayout());
+        fourpanel.setBorder((BorderFactory.createEmptyBorder(20, 0, 10, 0)));
 
-        f.add(thirdpanel, BorderLayout.SOUTH);
 
         /////Table 1 Charateristics/////
         JTable jt = new JTable(data, column);
-        JScrollPane sp = new JScrollPane(jt);
         jt.setTableHeader(null);
         jt.setFont(new Font("Verdana", Font.PLAIN, 19));
         jt.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
 
         jt.setRowHeight(50);
+
 
         /////Table 1 Centered Align/////
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -174,13 +177,44 @@ public class FinalFrame {
         jt.getColumnModel().getColumn(3).setPreferredWidth(15);
         jt.getColumnModel().getColumn(4).setPreferredWidth(15);
 
+        /////Table 2 Characteristic/////
+        JTable jt2 = new JTable(data2, column2);
+        jt2.setTableHeader(null);
+        jt2.setFont(new Font("Verdana", Font.PLAIN, 19));
+        jt2.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
 
-        subPanel.add(new JLabel("Panel One", SwingConstants.CENTER));
-        thirdpanel.add(sp, SwingConstants.CENTER);
+        jt2.setRowHeight(50);
 
+        /////Table 2 Centered Align/////
+        DefaultTableCellRenderer centerRenderer2 = new DefaultTableCellRenderer();
+        centerRenderer2.setHorizontalAlignment(JLabel.CENTER);
+        jt2.getColumnModel().getColumn(0).setCellRenderer(centerRenderer2);
+        jt2.getColumnModel().getColumn(1).setCellRenderer(centerRenderer2);
+        jt2.getColumnModel().getColumn(2).setCellRenderer(centerRenderer2);
+        jt2.getColumnModel().getColumn(3).setCellRenderer(centerRenderer2);
+        jt2.getColumnModel().getColumn(4).setCellRenderer(centerRenderer2);
+
+        /////Table 2 Width Adjusted/////
+        jt2.getColumnModel().getColumn(0).setPreferredWidth(300);
+        jt2.getColumnModel().getColumn(1).setPreferredWidth(15);
+        jt2.getColumnModel().getColumn(2).setPreferredWidth(15);
+        jt2.getColumnModel().getColumn(3).setPreferredWidth(15);
+        jt2.getColumnModel().getColumn(4).setPreferredWidth(15);
+
+        jt.setVisible(true);
+        jt2.setVisible(true);
+
+        thirdpanel.add(jt);
+        fourpanel.add(jt2);
+        fifthpanel.add(thirdpanel);
+        fifthpanel.add(fourpanel);
+
+        f.add(fifthpanel, BorderLayout.SOUTH);
 
         team1.setText("Team 1:  ");
         team2.setText("Team 2:  ");
         winning_team.setText("Team ");
+
+
     }
 }
