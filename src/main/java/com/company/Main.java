@@ -28,7 +28,6 @@ public class Main{
         String[][] playername = new String[2][2];
         FinalFrame finalFrame = new FinalFrame();
 
-
         frame.cb.addActionListener(frame::actionPerformed);
 
         frame.proceed.addActionListener(new ActionListener() {
@@ -104,20 +103,6 @@ public class Main{
             }
         });
 
-        gameFrame.boom1button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameInit(gameFrame);
-            }
-        });
-
-        gameFrame.boom2button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameInit(gameFrame);
-            }
-        });
-
         frame2.button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,8 +121,6 @@ public class Main{
                 else
                 {
 
-
-
                     frame2.results1.setText("Ready!");
 
                     if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
@@ -155,10 +138,6 @@ public class Main{
 
                         System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
                     }
-
-
-
-
                 }
             }
         });
@@ -202,38 +181,79 @@ public class Main{
                 }
             }
         });
+
+        gameFrame.boom1button.addActionListener(gameFrame::boom1Action);
+        /*gameFrame.boom1button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(gameFrame.roundNumLeft<3)
+                {
+                    gameFrame.boom1button.setEnabled(false);
+                    gameFrame.boom2button.setEnabled(true);
+                    gameFrame.renderImageLeft();
+                    //gameFrame.storeHandsignLeft();
+                }
+                else if(gameFrame.roundNumLeft>=2)
+                {
+                    gameFrame.boom1button.setEnabled(false);
+                }
+                gameFrame.roundNumLeft++;
+            }
+        });*/
+
+        gameFrame.boom2button.addActionListener(gameFrame::boom2Action);
+
+        /*gameFrame.boom2button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(gameFrame.roundNumRight<3)
+                {
+                    gameFrame.boom2button.setEnabled(false);
+                    gameFrame.boom1button.setEnabled(true);
+                    gameFrame.renderImageRight();
+                    //gameFrame.storeHandsignRight();
+                }
+                else if(gameFrame.roundNumRight>=2)
+                {
+                    gameFrame.boom2button.setEnabled(false);
+                }
+                gameFrame.roundNumRight++;
+            }
+        });*/
     }
 
-    private static void gameInit(GameFrame gameFrame) {
-        setButton(gameFrame);
-        setImage(gameFrame);
+    /*private static void gameInit(GameFrame gameFrame) {
+        //setButton(gameFrame);
+        //setImage(gameFrame);
         setName(gameFrame);
-    }
+    }*/
 
-    public static void setButton(GameFrame gameFrame){
-        if(gameFrame.boom2button.isEnabled()){
-            gameFrame.setButtonState(true, gameFrame.boom1button);
-            gameFrame.setButtonState(false, gameFrame.boom2button);
-        }else if(gameFrame.boom1button.isEnabled()){
+    /*public static void setButton(GameFrame gameFrame){
+        if(gameFrame.boom1button.isEnabled()){
             gameFrame.setButtonState(false, gameFrame.boom1button);
             gameFrame.setButtonState(true, gameFrame.boom2button);
+        }else if(gameFrame.boom2button.isEnabled()){
+            gameFrame.setButtonState(true, gameFrame.boom1button);
+            gameFrame.setButtonState(false, gameFrame.boom2button);
         }
-    }
+    }*/
 
-    public static void setImage(GameFrame gameFrame){
+    /*public static void setImage(GameFrame gameFrame){
         gameFrame.renderImageRight();
         gameFrame.renderImageLeft();
-    }
+    }*/
 
-    public static void setName(GameFrame gameFrame){
+    /*public static void setName(GameFrame gameFrame){
         gameFrame.changeName1();
         gameFrame.changeName2();
-    }
+    }*/
 
-    public static void gameEnd(GameFrame gameFrame){
+    /*public static void gameEnd(GameFrame gameFrame){
         gameFrame.setButtonState(false, gameFrame.boom1button);
         gameFrame.setButtonState(false, gameFrame.boom2button);
-    }
+    }*/
 
     public static void storeData(){
 

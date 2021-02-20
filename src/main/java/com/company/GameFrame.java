@@ -13,14 +13,32 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.io.IOException;
 import java.io.File;
+import java.util.Vector;
 
 public class GameFrame extends SecondFrame {
+
+    String resultsrow[][] = {
+            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+            {"Team 1 : Sinyin", "1", "1", "0", "2"},
+            {"Team 2 : Pohkang", "0", "0", "0", "0"},
+    };
+
+    String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+
+    int roundNumLeft = 0, roundNumRight = 0;
+    String imageName = "";
+    int imageNo = 0;
+    int handsignLeft[] = new int[3];
+    int handsignRight[] = new int[3];
 
     JFrame f3 = new JFrame();
 
@@ -35,6 +53,7 @@ public class GameFrame extends SecondFrame {
     JPanel wrapperpanel = new JPanel();
     JPanel resultspanel = new JPanel();
 
+
     JLabel upperlabel = new JLabel();
     JLabel roundCountLabel = new JLabel();
     JLabel name1Label = new JLabel();
@@ -45,20 +64,23 @@ public class GameFrame extends SecondFrame {
     JButton boom1button = new JButton("BOOM!");
     JButton boom2button = new JButton("BOOM!");
 
+    JTable resultstable = new JTable(resultsrow, resultshead);
+
+    JScrollPane jsp = new JScrollPane(resultstable);
+
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
-    GameFrame()
-    {
+    GameFrame() {
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
         firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-        firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
+        firstpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
 
-        f3.add(firstpanel,BorderLayout.NORTH);//panel position
+        f3.add(firstpanel, BorderLayout.NORTH);//panel position
         firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
-        firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE
+        firstpanel.setPreferredSize(new Dimension(1000, 60));//FIRST PANEL SIZE
         upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
-        upperlabel.setFont(new Font("Verdana",Font.PLAIN,18));//font of text
+        upperlabel.setFont(new Font("Verdana", Font.PLAIN, 18));//font of text
         upperlabel.setBackground(Color.ORANGE);//text background color
 
         firstpanel.add(upperlabel);// ADD LABEL INTO THE PANEL
@@ -66,13 +88,13 @@ public class GameFrame extends SecondFrame {
 
 ///////////////// SECOND PANEL BELOW////////////////////////////
 
-        secondpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
+        secondpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
         f3.add(secondpanel, BorderLayout.BEFORE_LINE_BEGINS);
-        secondpanel.setPreferredSize(new Dimension(1000,250));
+        secondpanel.setPreferredSize(new Dimension(1000, 250));
         //secondpanel.setBackground(Color.GRAY);
 
-        roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
-        roundCountLabel.setFont(new Font("Verdana",Font.PLAIN,22));
+        roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        roundCountLabel.setFont(new Font("Verdana", Font.PLAIN, 22));
 
         roundCountLabel.setText("ROUND 1");
 
@@ -81,16 +103,16 @@ public class GameFrame extends SecondFrame {
 
 //////////////// WRAPPER PANEL BELOW //////////////////////////
 
-        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(60,0,100,0)));
-        f3.add(wrapperpanel,BorderLayout.SOUTH);
-        wrapperpanel.setPreferredSize(new Dimension(1000,550));
+        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(60, 0, 100, 0)));
+        f3.add(wrapperpanel, BorderLayout.SOUTH);
+        wrapperpanel.setPreferredSize(new Dimension(1000, 550));
         wrapperpanel.add(thirdpanel, BorderLayout.EAST);
         wrapperpanel.add(forthpanel, BorderLayout.WEST);
 
 //////////////// THIRD PANEL BELOW //////////////////////////
 
-        thirdpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
-        thirdpanel.setPreferredSize(new Dimension(450,250));
+        thirdpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
+        thirdpanel.setPreferredSize(new Dimension(450, 250));
         //thirdpanel.setBackground(Color.ORANGE);
 
         thirdpanel.add(thirdeastpanel, BorderLayout.EAST);
@@ -98,21 +120,21 @@ public class GameFrame extends SecondFrame {
 
 //////////////// THIRD EAST PANEL BELOW //////////////////////////
 
-        thirdeastpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        thirdeastpanel.setPreferredSize(new Dimension(100,200));
+        thirdeastpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        thirdeastpanel.setPreferredSize(new Dimension(100, 200));
         //thirdeastpanel.setBackground(Color.ORANGE);
         //thirdeastpanel.setAlignmentY();
 
-        name1Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
-        name1Label.setFont(new Font("Verdana",Font.PLAIN,22));
+        name1Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+        name1Label.setFont(new Font("Verdana", Font.PLAIN, 22));
 
         name1Label.setText(team1player1.getText());
         name1Label.setOpaque(true);
         name1Label.setVerticalAlignment(JLabel.CENTER);
         //name1Label.setBackground(Color.ORANGE);
 
-        boom1button.setPreferredSize(new Dimension(100,30));
-        boom1button.setFont(new Font("Verdana",Font.BOLD,12));
+        boom1button.setPreferredSize(new Dimension(100, 30));
+        boom1button.setFont(new Font("Verdana", Font.BOLD, 12));
         boom1button.setVerticalAlignment(JLabel.CENTER);
 
         thirdeastpanel.add(name1Label, BorderLayout.CENTER);
@@ -120,8 +142,8 @@ public class GameFrame extends SecondFrame {
 
 //////////////// THIRD WEST PANEL BELOW /////////////////////////
 
-        thirdwestpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        thirdwestpanel.setPreferredSize(new Dimension(160,160));
+        thirdwestpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        thirdwestpanel.setPreferredSize(new Dimension(160, 160));
         thirdwestpanel.setBackground(Color.BLACK);
 
         icon1Label.setText("");
@@ -132,8 +154,8 @@ public class GameFrame extends SecondFrame {
 
 //////////////// FORTH PANEL BELOW //////////////////////////
 
-        forthpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
-        forthpanel.setPreferredSize(new Dimension(450,250));
+        forthpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
+        forthpanel.setPreferredSize(new Dimension(450, 250));
         //forthpanel.setBackground(Color.RED);
 
         forthpanel.add(fortheastpanel, BorderLayout.EAST);
@@ -141,8 +163,8 @@ public class GameFrame extends SecondFrame {
 
 //////////////// FORTH EAST PANEL BELOW /////////////////////////
 
-        fortheastpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        fortheastpanel.setPreferredSize(new Dimension(160,160));
+        fortheastpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        fortheastpanel.setPreferredSize(new Dimension(160, 160));
         fortheastpanel.setBackground(Color.BLACK);
 
         icon2Label.setText("");
@@ -153,27 +175,34 @@ public class GameFrame extends SecondFrame {
 
 //////////////// FORTH WEST PANEL BELOW /////////////////////////
 
-        forthwestpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        forthwestpanel.setPreferredSize(new Dimension(100,200));
+        forthwestpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        forthwestpanel.setPreferredSize(new Dimension(100, 200));
         //forthwestpanel.setBackground(Color.ORANGE);
 
-        name2Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
-        name2Label.setFont(new Font("Verdana",Font.PLAIN,22));
+        name2Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+        name2Label.setFont(new Font("Verdana", Font.PLAIN, 22));
         name2Label.setText(team1player2.getText());
         name2Label.setOpaque(true);
         name2Label.setVerticalAlignment(JLabel.CENTER);
         //name2Label.setBackground(Color.ORANGE);
 
-        boom2button.setPreferredSize(new Dimension(100,30));
-        boom2button.setFont(new Font("Verdana",Font.BOLD,12));
+        boom2button.setPreferredSize(new Dimension(100, 30));
+        boom2button.setFont(new Font("Verdana", Font.BOLD, 12));
         boom2button.setVerticalAlignment(JLabel.CENTER);
 
         forthwestpanel.add(name2Label, BorderLayout.CENTER);
         forthwestpanel.add(boom2button, BorderLayout.CENTER);
 
+        //boom1button.addActionListener(this::boom1Action);
+        //boom2button.addActionListener(this::boom2Action);
+
+//////////////// SCORE TABLE PANEL BELOW /////////////////////////
+
+        f3.add(jsp);
+
     }
 
-    public void changeName1(){
+    /*public void changeName1(){
 
         name1Label.setText(team1player2.getText());
 
@@ -183,15 +212,76 @@ public class GameFrame extends SecondFrame {
 
         name2Label.setText(team2player2.getText());
 
+    }*/
+
+    public void setBackgrounds(Color backgrounds) {
+
+        f2.setBackground(backgrounds);
+        wrapperpanel.setBackground(backgrounds);
+        thirdpanel.setBackground(backgrounds);
+        forthpanel.setBackground(backgrounds);
+
+        System.out.println(backgrounds);
     }
 
-    public String randomizeImage(){
+    public void boom1Action(ActionEvent boom1)
+    {
+       if(roundNumLeft<3)
+       {
+           boom1button.setEnabled(false);
+           boom2button.setEnabled(true);
+           renderImageLeft();
+           //gameFrame.storeHandsignLeft();
+       }
+       else if(roundNumLeft>=2)
+       {
+           boom1button.setEnabled(false);
+       }
+       roundNumLeft++;
+   }
+
+    public void boom2Action(ActionEvent boom2)
+    {
+        if(roundNumRight<3)
+        {
+            boom2button.setEnabled(false);
+            boom1button.setEnabled(true);
+            renderImageRight();
+            //gameFrame.storeHandsignRight();
+        }
+        else if(roundNumRight>=2)
+        {
+            boom2button.setEnabled(false);
+        }
+        roundNumRight++;
+    }
+
+    /*public void storeHandsign(ActionEvent storeHandsign)
+    {
+        if (storeHandsign.getSource() == boom1button) {
+
+            this.handsignLeft[roundNumLeft] = imageNo;
+            System.out.println("image: "+imageNo);
+
+        } else if (storeHandsign.getSource() == boom2button) {
+
+            this.handsignRight[roundNumRight] = imageNo;
+            System.out.println("image: "+imageNo);
+        }
+
+        System.out.println("Sign: "+handsignLeft[roundNumLeft]);
+        System.out.println("Round: "+roundNumLeft);
+        System.out.println("Sign: "+handsignRight[roundNumRight]);
+        System.out.println("Round: "+roundNumRight);
+    }*/
+
+    public String randomizeImageNo() {
 
         double max = 5, min = 1;
-        String imageName = "";
-        int imageNo = 0;
+        imageName = "";
+        imageNo = 0;
 
-        imageNo = (int)((Math.random()*((max-min)+1))+min);
+        imageNo = (int) ((Math.random() * ((max - min) + 1)) + min);
 
         //1 - Rock
         //2 - Paper
@@ -209,35 +299,12 @@ public class GameFrame extends SecondFrame {
         }
 
         return imageName;
-
-    }
-
-    public void renderImageRight() {
-
-        String imgName = randomizeImage();
-
-        BufferedImage img1 = null;
-        try {
-            img1 = ImageIO.read(new File(imgName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Image resImage1 = img1.getScaledInstance(icon2Label.getWidth(), icon2Label.getHeight(),
-                Image.SCALE_SMOOTH);
-
-        ImageIcon player2 = new ImageIcon(resImage1);
-
-        icon2Label.setIcon(player2);
-        icon2Label.setBackground(Color.decode("#589595"));
-
-        fortheastpanel.add(icon2Label, BorderLayout.CENTER);
-
     }
 
     public void renderImageLeft(){
 
-        String imgName = randomizeImage();
+        //boom1button.addActionListener(this::storeHandsign);
+        String imgName = randomizeImageNo();
 
         BufferedImage img = null;
         try {
@@ -258,61 +325,61 @@ public class GameFrame extends SecondFrame {
 
     }
 
-    public void setBackgrounds(Color backgrounds){
+    public void renderImageRight() {
 
-        f2.setBackground(backgrounds);
-        wrapperpanel.setBackground(backgrounds);
-        thirdpanel.setBackground(backgrounds);
-        forthpanel.setBackground(backgrounds);
+        //boom2button.addActionListener(this::storeHandsign);
+        String imgName = randomizeImageNo();
 
-        System.out.println(backgrounds);
+        BufferedImage img1 = null;
+        try {
+            img1 = ImageIO.read(new File(imgName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image resImage1 = img1.getScaledInstance(icon2Label.getWidth(), icon2Label.getHeight(),
+                Image.SCALE_SMOOTH);
+
+        ImageIcon player2 = new ImageIcon(resImage1);
+
+        icon2Label.setIcon(player2);
+        icon2Label.setBackground(Color.decode("#589595"));
+
+        fortheastpanel.add(icon2Label, BorderLayout.CENTER);
 
     }
 
-    public void setButtonState(boolean buttonState, JButton buttonName){
+    /*public void storeHandsignLeft(int imgNo){
+
+        if(roundNumLeft==0)
+            handsignLeft[roundNumLeft] = imgNo;
+        else if(roundNumLeft==1)
+            handsignLeft[roundNumLeft] = imgNo;
+        else if(roundNumLeft==2)
+            handsignLeft[roundNumLeft] = imgNo;
+    }*/
+
+    /*public void storeHandsignRight(int imgNo){
+
+        if(roundNumRight==0)
+            handsignRight[roundNumRight] = imgNo;
+        else if(roundNumLeft==1)
+            handsignRight[roundNumRight] = imgNo;
+        else if(roundNumLeft==2)
+            handsignRight[roundNumRight] = imgNo;
+    }*/
+
+    /*public void setButtonState(boolean buttonState, JButton buttonName){
 
         buttonName.setEnabled(buttonState);
 
-    }
+    }*/
 
     //////////////// GAME RESULT TABLE BELOW /////////////////////////
 
     public void setTable(){
 
-        String team1[][] = {
-                {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-                {"Team 1 : Sheldon", "1", "1", "0", "2"},
-                {"Team 2 : Howard", "0", "0", "1", "1"}
-        };
 
-        String c[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
-
-        resultspanel.setLayout(new BorderLayout(2,1));
-        resultspanel.setBorder((BorderFactory.createEmptyBorder(0,10,0,10)));
-
-        f3.add(resultspanel, BorderLayout.SOUTH);
-
-        JTable resultstable = new JTable(team1,c);
-        JScrollPane jsp = new JScrollPane(resultstable);
-        resultstable.setTableHeader(null);
-        resultstable.setFont(new Font("Verdana", Font.PLAIN, 19 ));
-        resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
-        resultstable.setRowHeight(50);
-
-        ///// Alignment /////
-        DefaultTableCellRenderer crenderer = new DefaultTableCellRenderer();
-        crenderer.setHorizontalAlignment(JLabel.CENTER);
-        resultstable.getColumnModel().getColumn(0).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(1).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(2).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(3).setCellRenderer(crenderer);
-        resultstable.getColumnModel().getColumn(4).setCellRenderer(crenderer);
-
-        resultstable.getColumnModel().getColumn(0).setPreferredWidth(300);
-        resultstable.getColumnModel().getColumn(1).setPreferredWidth(15);
-        resultstable.getColumnModel().getColumn(2).setPreferredWidth(15);
-        resultstable.getColumnModel().getColumn(3).setPreferredWidth(15);
-        resultstable.getColumnModel().getColumn(4).setPreferredWidth(15);
 
         }
 
