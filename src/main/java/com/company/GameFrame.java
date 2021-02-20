@@ -37,7 +37,10 @@ public class GameFrame extends SecondFrame {
     int roundNumLeft = 0, roundNumRight = 0;
     String imageName = "assets/rock.png"; //default image
     int imageNo = 0;
-    int handsign[] = new int[6];
+    int player1 = 0, player2 = 0;
+    int point = 0;
+    int pointP1 = 0, pointP2 = 0;
+    //int handsign[] = new int[6];
 
     JFrame f3 = new JFrame();
 
@@ -229,8 +232,8 @@ public class GameFrame extends SecondFrame {
             {
                 boom1button.setEnabled(false);
                 boom2button.setEnabled(true);
-                imageNo = randomizeImageNo();
-                imageName = setImageName(imageNo);
+                player1 = randomizeImageNo();
+                imageName = setImageName(player1);
                 renderImageLeft(imageName);
                 //gameFrame.storeHandsignLeft();
             }
@@ -247,8 +250,8 @@ public class GameFrame extends SecondFrame {
             {
                 boom2button.setEnabled(false);
                 boom1button.setEnabled(true);
-                imageNo = randomizeImageNo();
-                imageName = setImageName(imageNo);
+                player2 = randomizeImageNo();
+                imageName = setImageName(player2);
                 renderImageRight(imageName);
                 //gameFrame.storeHandsignRight();
             }
@@ -260,11 +263,20 @@ public class GameFrame extends SecondFrame {
             System.out.println("Round: "+roundNumRight);
         }
 
+        if(roundNumLeft == roundNumRight)
+        {
+            pointP1 = setPoint(player1, player2);
+            pointP2 = setPoint(player2, player1);
+            System.out.println(pointP1);
+            System.out.println(pointP2);
+        }
+
         if(roundNumLeft == 3 && roundNumRight == 3)
         {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
         }
+
    }
 
     /*public void storeHandsign(ActionEvent storeHandsign)
@@ -363,6 +375,25 @@ public class GameFrame extends SecondFrame {
 
         fortheastpanel.add(icon2Label, BorderLayout.CENTER);
 
+    }
+
+    public int setPoint(int p1, int p2)
+    {
+        point = 0;
+
+        if(p1!=p2)
+        {
+            switch(p1)
+            {
+                case 1: if(p2 == 3 || p2 == 4){ point += 1; } break;
+                case 2: if(p2 == 1 || p2 == 5){ point += 1; } break;
+                case 3: if(p2 == 2 || p2 == 4){ point += 1; } break;
+                case 4: if(p2 == 2 || p2 == 5){ point += 1; } break;
+                case 5: if(p2 == 1 || p2 == 3){ point += 1; } break;
+                default: point = 0; break;
+            }
+        }
+        return point;
     }
 
     /*public void storeHandsignLeft(int imgNo){
