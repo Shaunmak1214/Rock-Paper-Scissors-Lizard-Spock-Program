@@ -1,13 +1,46 @@
+/**
+ * Class Section: TT3V
+ * Trimester 2 2020/21
+ * Members:
+ * Mak Yen Wei         | 1181203334 | 018-9495849
+ * Reynard Kok Jin Yik | 1181203212 | 017-2890325
+ * Ong Sin Yin         | 1181203333 | 018-4093684
+ * Tew Jing Lai        | 1181203035 | 018-3101858
+ * Koong Poh Kang      | 1181203314 | 017-6971339
+ */
+
 package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.io.IOException;
 import java.io.File;
+import java.util.Vector;
 
 public class GameFrame extends SecondFrame {
+
+    String resultsrow[][] = {
+            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+            {"Team 1 : Sinyin", "1", "1", "0", "2"},
+            {"Team 2 : Pohkang", "0", "0", "0", "0"},
+    };
+
+    String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+
+    int roundNumLeft = 0, roundNumRight = 0;
+    String imageName = "assets/rock.png"; //default image
+    int imageNo = 0;
+    int player1 = 0, player2 = 0;
+    int point = 0;
+    int pointP1 = 0, pointP2 = 0;
+    //int handsign[] = new int[6];
 
     JFrame f3 = new JFrame();
 
@@ -20,6 +53,8 @@ public class GameFrame extends SecondFrame {
     JPanel fortheastpanel = new JPanel();
     JPanel forthwestpanel = new JPanel();
     JPanel wrapperpanel = new JPanel();
+    JPanel resultspanel = new JPanel();
+
 
     JLabel upperlabel = new JLabel();
     JLabel roundCountLabel = new JLabel();
@@ -28,23 +63,26 @@ public class GameFrame extends SecondFrame {
     JLabel icon1Label = new JLabel();
     JLabel icon2Label = new JLabel();
 
-    JButton boom1button = new JButton("BOOM");
-    JButton boom2button = new JButton("BOOM");
+    JButton boom1button = new JButton("BOOM!");
+    JButton boom2button = new JButton("BOOM!");
+
+    JTable resultstable = new JTable(resultsrow, resultshead);
+
+    JScrollPane jsp = new JScrollPane(resultstable);
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
-    GameFrame()
-    {
+    GameFrame() {
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
         firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-        firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
+        firstpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
 
-        f3.add(firstpanel,BorderLayout.NORTH);//panel position
+        f3.add(firstpanel, BorderLayout.NORTH);//panel position
         firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
-        firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE
+        firstpanel.setPreferredSize(new Dimension(1000, 60));//FIRST PANEL SIZE
         upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
-        upperlabel.setFont(new Font("Verdana",Font.PLAIN,18));//font of text
+        upperlabel.setFont(new Font("Verdana", Font.PLAIN, 18));//font of text
         upperlabel.setBackground(Color.ORANGE);//text background color
 
         firstpanel.add(upperlabel);// ADD LABEL INTO THE PANEL
@@ -52,31 +90,31 @@ public class GameFrame extends SecondFrame {
 
 ///////////////// SECOND PANEL BELOW////////////////////////////
 
-        secondpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
+        secondpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
         f3.add(secondpanel, BorderLayout.BEFORE_LINE_BEGINS);
-        secondpanel.setPreferredSize(new Dimension(1000,250));
+        secondpanel.setPreferredSize(new Dimension(1000, 250));
         //secondpanel.setBackground(Color.GRAY);
 
-        roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
-        roundCountLabel.setFont(new Font("Verdana",Font.PLAIN,22));
+        roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        roundCountLabel.setFont(new Font("Verdana", Font.PLAIN, 22));
 
-        roundCountLabel.setText("ROUND 1 !");
+        roundCountLabel.setText("ROUND 1");
 
         secondpanel.add(roundCountLabel, BorderLayout.CENTER);
         roundCountLabel.setOpaque(true);
 
 //////////////// WRAPPER PANEL BELOW //////////////////////////
 
-        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(60,0,100,0)));
-        f3.add(wrapperpanel,BorderLayout.SOUTH);
-        wrapperpanel.setPreferredSize(new Dimension(1000,550));
+        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(60, 0, 100, 0)));
+        f3.add(wrapperpanel, BorderLayout.SOUTH);
+        wrapperpanel.setPreferredSize(new Dimension(1000, 550));
         wrapperpanel.add(thirdpanel, BorderLayout.EAST);
         wrapperpanel.add(forthpanel, BorderLayout.WEST);
 
 //////////////// THIRD PANEL BELOW //////////////////////////
 
-        thirdpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
-        thirdpanel.setPreferredSize(new Dimension(450,250));
+        thirdpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
+        thirdpanel.setPreferredSize(new Dimension(450, 250));
         //thirdpanel.setBackground(Color.ORANGE);
 
         thirdpanel.add(thirdeastpanel, BorderLayout.EAST);
@@ -84,20 +122,21 @@ public class GameFrame extends SecondFrame {
 
 //////////////// THIRD EAST PANEL BELOW //////////////////////////
 
-        thirdeastpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        thirdeastpanel.setPreferredSize(new Dimension(100,200));
+        thirdeastpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        thirdeastpanel.setPreferredSize(new Dimension(100, 200));
         //thirdeastpanel.setBackground(Color.ORANGE);
         //thirdeastpanel.setAlignmentY();
 
-        name1Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
-        name1Label.setFont(new Font("Verdana",Font.PLAIN,22));
-        name1Label.setText("Poh Kang");
+        name1Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+        name1Label.setFont(new Font("Verdana", Font.PLAIN, 22));
+
+        name1Label.setText(team1player1.getText());
         name1Label.setOpaque(true);
         name1Label.setVerticalAlignment(JLabel.CENTER);
         //name1Label.setBackground(Color.ORANGE);
 
-        boom1button.setPreferredSize(new Dimension(100,30));
-        boom1button.setFont(new Font("Verdana",Font.BOLD,12));
+        boom1button.setPreferredSize(new Dimension(100, 30));
+        boom1button.setFont(new Font("Verdana", Font.BOLD, 12));
         boom1button.setVerticalAlignment(JLabel.CENTER);
 
         thirdeastpanel.add(name1Label, BorderLayout.CENTER);
@@ -105,20 +144,19 @@ public class GameFrame extends SecondFrame {
 
 //////////////// THIRD WEST PANEL BELOW /////////////////////////
 
-        thirdwestpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        thirdwestpanel.setPreferredSize(new Dimension(200,200));
+        thirdwestpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        thirdwestpanel.setPreferredSize(new Dimension(160, 160));
         thirdwestpanel.setBackground(Color.BLACK);
 
         icon1Label.setText("");
         icon1Label.setOpaque(true);
-        icon1Label.setSize(190, 190);
-
-        renderImageLeft("assets/rock.png");
+        icon1Label.setSize(150, 150);
+        renderImageLeft(imageName);
 
 //////////////// FORTH PANEL BELOW //////////////////////////
 
-        forthpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
-        forthpanel.setPreferredSize(new Dimension(450,250));
+        forthpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
+        forthpanel.setPreferredSize(new Dimension(450, 250));
         //forthpanel.setBackground(Color.RED);
 
         forthpanel.add(fortheastpanel, BorderLayout.EAST);
@@ -126,75 +164,179 @@ public class GameFrame extends SecondFrame {
 
 //////////////// FORTH EAST PANEL BELOW /////////////////////////
 
-        fortheastpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        fortheastpanel.setPreferredSize(new Dimension(200,200));
+        fortheastpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        fortheastpanel.setPreferredSize(new Dimension(160, 160));
         fortheastpanel.setBackground(Color.BLACK);
 
         icon2Label.setText("");
         icon2Label.setOpaque(true);
-        icon2Label.setSize(190, 190);
-
-        renderImageRight("assets/rock.png");
+        icon2Label.setSize(150, 150);
+        renderImageRight(imageName);
 
 //////////////// FORTH WEST PANEL BELOW /////////////////////////
 
-        forthwestpanel.setBorder((BorderFactory.createEmptyBorder(0,0,0,0)));
-        forthwestpanel.setPreferredSize(new Dimension(100,200));
+        forthwestpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        forthwestpanel.setPreferredSize(new Dimension(100, 200));
         //forthwestpanel.setBackground(Color.ORANGE);
 
-        name2Label.setBorder((BorderFactory.createEmptyBorder(70,0,0,0)));
-        name2Label.setFont(new Font("Verdana",Font.PLAIN,22));
-        name2Label.setText("Poh Kang");
+        name2Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+        name2Label.setFont(new Font("Verdana", Font.PLAIN, 22));
+        name2Label.setText(team1player2.getText());
         name2Label.setOpaque(true);
         name2Label.setVerticalAlignment(JLabel.CENTER);
         //name2Label.setBackground(Color.ORANGE);
 
-        boom2button.setPreferredSize(new Dimension(100,30));
-        boom2button.setFont(new Font("Verdana",Font.BOLD,12));
+        boom2button.setPreferredSize(new Dimension(100, 30));
+        boom2button.setFont(new Font("Verdana", Font.BOLD, 12));
         boom2button.setVerticalAlignment(JLabel.CENTER);
 
         forthwestpanel.add(name2Label, BorderLayout.CENTER);
         forthwestpanel.add(boom2button, BorderLayout.CENTER);
 
-    }
+        //boom1button.addActionListener(this::boom1Action);
+        //boom2button.addActionListener(this::boom2Action);
 
-    public void changeName1(String s){
+//////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
-        name1Label.setText(s);
-
-    }
-
-    public void changeName2(String s){
-
-        name2Label.setText(s);
+        f3.add(jsp);
 
     }
 
-    public void renderImageRight(String s) {
+    /*public void changeName1(){
 
-        BufferedImage img1 = null;
-        try {
-            img1 = ImageIO.read(new File(s));
-        } catch (IOException e) {
-            e.printStackTrace();
+        name1Label.setText(team1player2.getText());
+
+    }
+
+    public void changeName2(){
+
+        name2Label.setText(team2player2.getText());
+
+    }*/
+
+    public void setBackgrounds(Color backgrounds) {
+
+        f2.setBackground(backgrounds);
+        wrapperpanel.setBackground(backgrounds);
+        thirdpanel.setBackground(backgrounds);
+        forthpanel.setBackground(backgrounds);
+
+        System.out.println(backgrounds);
+    }
+
+    public void boomAction(ActionEvent boom)
+    {
+        if(boom.getSource() == boom1button)
+        {
+            if(roundNumLeft<3)
+            {
+                boom1button.setEnabled(false);
+                boom2button.setEnabled(true);
+                player1 = randomizeImageNo();
+                imageName = setImageName(player1);
+                renderImageLeft(imageName);
+                //gameFrame.storeHandsignLeft();
+            }
+            else if(roundNumLeft>=2)
+            {
+                boom1button.setEnabled(false);
+            }
+            roundNumLeft++;
+            System.out.println("Round: "+roundNumLeft);
+        }
+        else if(boom.getSource() == boom2button)
+        {
+            if(roundNumRight<3)
+            {
+                boom2button.setEnabled(false);
+                boom1button.setEnabled(true);
+                player2 = randomizeImageNo();
+                imageName = setImageName(player2);
+                renderImageRight(imageName);
+                //gameFrame.storeHandsignRight();
+            }
+            else if(roundNumRight>=2)
+            {
+                boom2button.setEnabled(false);
+            }
+            roundNumRight++;
+            System.out.println("Round: "+roundNumRight);
         }
 
-        Image resImage1 = img1.getScaledInstance(icon2Label.getWidth(), icon2Label.getHeight(),
-                Image.SCALE_SMOOTH);
+        if(roundNumLeft == roundNumRight)
+        {
+            pointP1 = setPoint(player1, player2);
+            pointP2 = setPoint(player2, player1);
+            System.out.println(pointP1);
+            System.out.println(pointP2);
+        }
 
-        ImageIcon player2 = new ImageIcon(resImage1);
+        if(roundNumLeft == 3 && roundNumRight == 3)
+        {
+            boom1button.setEnabled(false);
+            boom2button.setEnabled(false);
+        }
 
-        icon2Label.setIcon(player2);
+   }
 
-        fortheastpanel.add(icon2Label, BorderLayout.CENTER);
+    /*public void storeHandsign(ActionEvent storeHandsign)
+    {
+        if (storeHandsign.getSource() == boom1button) {
 
+            this.handsignLeft[roundNumLeft] = imageNo;
+            System.out.println("image: "+imageNo);
+
+        } else if (storeHandsign.getSource() == boom2button) {
+
+            this.handsignRight[roundNumRight] = imageNo;
+            System.out.println("image: "+imageNo);
+        }
+
+        System.out.println("Sign: "+handsignLeft[roundNumLeft]);
+        System.out.println("Round: "+roundNumLeft);
+        System.out.println("Sign: "+handsignRight[roundNumRight]);
+        System.out.println("Round: "+roundNumRight);
+    }*/
+
+    public int randomizeImageNo() {
+
+        double max = 5, min = 1;
+        imageNo = 0;
+
+        imageNo = (int) ((Math.random() * ((max - min) + 1)) + min);
+
+        return imageNo;
     }
 
-    public void renderImageLeft(String s){
+    public String setImageName(int imageNo)
+    {
+        System.out.println("\nimage: "+imageNo);
+        //1 - Rock
+        //2 - Paper
+        //3 - Scissors
+        //4 - Lizard
+        //5 - Spock
+        switch(imageNo)
+        {
+            case 1: imageName = "assets/rock.png"; break;
+            case 2: imageName = "assets/paper.png"; break;
+            case 3: imageName = "assets/scissors.png"; break;
+            case 4: imageName = "assets/lizard.png"; break;
+            case 5: imageName = "assets/spock.png"; break;
+            default: System.out.println("Failed to display image."); break;
+        }
+
+        return imageName;
+    }
+
+    public void renderImageLeft(String imageName){
+
+        //boom1button.addActionListener(this::storeHandsign);
+        //String imageName = setImageName(imageNo);
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File(s));
+            img = ImageIO.read(new File(imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -205,27 +347,87 @@ public class GameFrame extends SecondFrame {
         ImageIcon player1 = new ImageIcon(resImage);
 
         icon1Label.setIcon(player1);
+        icon1Label.setBackground(Color.decode("#589595"));
 
         thirdwestpanel.add(icon1Label, BorderLayout.CENTER);
 
     }
 
-    public void setBackgrounds(){
+    public void renderImageRight(String imageName) {
 
-        Color background;
+        //boom2button.addActionListener(this::storeHandsign);
+        //String imageName = setImageName(imageNo);
 
-        background = f3.getBackground();
+        BufferedImage img1 = null;
+        try {
+            img1 = ImageIO.read(new File(imageName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        wrapperpanel.setBackground(background);
-        thirdpanel.setBackground(background);
-        forthpanel.setBackground(background);
+        Image resImage1 = img1.getScaledInstance(icon2Label.getWidth(), icon2Label.getHeight(),
+                Image.SCALE_SMOOTH);
+
+        ImageIcon player2 = new ImageIcon(resImage1);
+
+        icon2Label.setIcon(player2);
+        icon2Label.setBackground(Color.decode("#589595"));
+
+        fortheastpanel.add(icon2Label, BorderLayout.CENTER);
 
     }
 
-    public void setButtonState(boolean buttonState, JButton buttonName){
+    public int setPoint(int p1, int p2)
+    {
+        point = 0;
+
+        if(p1!=p2)
+        {
+            switch(p1)
+            {
+                case 1: if(p2 == 3 || p2 == 4){ point += 1; } break;
+                case 2: if(p2 == 1 || p2 == 5){ point += 1; } break;
+                case 3: if(p2 == 2 || p2 == 4){ point += 1; } break;
+                case 4: if(p2 == 2 || p2 == 5){ point += 1; } break;
+                case 5: if(p2 == 1 || p2 == 3){ point += 1; } break;
+                default: point = 0; break;
+            }
+        }
+        return point;
+    }
+
+    /*public void storeHandsignLeft(int imgNo){
+
+        if(roundNumLeft==0)
+            handsignLeft[roundNumLeft] = imgNo;
+        else if(roundNumLeft==1)
+            handsignLeft[roundNumLeft] = imgNo;
+        else if(roundNumLeft==2)
+            handsignLeft[roundNumLeft] = imgNo;
+    }*/
+
+    /*public void storeHandsignRight(int imgNo){
+
+        if(roundNumRight==0)
+            handsignRight[roundNumRight] = imgNo;
+        else if(roundNumLeft==1)
+            handsignRight[roundNumRight] = imgNo;
+        else if(roundNumLeft==2)
+            handsignRight[roundNumRight] = imgNo;
+    }*/
+
+    /*public void setButtonState(boolean buttonState, JButton buttonName){
 
         buttonName.setEnabled(buttonState);
 
-    }
+    }*/
+
+    //////////////// GAME RESULT TABLE BELOW /////////////////////////
+
+    public void setTable(){
+
+
+
+        }
 
 }

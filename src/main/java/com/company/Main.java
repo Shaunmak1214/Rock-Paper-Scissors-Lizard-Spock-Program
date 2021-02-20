@@ -1,3 +1,14 @@
+/**
+ * Class Section: TT3V
+ * Trimester 2 2020/21
+ * Members:
+ * Mak Yen Wei         | 1181203334 | 018-9495849
+ * Reynard Kok Jin Yik | 1181203212 | 017-2890325
+ * Ong Sin Yin         | 1181203333 | 018-4093684
+ * Tew Jing Lai        | 1181203035 | 018-3101858
+ * Koong Poh Kang      | 1181203314 | 017-6971339
+ */
+
 package com.company;
 
 import javax.swing.*;
@@ -5,6 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main{
 
@@ -12,6 +24,8 @@ public class Main{
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
         GameFrame gameFrame = new GameFrame();
+
+        String[][] playername = new String[2][2];
         FinalFrame finalFrame = new FinalFrame();
 
         frame.cb.addActionListener(frame::actionPerformed);
@@ -89,20 +103,6 @@ public class Main{
             }
         });
 
-        gameFrame.boom1button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameInit(gameFrame);
-            }
-        });
-
-        gameFrame.boom2button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gameInit(gameFrame);
-            }
-        });
-
         frame2.button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,6 +120,7 @@ public class Main{
                 }
                 else
                 {
+
                     frame2.results1.setText("Ready!");
 
                     if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
@@ -128,6 +129,14 @@ public class Main{
                         gameFrame.f3.setVisible(true);
                         gameFrame.f3.setSize(1000,700);
                         gameFrame.f3.setResizable(false);
+
+                        playername[0][0] = frame2.team1player1.getText();
+                        playername[0][1] = frame2.team1player2.getText();
+
+                        playername[1][0] = frame2.team2player1.getText();
+                        playername[1][1] = frame2.team2player2.getText();
+
+                        System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
                     }
                 }
             }
@@ -158,46 +167,106 @@ public class Main{
                         gameFrame.f3.setVisible(true);
                         gameFrame.f3.setSize(1000,700);
                         gameFrame.f3.setResizable(false);
+                        Color background = frame2.f2.getBackground();
+                        gameFrame.setBackgrounds(background);
 
-                        List playerdata = new List();
+                        playername[0][0] = frame2.team1player1.getText();
+                        playername[0][1] = frame2.team1player2.getText();
+
+                        playername[1][0] = frame2.team2player1.getText();
+                        playername[1][1] = frame2.team2player2.getText();
+
+                        System.out.println(Arrays.deepToString(playername)); //DELETE THIS AFTER FINISH PROJECT
                     }
                 }
             }
         });
+
+        gameFrame.boom1button.addActionListener(gameFrame::boomAction);
+        gameFrame.boom2button.addActionListener(gameFrame::boomAction);
+        /*gameFrame.boom1button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(gameFrame.roundNumLeft<3)
+                {
+                    gameFrame.boom1button.setEnabled(false);
+                    gameFrame.boom2button.setEnabled(true);
+                    gameFrame.renderImageLeft();
+                    //gameFrame.storeHandsignLeft();
+                }
+                else if(gameFrame.roundNumLeft>=2)
+                {
+                    gameFrame.boom1button.setEnabled(false);
+                }
+                gameFrame.roundNumLeft++;
+            }
+        });*/
+
+        //gameFrame.boom2button.addActionListener(gameFrame::boom2Action);
+
+        /*gameFrame.boom2button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(gameFrame.roundNumRight<3)
+                {
+                    gameFrame.boom2button.setEnabled(false);
+                    gameFrame.boom1button.setEnabled(true);
+                    gameFrame.renderImageRight();
+                    //gameFrame.storeHandsignRight();
+                }
+                else if(gameFrame.roundNumRight>=2)
+                {
+                    gameFrame.boom2button.setEnabled(false);
+                }
+                gameFrame.roundNumRight++;
+            }
+        });*/
     }
 
-    private static void gameInit(GameFrame gameFrame) {
-        setButton(gameFrame);
-        setImage(gameFrame, "assets/lizard.png", "assets/scissors.png");
-        setName(gameFrame, "makyenwei", "ongsinyin");
-    }
+    /*private static void gameInit(GameFrame gameFrame) {
+        //setButton(gameFrame);
+        //setImage(gameFrame);
+        setName(gameFrame);
+    }*/
 
-    public static void setButton(GameFrame gameFrame){
-        if(gameFrame.boom2button.isEnabled()){
-            gameFrame.setButtonState(true, gameFrame.boom1button);
-            gameFrame.setButtonState(false, gameFrame.boom2button);
-        }else{
+    /*public static void setButton(GameFrame gameFrame){
+        if(gameFrame.boom1button.isEnabled()){
             gameFrame.setButtonState(false, gameFrame.boom1button);
             gameFrame.setButtonState(true, gameFrame.boom2button);
+        }else if(gameFrame.boom2button.isEnabled()){
+            gameFrame.setButtonState(true, gameFrame.boom1button);
+            gameFrame.setButtonState(false, gameFrame.boom2button);
         }
-    }
+    }*/
 
-    public static void setImage(GameFrame gameFrame, String ImageLeftPath, String ImageRightPath){
-        gameFrame.renderImageRight(ImageLeftPath);
-        gameFrame.renderImageLeft(ImageRightPath);
-    }
+    /*public static void setImage(GameFrame gameFrame){
+        gameFrame.renderImageRight();
+        gameFrame.renderImageLeft();
+    }*/
 
-    public static void setName(GameFrame gameFrame, String name1, String name2){
-        gameFrame.changeName1(name1);
-        gameFrame.changeName2(name2);
-    }
+    /*public static void setName(GameFrame gameFrame){
+        gameFrame.changeName1();
+        gameFrame.changeName2();
+    }*/
 
-    public static void gameEnd(GameFrame gameFrame){
+    /*public static void gameEnd(GameFrame gameFrame){
         gameFrame.setButtonState(false, gameFrame.boom1button);
         gameFrame.setButtonState(false, gameFrame.boom2button);
+    }*/
+
+    public static void storeData(){
+
     }
 
+    public static void setRoundCount(GameFrame gameFrame, Number roundCount){
+        gameFrame.roundCountLabel.setText(String.valueOf(roundCount));
+    }
 
+    public static void displayTable(GameFrame gameFrame){
+        gameFrame.setTable();
+    }
 
 }
 
