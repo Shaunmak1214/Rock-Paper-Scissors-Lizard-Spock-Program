@@ -36,7 +36,7 @@ public class FinalFrame {
             }
         });
 
-        ImageIcon image = new ImageIcon("party2.png");
+        ImageIcon image = new ImageIcon("assets/party2.png");
 
         JPanel firstpanel = new JPanel();
         JPanel secondpanel = new JPanel();
