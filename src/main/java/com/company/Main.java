@@ -182,7 +182,8 @@ public class Main{
             }
         });
 
-        gameFrame.boom1button.addActionListener(gameFrame::boom1Action);
+        gameFrame.boom1button.addActionListener(gameFrame::boomAction);
+        gameFrame.boom2button.addActionListener(gameFrame::boomAction);
         /*gameFrame.boom1button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -202,7 +203,7 @@ public class Main{
             }
         });*/
 
-        gameFrame.boom2button.addActionListener(gameFrame::boom2Action);
+        //gameFrame.boom2button.addActionListener(gameFrame::boom2Action);
 
         /*gameFrame.boom2button.addActionListener(new ActionListener() {
             @Override

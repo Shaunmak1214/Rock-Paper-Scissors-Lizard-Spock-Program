@@ -35,10 +35,12 @@ public class GameFrame extends SecondFrame {
     String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
 
     int roundNumLeft = 0, roundNumRight = 0;
-    String imageName = "";
+    String imageName = "assets/rock.png"; //default image
     int imageNo = 0;
-    int handsignLeft[] = new int[3];
-    int handsignRight[] = new int[3];
+    int player1 = 0, player2 = 0;
+    int point = 0;
+    int pointP1 = 0, pointP2 = 0;
+    //int handsign[] = new int[6];
 
     JFrame f3 = new JFrame();
 
@@ -149,8 +151,7 @@ public class GameFrame extends SecondFrame {
         icon1Label.setText("");
         icon1Label.setOpaque(true);
         icon1Label.setSize(150, 150);
-
-        renderImageLeft();
+        renderImageLeft(imageName);
 
 //////////////// FORTH PANEL BELOW //////////////////////////
 
@@ -170,8 +171,7 @@ public class GameFrame extends SecondFrame {
         icon2Label.setText("");
         icon2Label.setOpaque(true);
         icon2Label.setSize(150, 150);
-
-        renderImageRight();
+        renderImageRight(imageName);
 
 //////////////// FORTH WEST PANEL BELOW /////////////////////////
 
@@ -224,47 +224,60 @@ public class GameFrame extends SecondFrame {
         System.out.println(backgrounds);
     }
 
-    public void boom1Action(ActionEvent boom1)
+    public void boomAction(ActionEvent boom)
     {
-
-        System.out.println(boom1.getSource());
-
-        if(boom1.getSource() == boom2button){
-
-            System.out.println("its him");
+        if(boom.getSource() == boom1button)
+        {
+            if(roundNumLeft<3)
+            {
+                boom1button.setEnabled(false);
+                boom2button.setEnabled(true);
+                player1 = randomizeImageNo();
+                imageName = setImageName(player1);
+                renderImageLeft(imageName);
+                //gameFrame.storeHandsignLeft();
+            }
+            else if(roundNumLeft>=2)
+            {
+                boom1button.setEnabled(false);
+            }
             roundNumLeft++;
-
+            System.out.println("Round: "+roundNumLeft);
+        }
+        else if(boom.getSource() == boom2button)
+        {
+            if(roundNumRight<3)
+            {
+                boom2button.setEnabled(false);
+                boom1button.setEnabled(true);
+                player2 = randomizeImageNo();
+                imageName = setImageName(player2);
+                renderImageRight(imageName);
+                //gameFrame.storeHandsignRight();
+            }
+            else if(roundNumRight>=2)
+            {
+                boom2button.setEnabled(false);
+            }
+            roundNumRight++;
+            System.out.println("Round: "+roundNumRight);
         }
 
-       if(roundNumLeft<3)
-       {
-           boom1button.setEnabled(false);
-           boom2button.setEnabled(true);
-           renderImageLeft();
-           //gameFrame.storeHandsignLeft();
-       }
-       else if(roundNumLeft>=2)
-       {
-           boom1button.setEnabled(false);
-       }
-       roundNumLeft++;
+        if(roundNumLeft == roundNumRight)
+        {
+            pointP1 = setPoint(player1, player2);
+            pointP2 = setPoint(player2, player1);
+            System.out.println(pointP1);
+            System.out.println(pointP2);
+        }
+
+        if(roundNumLeft == 3 && roundNumRight == 3)
+        {
+            boom1button.setEnabled(false);
+            boom2button.setEnabled(false);
+        }
+
    }
-
-    public void boom2Action(ActionEvent boom2)
-    {
-        if(roundNumRight<3)
-        {
-            boom2button.setEnabled(false);
-            boom1button.setEnabled(true);
-            renderImageRight();
-            //gameFrame.storeHandsignRight();
-        }
-        else if(roundNumRight>=2)
-        {
-            boom2button.setEnabled(false);
-        }
-        roundNumRight++;
-    }
 
     /*public void storeHandsign(ActionEvent storeHandsign)
     {
@@ -285,14 +298,19 @@ public class GameFrame extends SecondFrame {
         System.out.println("Round: "+roundNumRight);
     }*/
 
-    public String randomizeImageNo() {
+    public int randomizeImageNo() {
 
         double max = 5, min = 1;
-        imageName = "";
         imageNo = 0;
 
         imageNo = (int) ((Math.random() * ((max - min) + 1)) + min);
 
+        return imageNo;
+    }
+
+    public String setImageName(int imageNo)
+    {
+        System.out.println("\nimage: "+imageNo);
         //1 - Rock
         //2 - Paper
         //3 - Scissors
@@ -311,14 +329,14 @@ public class GameFrame extends SecondFrame {
         return imageName;
     }
 
-    public void renderImageLeft(){
+    public void renderImageLeft(String imageName){
 
         //boom1button.addActionListener(this::storeHandsign);
-        String imgName = randomizeImageNo();
+        //String imageName = setImageName(imageNo);
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File(imgName));
+            img = ImageIO.read(new File(imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -335,14 +353,14 @@ public class GameFrame extends SecondFrame {
 
     }
 
-    public void renderImageRight() {
+    public void renderImageRight(String imageName) {
 
         //boom2button.addActionListener(this::storeHandsign);
-        String imgName = randomizeImageNo();
+        //String imageName = setImageName(imageNo);
 
         BufferedImage img1 = null;
         try {
-            img1 = ImageIO.read(new File(imgName));
+            img1 = ImageIO.read(new File(imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -357,6 +375,25 @@ public class GameFrame extends SecondFrame {
 
         fortheastpanel.add(icon2Label, BorderLayout.CENTER);
 
+    }
+
+    public int setPoint(int p1, int p2)
+    {
+        point = 0;
+
+        if(p1!=p2)
+        {
+            switch(p1)
+            {
+                case 1: if(p2 == 3 || p2 == 4){ point += 1; } break;
+                case 2: if(p2 == 1 || p2 == 5){ point += 1; } break;
+                case 3: if(p2 == 2 || p2 == 4){ point += 1; } break;
+                case 4: if(p2 == 2 || p2 == 5){ point += 1; } break;
+                case 5: if(p2 == 1 || p2 == 3){ point += 1; } break;
+                default: point = 0; break;
+            }
+        }
+        return point;
     }
 
     /*public void storeHandsignLeft(int imgNo){
