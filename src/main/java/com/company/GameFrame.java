@@ -226,6 +226,16 @@ public class GameFrame extends SecondFrame {
 
     public void boom1Action(ActionEvent boom1)
     {
+
+        System.out.println(boom1.getSource());
+
+        if(boom1.getSource() == boom2button){
+
+            System.out.println("its him");
+            roundNumLeft++;
+
+        }
+
        if(roundNumLeft<3)
        {
            boom1button.setEnabled(false);
