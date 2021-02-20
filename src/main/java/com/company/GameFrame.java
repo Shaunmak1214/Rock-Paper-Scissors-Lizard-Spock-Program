@@ -34,13 +34,15 @@ public class GameFrame extends SecondFrame {
 
     String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
 
-    int roundNumLeft = 0, roundNumRight = 0;
+    int roundNumLeft = -1, roundNumRight = -1;
     String imageName = "assets/rock.png"; //default image
     int imageNo = 0;
     int player1 = 0, player2 = 0;
     int point = 0;
     int pointP1 = 0, pointP2 = 0;
-    //int handsign[] = new int[6];
+    int totalPointP1 = 0, totalPointP2 = 0;
+    int pointPlayer1[] = new int[3];
+    int pointPlayer2[] = new int[3];
 
     JFrame f3 = new JFrame();
 
@@ -228,7 +230,7 @@ public class GameFrame extends SecondFrame {
     {
         if(boom.getSource() == boom1button)
         {
-            if(roundNumLeft<3)
+            if(roundNumLeft<2)
             {
                 boom1button.setEnabled(false);
                 boom2button.setEnabled(true);
@@ -237,7 +239,7 @@ public class GameFrame extends SecondFrame {
                 renderImageLeft(imageName);
                 //gameFrame.storeHandsignLeft();
             }
-            else if(roundNumLeft>=2)
+            else if(roundNumLeft>=1)
             {
                 boom1button.setEnabled(false);
             }
@@ -246,7 +248,7 @@ public class GameFrame extends SecondFrame {
         }
         else if(boom.getSource() == boom2button)
         {
-            if(roundNumRight<3)
+            if(roundNumRight<2)
             {
                 boom2button.setEnabled(false);
                 boom1button.setEnabled(true);
@@ -255,7 +257,7 @@ public class GameFrame extends SecondFrame {
                 renderImageRight(imageName);
                 //gameFrame.storeHandsignRight();
             }
-            else if(roundNumRight>=2)
+            else if(roundNumRight>=1)
             {
                 boom2button.setEnabled(false);
             }
@@ -267,16 +269,31 @@ public class GameFrame extends SecondFrame {
         {
             pointP1 = setPoint(player1, player2);
             pointP2 = setPoint(player2, player1);
-            System.out.println(pointP1);
-            System.out.println(pointP2);
+            System.out.println("point"+pointP1);
+            System.out.println("point"+pointP2);
+
+            pointPlayer1[roundNumLeft] = pointP1; pointPlayer2[roundNumRight] = pointP2;
+            System.out.println("saved point "+pointPlayer1[roundNumLeft]);
+            pointPlayer2[roundNumRight] = pointP2;
+            System.out.println("saved point "+pointPlayer2[roundNumRight]);
+
+            totalPointP1 += pointP1;
+            totalPointP2 += pointP2;
+            System.out.println(totalPointP1);
+            System.out.println(totalPointP2);
+
+            if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
+            {
+                roundNumLeft--;
+                roundNumRight--;
+            }
         }
 
-        if(roundNumLeft == 3 && roundNumRight == 3)
+        if(roundNumLeft == 2 && roundNumRight == 2)
         {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
         }
-
    }
 
     /*public void storeHandsign(ActionEvent storeHandsign)
@@ -392,6 +409,10 @@ public class GameFrame extends SecondFrame {
                 case 5: if(p2 == 1 || p2 == 3){ point += 1; } break;
                 default: point = 0; break;
             }
+        }
+        else if(p1==p2)
+        {
+            point = 0;
         }
         return point;
     }
