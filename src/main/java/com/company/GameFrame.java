@@ -35,10 +35,9 @@ public class GameFrame extends SecondFrame {
     String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
 
     int roundNumLeft = 0, roundNumRight = 0;
-    String imageName = "";
+    String imageName = "assets/rock.png"; //default image
     int imageNo = 0;
-    int handsignLeft[] = new int[3];
-    int handsignRight[] = new int[3];
+    int handsign[] = new int[6];
 
     JFrame f3 = new JFrame();
 
@@ -149,8 +148,7 @@ public class GameFrame extends SecondFrame {
         icon1Label.setText("");
         icon1Label.setOpaque(true);
         icon1Label.setSize(150, 150);
-
-        renderImageLeft();
+        renderImageLeft(imageName);
 
 //////////////// FORTH PANEL BELOW //////////////////////////
 
@@ -170,8 +168,7 @@ public class GameFrame extends SecondFrame {
         icon2Label.setText("");
         icon2Label.setOpaque(true);
         icon2Label.setSize(150, 150);
-
-        renderImageRight();
+        renderImageRight(imageName);
 
 //////////////// FORTH WEST PANEL BELOW /////////////////////////
 
@@ -224,37 +221,51 @@ public class GameFrame extends SecondFrame {
         System.out.println(backgrounds);
     }
 
-    public void boom1Action(ActionEvent boom1)
+    public void boomAction(ActionEvent boom)
     {
-       if(roundNumLeft<3)
-       {
-           boom1button.setEnabled(false);
-           boom2button.setEnabled(true);
-           renderImageLeft();
-           //gameFrame.storeHandsignLeft();
-       }
-       else if(roundNumLeft>=2)
-       {
-           boom1button.setEnabled(false);
-       }
-       roundNumLeft++;
-   }
+        if(boom.getSource() == boom1button)
+        {
+            if(roundNumLeft<3)
+            {
+                boom1button.setEnabled(false);
+                boom2button.setEnabled(true);
+                imageNo = randomizeImageNo();
+                imageName = setImageName(imageNo);
+                renderImageLeft(imageName);
+                //gameFrame.storeHandsignLeft();
+            }
+            else if(roundNumLeft>=2)
+            {
+                boom1button.setEnabled(false);
+            }
+            roundNumLeft++;
+            System.out.println("Round: "+roundNumLeft);
+        }
+        else if(boom.getSource() == boom2button)
+        {
+            if(roundNumRight<3)
+            {
+                boom2button.setEnabled(false);
+                boom1button.setEnabled(true);
+                imageNo = randomizeImageNo();
+                imageName = setImageName(imageNo);
+                renderImageRight(imageName);
+                //gameFrame.storeHandsignRight();
+            }
+            else if(roundNumRight>=2)
+            {
+                boom2button.setEnabled(false);
+            }
+            roundNumRight++;
+            System.out.println("Round: "+roundNumRight);
+        }
 
-    public void boom2Action(ActionEvent boom2)
-    {
-        if(roundNumRight<3)
+        if(roundNumLeft == 3 && roundNumRight == 3)
         {
-            boom2button.setEnabled(false);
-            boom1button.setEnabled(true);
-            renderImageRight();
-            //gameFrame.storeHandsignRight();
-        }
-        else if(roundNumRight>=2)
-        {
+            boom1button.setEnabled(false);
             boom2button.setEnabled(false);
         }
-        roundNumRight++;
-    }
+   }
 
     /*public void storeHandsign(ActionEvent storeHandsign)
     {
@@ -275,14 +286,19 @@ public class GameFrame extends SecondFrame {
         System.out.println("Round: "+roundNumRight);
     }*/
 
-    public String randomizeImageNo() {
+    public int randomizeImageNo() {
 
         double max = 5, min = 1;
-        imageName = "";
         imageNo = 0;
 
         imageNo = (int) ((Math.random() * ((max - min) + 1)) + min);
 
+        return imageNo;
+    }
+
+    public String setImageName(int imageNo)
+    {
+        System.out.println("\nimage: "+imageNo);
         //1 - Rock
         //2 - Paper
         //3 - Scissors
@@ -301,14 +317,14 @@ public class GameFrame extends SecondFrame {
         return imageName;
     }
 
-    public void renderImageLeft(){
+    public void renderImageLeft(String imageName){
 
         //boom1button.addActionListener(this::storeHandsign);
-        String imgName = randomizeImageNo();
+        //String imageName = setImageName(imageNo);
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File(imgName));
+            img = ImageIO.read(new File(imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -325,14 +341,14 @@ public class GameFrame extends SecondFrame {
 
     }
 
-    public void renderImageRight() {
+    public void renderImageRight(String imageName) {
 
         //boom2button.addActionListener(this::storeHandsign);
-        String imgName = randomizeImageNo();
+        //String imageName = setImageName(imageNo);
 
         BufferedImage img1 = null;
         try {
-            img1 = ImageIO.read(new File(imgName));
+            img1 = ImageIO.read(new File(imageName));
         } catch (IOException e) {
             e.printStackTrace();
         }
