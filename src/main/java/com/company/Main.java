@@ -137,6 +137,9 @@ public class Main{
                         playername[1][1] = frame2.team2player2.getText();
 
                         System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
+
+                        gameFrame.name1Label.setText(playername[0][0]);
+                        gameFrame.name2Label.setText(playername[1][0]);
                     }
                 }
             }
@@ -177,6 +180,9 @@ public class Main{
                         playername[1][1] = frame2.team2player2.getText();
 
                         System.out.println(Arrays.deepToString(playername)); //DELETE THIS AFTER FINISH PROJECT
+
+                        gameFrame.name1Label.setText(playername[0][0]);
+                        gameFrame.name2Label.setText(playername[1][0]);
                     }
                 }
             }
@@ -184,6 +190,8 @@ public class Main{
 
         gameFrame.boom1button.addActionListener(gameFrame::boomAction);
         gameFrame.boom2button.addActionListener(gameFrame::boomAction);
+    /*  gameFrame.boom1button.addActionListener(gameFrame::scorerecorder);
+        gameFrame.boom2button.addActionListener(gameFrame::scorerecorder);*/
         /*gameFrame.boom1button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

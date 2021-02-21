@@ -187,14 +187,14 @@ public class SecondFrame {
 
 //////////////////////////// 2D ARRAY //////////////////////////////////////
 
-        String[][] playername = new String[2][2];
+     /*   String[][] playername = new String[2][2];
 
         playername[0][0] = team1player1.getText();
         playername[0][1] = team1player2.getText();
 
         playername[1][0] = team2player1.getText();
         playername[1][1] = team2player2.getText();
-
+       */
 
     }
 }

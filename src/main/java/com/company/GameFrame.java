@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.io.IOException;
@@ -26,14 +27,6 @@ import java.io.File;
 import java.util.Vector;
 
 public class GameFrame extends SecondFrame {
-
-    String resultsrow[][] = {
-            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-            {"", "", "", "", "" },
-            {"", "", "", "", ""},
-    };
-
-    String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
 
     int roundNumLeft = -1, roundNumRight = -1;
     int roundNum = 1;
@@ -68,7 +61,20 @@ public class GameFrame extends SecondFrame {
     JButton boom1button = new JButton("BOOM!");
     JButton boom2button = new JButton("BOOM!");
 
-    JTable resultstable = new JTable(resultsrow, resultshead);
+    Object[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+
+/*    String testnama[][] ={
+            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+            {"Team 1 : SINYIN"},
+            {"Team 2 : POHKANG"}
+    };*/
+
+    JTable resultstable = new JTable();
+
+    DefaultTableModel headmodel = new DefaultTableModel();
+
+    Object[] rowPoint1 = new Object[3];
+    Object[] rowPoint2 = new Object[3];
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
@@ -198,12 +204,15 @@ public class GameFrame extends SecondFrame {
 
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
+        headmodel.setColumnIdentifiers(resultshead); //create table model and set column identifiers
+        resultstable.setModel(headmodel); //set the model to the table
+
+        resultstable.setRowHeight(50);
         resultstable.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
 
         ///// Results Table /////
         resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
         resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
-        resultstable.setRowHeight(50);
 
         DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
         centerer.setHorizontalAlignment(JLabel.CENTER);
@@ -215,6 +224,9 @@ public class GameFrame extends SecondFrame {
 
         resultstable.setPreferredSize(new Dimension(970,154));
         wrapperpanel.add(resultstable, BorderLayout.SOUTH);
+
+        resultstable.setFont(new Font("Verdana",Font.PLAIN,16));
+
     }
 
     /*public void changeName1(){
@@ -298,6 +310,29 @@ public class GameFrame extends SecondFrame {
                 System.out.println("saved point "+pointPlayer1[roundNumLeft]);
                 pointPlayer2[roundNumRight] = pointP2;
                 System.out.println("saved point "+pointPlayer2[roundNumRight]);
+
+              /*  if(roundNumLeft == 0 && roundNumRight == 0)
+                {
+                    rowPoint1[0] = pointPlayer1[0];
+                    rowPoint2[0] = pointPlayer2[0];
+                    headmodel.addRow(rowPoint1);
+                    headmodel.addRow(rowPoint2);
+                }
+                else if(roundNumLeft == 1 && roundNumRight == 1)
+                {
+                    rowPoint1[1] = pointPlayer1[1];
+                    rowPoint2[1] = pointPlayer2[1];
+                    headmodel.addRow(rowPoint1);
+                    headmodel.addRow(rowPoint2);
+                }
+                else if(roundNumLeft == 2 && roundNumRight == 2)
+                {
+                    rowPoint1[2] = pointPlayer1[2];
+                    rowPoint2[2] = pointPlayer2[2];
+                    headmodel.addRow(rowPoint1);
+                    headmodel.addRow(rowPoint2);
+                }*/
+
             }
 
             totalPointP1 += pointP1;
@@ -316,10 +351,29 @@ public class GameFrame extends SecondFrame {
         {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
+
         }
         System.out.println("saved point array "+pointPlayer1[0]+pointPlayer1[1]+pointPlayer1[2]);
         System.out.println("saved point array "+pointPlayer2[0]+pointPlayer2[1]+pointPlayer2[2]);
    }
+
+ /*  public void scorerecorder(ActionEvent scoring)
+   {
+       rowPoint1[0] = pointPlayer1[0];
+       rowPoint2[0] = pointPlayer2[0];
+
+       rowPoint1[1] = pointPlayer1[1];
+       rowPoint2[1] = pointPlayer2[1];
+
+       rowPoint1[2] = pointPlayer1[2];
+       rowPoint2[2] = pointPlayer2[2];
+
+       rowPoint1[3] = totalPointP1;
+       rowPoint2[3] = totalPointP2;
+
+       headmodel.addRow(rowPoint1);
+       headmodel.addRow(rowPoint2);
+   }*/
 
     /*public void storeHandsign(ActionEvent storeHandsign)
     {
