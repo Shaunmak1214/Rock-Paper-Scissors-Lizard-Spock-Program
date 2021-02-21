@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.io.IOException;
 import java.io.File;
@@ -28,8 +29,8 @@ public class GameFrame extends SecondFrame {
 
     String resultsrow[][] = {
             {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-            {"Team 1 : Sinyin", "1", "1", "0", "2"},
-            {"Team 2 : Pohkang", "0", "0", "0", "0"},
+            {"", "", "", "", "" },
+            {"", "", "", "", ""},
     };
 
     String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
@@ -56,8 +57,6 @@ public class GameFrame extends SecondFrame {
     JPanel fortheastpanel = new JPanel();
     JPanel forthwestpanel = new JPanel();
     JPanel wrapperpanel = new JPanel();
-    JPanel resultspanel = new JPanel();
-
 
     JLabel upperlabel = new JLabel();
     JLabel roundCountLabel = new JLabel();
@@ -70,8 +69,6 @@ public class GameFrame extends SecondFrame {
     JButton boom2button = new JButton("BOOM!");
 
     JTable resultstable = new JTable(resultsrow, resultshead);
-
-    JScrollPane jsp = new JScrollPane(resultstable);
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
@@ -201,15 +198,11 @@ public class GameFrame extends SecondFrame {
 
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
-        /*resultspanel.setLayout(new BorderLayout(0,0));
-        resultspanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
-        f3.add(resultspanel, BorderLayout.SOUTH);
+        resultstable.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
 
         ///// Results Table /////
-        resultstable.setTableHeader(null);
-        resultstable.setFont(new Font("Verdana", Font.PLAIN, 16));
+        resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
         resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
-
         resultstable.setRowHeight(50);
 
         DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
@@ -220,8 +213,8 @@ public class GameFrame extends SecondFrame {
         resultstable.getColumnModel().getColumn(3).setCellRenderer(centerer);
         resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
 
-        resultspanel.add(jsp, SwingConstants.CENTER);*/
-
+        resultstable.setPreferredSize(new Dimension(970,154));
+        wrapperpanel.add(resultstable, BorderLayout.SOUTH);
     }
 
     /*public void changeName1(){
