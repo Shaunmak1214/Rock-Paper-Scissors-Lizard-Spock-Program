@@ -201,7 +201,26 @@ public class GameFrame extends SecondFrame {
 
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
-        f3.add(jsp);
+        /*resultspanel.setLayout(new BorderLayout(0,0));
+        resultspanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+        f3.add(resultspanel, BorderLayout.SOUTH);
+
+        ///// Results Table /////
+        resultstable.setTableHeader(null);
+        resultstable.setFont(new Font("Verdana", Font.PLAIN, 16));
+        resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
+
+        resultstable.setRowHeight(50);
+
+        DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
+        centerer.setHorizontalAlignment(JLabel.CENTER);
+        resultstable.getColumnModel().getColumn(0).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(1).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(2).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(3).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
+
+        resultspanel.add(jsp, SwingConstants.CENTER);*/
 
     }
 
