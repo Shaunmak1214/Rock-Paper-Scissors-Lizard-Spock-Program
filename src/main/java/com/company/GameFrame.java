@@ -35,6 +35,7 @@ public class GameFrame extends SecondFrame {
     String resultshead[] = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
 
     int roundNumLeft = -1, roundNumRight = -1;
+    int roundNum = 1;
     String imageName = "assets/rock.png"; //default image
     int imageNo = 0;
     int player1 = 0, player2 = 0;
@@ -100,7 +101,7 @@ public class GameFrame extends SecondFrame {
         roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         roundCountLabel.setFont(new Font("Verdana", Font.PLAIN, 22));
 
-        roundCountLabel.setText("ROUND 1");
+        roundCountLabel.setText("Round "+roundNum);
 
         secondpanel.add(roundCountLabel, BorderLayout.CENTER);
         roundCountLabel.setOpaque(true);
@@ -267,15 +268,25 @@ public class GameFrame extends SecondFrame {
 
         if(roundNumLeft == roundNumRight)
         {
+            roundNum++;
+
+            if(roundNum<4)
+            {
+                roundCountLabel.setText("Round " + roundNum);
+            }
+
             pointP1 = setPoint(player1, player2);
             pointP2 = setPoint(player2, player1);
             System.out.println("point"+pointP1);
             System.out.println("point"+pointP2);
 
-            pointPlayer1[roundNumLeft] = pointP1; pointPlayer2[roundNumRight] = pointP2;
-            System.out.println("saved point "+pointPlayer1[roundNumLeft]);
-            pointPlayer2[roundNumRight] = pointP2;
-            System.out.println("saved point "+pointPlayer2[roundNumRight]);
+            if(pointP1 != pointP2)
+            {
+                pointPlayer1[roundNumLeft] = pointP1;
+                System.out.println("saved point "+pointPlayer1[roundNumLeft]);
+                pointPlayer2[roundNumRight] = pointP2;
+                System.out.println("saved point "+pointPlayer2[roundNumRight]);
+            }
 
             totalPointP1 += pointP1;
             totalPointP2 += pointP2;
@@ -294,6 +305,8 @@ public class GameFrame extends SecondFrame {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
         }
+        System.out.println("saved point array "+pointPlayer1[0]+pointPlayer1[1]+pointPlayer1[2]);
+        System.out.println("saved point array "+pointPlayer2[0]+pointPlayer2[1]+pointPlayer2[2]);
    }
 
     /*public void storeHandsign(ActionEvent storeHandsign)
