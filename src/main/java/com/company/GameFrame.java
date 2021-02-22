@@ -58,8 +58,12 @@ public class GameFrame extends SecondFrame {
     JLabel name2Label = new JLabel();
     JLabel icon1Label = new JLabel();
     JLabel icon2Label = new JLabel();
-    JLabel team1label = new JLabel();
-    JLabel team2label = new JLabel();
+    //JLabel team1label = new JLabel();
+    //JLabel team2label = new JLabel();
+
+    JDialog dl = new JDialog(f3, "Scoreboard");
+    JLabel winnerLabel = new JLabel("The Winner is");
+    JButton nextButton = new JButton("Next");
 
     JButton boom1button = new JButton("BOOM!");
     JButton boom2button = new JButton("BOOM!");
@@ -280,6 +284,9 @@ public class GameFrame extends SecondFrame {
         tablepanel.add(new JScrollPane(resultstable));
         resultstable.setFont(new Font("Verdana",Font.PLAIN,16));*/
 
+//////////////// SCORE DIALOG BELOW /////////////////////////
+
+
     }
 
     /*public void changeName1(){
@@ -357,62 +364,73 @@ public class GameFrame extends SecondFrame {
             System.out.println("point"+pointP1);
             System.out.println("point"+pointP2);
 
-            pointPlayer1[roundNumLeft] = pointP1;
-                System.out.println("saved point "+pointPlayer1[roundNumLeft]);
+            if(pointP1!=pointP2)
+            {
+                pointPlayer1[roundNumLeft] = pointP1;
+                System.out.println("saved point " + pointPlayer1[roundNumLeft]);
                 pointPlayer2[roundNumRight] = pointP2;
-                System.out.println("saved point "+pointPlayer2[roundNumRight]);
+                System.out.println("saved point " + pointPlayer2[roundNumRight]);
 
-                if(roundNumLeft == 0 && roundNumRight == 0)
+                if (roundNumLeft == 0 && roundNumRight == 0)
                 {
                     //rowPoint1[0] = pointPlayer1[0];
                     //rowPoint2[0] = pointPlayer2[0];
-                    headmodel.setValueAt(String.valueOf(pointP1),0, 1);
-                    headmodel.setValueAt(String.valueOf(pointP2),1, 1);
+                    headmodel.setValueAt(pointP1, 0, 1);
+                    headmodel.setValueAt(pointP2, 1, 1);
                     //headmodel.addRow(rowPoint2);
                 }
-                else if(roundNumLeft == 1 && roundNumRight == 1)
+                else if (roundNumLeft == 1 && roundNumRight == 1)
                 {
                     /*rowPoint1[1] = pointPlayer1[1];
                     rowPoint2[1] = pointPlayer2[1];
                     headmodel.addRow(rowPoint1);
                     headmodel.addRow(rowPoint2);*/
-                    headmodel.setValueAt(String.valueOf(pointP1),0, 2);
-                    headmodel.setValueAt(String.valueOf(pointP2),1, 2);
+                    headmodel.setValueAt(pointP1, 0, 2);
+                    headmodel.setValueAt(pointP2, 1, 2);
                 }
-                else if(roundNumLeft == 2 && roundNumRight == 2)
+                else if (roundNumLeft == 2 && roundNumRight == 2)
                 {
                     /*rowPoint1[2] = pointPlayer1[2];
                     rowPoint2[2] = pointPlayer2[2];
                     headmodel.addRow(rowPoint1);
                     headmodel.addRow(rowPoint2);*/
-                    headmodel.setValueAt(String.valueOf(pointP1),0, 3);
-                    headmodel.setValueAt(String.valueOf(pointP2),1, 3);
+                    headmodel.setValueAt(pointP1, 0, 3);
+                    headmodel.setValueAt(pointP2, 1, 3);
                 }
 
-
-
-            totalPointP1 += pointP1;
-            totalPointP2 += pointP2;
-            System.out.println(totalPointP1);
-            System.out.println(totalPointP2);
-            /*rowPoint1[3] = pointPlayer1[3];
-            rowPoint2[3] = pointPlayer2[3];
-            headmodel.addRow(rowPoint1);
-            headmodel.addRow(rowPoint2);*/
-            headmodel.setValueAt(String.valueOf(totalPointP1),0, 4);
-            headmodel.setValueAt(String.valueOf(totalPointP2),1, 4);
+                totalPointP1 += pointP1;
+                totalPointP2 += pointP2;
+                System.out.println(totalPointP1);
+                System.out.println(totalPointP2);
+                /*rowPoint1[3] = pointPlayer1[3];
+                rowPoint2[3] = pointPlayer2[3];
+                headmodel.addRow(rowPoint1);
+                headmodel.addRow(rowPoint2);*/
+                headmodel.setValueAt(totalPointP1,0, 4);
+                headmodel.setValueAt(totalPointP2,1, 4);
+            }
+            else if(pointP1 == pointP2)
+            {
+                roundNum--;
+                roundNumLeft--;
+                roundNumRight--;
+            }
 
         }
 
-        if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
+        /*if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
         {
             roundNum--;
-        }
+        }*/
 
         if(roundNum==4)
         {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
+
+            dl.add(winnerLabel);
+            dl.setSize(200,200);
+            dl.setVisible(true);
 
         }
         System.out.println("saved point array "+pointPlayer1[0]+pointPlayer1[1]+pointPlayer1[2]);
