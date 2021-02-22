@@ -50,6 +50,7 @@ public class GameFrame extends SecondFrame {
     JPanel fortheastpanel = new JPanel();
     JPanel forthwestpanel = new JPanel();
     JPanel wrapperpanel = new JPanel();
+    JPanel tablepanel = new JPanel();
 
     JLabel upperlabel = new JLabel();
     JLabel roundCountLabel = new JLabel();
@@ -57,11 +58,11 @@ public class GameFrame extends SecondFrame {
     JLabel name2Label = new JLabel();
     JLabel icon1Label = new JLabel();
     JLabel icon2Label = new JLabel();
+    JLabel team1label = new JLabel();
+    JLabel team2label = new JLabel();
 
     JButton boom1button = new JButton("BOOM!");
     JButton boom2button = new JButton("BOOM!");
-
-    Object[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
 
 /*    String testnama[][] ={
             {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
@@ -69,12 +70,18 @@ public class GameFrame extends SecondFrame {
             {"Team 2 : POHKANG"}
     };*/
 
-    JTable resultstable = new JTable();
+    JTable resultstable = new JTable(3, 5);
+    Object[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+    Object[][] resultscolumn = {{"Player 1"}, {"Player 1"}};
 
-    DefaultTableModel headmodel = new DefaultTableModel();
 
-    Object[] rowPoint1 = new Object[3];
-    Object[] rowPoint2 = new Object[3];
+
+    JScrollPane pane = new JScrollPane(resultstable);
+
+    Object[] rowPoint1 = new Object[4];
+    Object[] rowPoint2 = new Object[4];
+
+    DefaultTableModel headmodel = new DefaultTableModel(resultscolumn, resultshead);
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
@@ -204,11 +211,32 @@ public class GameFrame extends SecondFrame {
 
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
+        wrapperpanel.add(tablepanel, BorderLayout.SOUTH);
+        tablepanel.setPreferredSize(new Dimension(3000,3000));
+        tablepanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+        resultstable.setPreferredSize(new Dimension(1000,154));
+
+
+
         headmodel.setColumnIdentifiers(resultshead); //create table model and set column identifiers
         resultstable.setModel(headmodel); //set the model to the table
+        resultstable.setBackground(Color.LIGHT_GRAY);
+        resultstable.setForeground(Color.black);
+        Font font = new Font("",1,22);
+        resultstable.setFont(font);
+        resultstable.setRowHeight(30);
+        pane.setBounds(0, 0, 880, 200);
 
+
+        //tablepanel.setLayout(null);
+
+        tablepanel.add(pane);
+
+
+
+        /*tablepanel.add(resultstable, BorderLayout.CENTER);
         resultstable.setRowHeight(50);
-        resultstable.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+
 
         ///// Results Table /////
         resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
@@ -222,10 +250,12 @@ public class GameFrame extends SecondFrame {
         resultstable.getColumnModel().getColumn(3).setCellRenderer(centerer);
         resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
 
-        resultstable.setPreferredSize(new Dimension(970,154));
-        wrapperpanel.add(resultstable, BorderLayout.SOUTH);
 
-        resultstable.setFont(new Font("Verdana",Font.PLAIN,16));
+        //wrapperpanel.add(resultstable, BorderLayout.SOUTH);
+        //tablepanel.add(resultstable.getTableHeader(), BorderLayout.NORTH);
+
+        tablepanel.add(new JScrollPane(resultstable));
+        resultstable.setFont(new Font("Verdana",Font.PLAIN,16));*/
 
     }
 
@@ -311,27 +341,32 @@ public class GameFrame extends SecondFrame {
                 pointPlayer2[roundNumRight] = pointP2;
                 System.out.println("saved point "+pointPlayer2[roundNumRight]);
 
-              /*  if(roundNumLeft == 0 && roundNumRight == 0)
+                if(roundNumLeft == 0 && roundNumRight == 0)
                 {
-                    rowPoint1[0] = pointPlayer1[0];
-                    rowPoint2[0] = pointPlayer2[0];
-                    headmodel.addRow(rowPoint1);
-                    headmodel.addRow(rowPoint2);
+                    //rowPoint1[0] = pointPlayer1[0];
+                    //rowPoint2[0] = pointPlayer2[0];
+                    headmodel.setValueAt(pointP1,0, 1);
+                    headmodel.setValueAt(pointP2,1, 1);
+                    //headmodel.addRow(rowPoint2);
                 }
                 else if(roundNumLeft == 1 && roundNumRight == 1)
                 {
-                    rowPoint1[1] = pointPlayer1[1];
+                    /*rowPoint1[1] = pointPlayer1[1];
                     rowPoint2[1] = pointPlayer2[1];
                     headmodel.addRow(rowPoint1);
-                    headmodel.addRow(rowPoint2);
+                    headmodel.addRow(rowPoint2);*/
+                    headmodel.setValueAt(pointP1,0, 2);
+                    headmodel.setValueAt(pointP2,1, 2);
                 }
                 else if(roundNumLeft == 2 && roundNumRight == 2)
                 {
-                    rowPoint1[2] = pointPlayer1[2];
+                    /*rowPoint1[2] = pointPlayer1[2];
                     rowPoint2[2] = pointPlayer2[2];
                     headmodel.addRow(rowPoint1);
-                    headmodel.addRow(rowPoint2);
-                }*/
+                    headmodel.addRow(rowPoint2);*/
+                    headmodel.setValueAt(pointP1,0, 3);
+                    headmodel.setValueAt(pointP2,1, 3);
+                }
 
             }
 
@@ -339,6 +374,12 @@ public class GameFrame extends SecondFrame {
             totalPointP2 += pointP2;
             System.out.println(totalPointP1);
             System.out.println(totalPointP2);
+            /*rowPoint1[3] = pointPlayer1[3];
+            rowPoint2[3] = pointPlayer2[3];
+            headmodel.addRow(rowPoint1);
+            headmodel.addRow(rowPoint2);*/
+            headmodel.setValueAt(totalPointP1,0, 4);
+            headmodel.setValueAt(totalPointP2,1, 4);
 
             if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
             {
@@ -347,7 +388,7 @@ public class GameFrame extends SecondFrame {
             }
         }
 
-        if(roundNumLeft == 2 && roundNumRight == 2)
+        if(roundNum==4)
         {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
