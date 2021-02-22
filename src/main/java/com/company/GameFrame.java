@@ -71,15 +71,15 @@ public class GameFrame extends SecondFrame {
     };*/
 
     JTable resultstable = new JTable(3, 5);
-    Object[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
-    Object[][] resultscolumn = {{"Player 1"}, {"Player 1"}};
+    String[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
+    String[][] resultscolumn = {{"Team 1: "}, {"Team 2: "}};
 
 
 
-    JScrollPane pane = new JScrollPane(resultstable);
+    JScrollPane jsp = new JScrollPane(resultstable);
 
-    Object[] rowPoint1 = new Object[4];
-    Object[] rowPoint2 = new Object[4];
+    //Object[] rowPoint1 = new Object[4];
+    //Object[] rowPoint2 = new Object[4];
 
     DefaultTableModel headmodel = new DefaultTableModel(resultscolumn, resultshead);
 
@@ -211,28 +211,57 @@ public class GameFrame extends SecondFrame {
 
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
-        wrapperpanel.add(tablepanel, BorderLayout.SOUTH);
-        tablepanel.setPreferredSize(new Dimension(3000,3000));
-        tablepanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
-        resultstable.setPreferredSize(new Dimension(1000,154));
+        wrapperpanel.add(tablepanel, BorderLayout.NORTH);
+        tablepanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        tablepanel.setSize(949,160);
+        tablepanel.setPreferredSize(new Dimension(960,154));
+        //resultstable.setFillsViewportHeight(true);
+        resultstable.setPreferredScrollableViewportSize(tablepanel.getSize());
+        //tablepanel.setSize(970,154);
+        //resultstable.setBounds(0, 0, 970, 154);
 
+        //resultstable.setSize(960,154);
+        //tablepanel.setSize(970,154);
+        resultstable.setSize(tablepanel.getSize());
+        tablepanel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
 
+        resultstable.getTableHeader().setBackground(Color.white);
+        resultstable.getTableHeader().setFont(new Font("Verdana", Font.PLAIN, 19));
+        resultstable.getTableHeader().setResizingAllowed(true);
+        resultstable.getTableHeader().setPreferredSize(new Dimension(949, 50));
+        //resultstable.getTableHeader().setSize(960,154);
 
         headmodel.setColumnIdentifiers(resultshead); //create table model and set column identifiers
         resultstable.setModel(headmodel); //set the model to the table
-        resultstable.setBackground(Color.LIGHT_GRAY);
-        resultstable.setForeground(Color.black);
-        Font font = new Font("",1,22);
-        resultstable.setFont(font);
-        resultstable.setRowHeight(30);
-        pane.setBounds(0, 0, 880, 200);
+        //resultstable.setBackground(Color.LIGHT_GRAY);
+        //resultstable.setForeground(Color.black);
+        //Font font = new Font("",1,30);
+        resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
+        //resultstable.setFont(font);
 
+        resultstable.setRowHeight(50);
+        //pane.setBounds(0, 0, 880, 200);
 
+        //jsp.setPreferredSize(new Dimension(951,150));
+        //resultstable.setAutoResizeMode(300);
+
+        tablepanel.add(resultstable.getTableHeader(), BorderLayout.NORTH);
         //tablepanel.setLayout(null);
 
-        tablepanel.add(pane);
+        tablepanel.add(jsp);
 
-
+        DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
+        centerer.setHorizontalAlignment(JLabel.CENTER);
+        resultstable.getColumnModel().getColumn(0).setPreferredWidth(380);
+        resultstable.getColumnModel().getColumn(0).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(1).setPreferredWidth(120);
+        resultstable.getColumnModel().getColumn(1).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(2).setPreferredWidth(120);
+        resultstable.getColumnModel().getColumn(2).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(3).setPreferredWidth(120);
+        resultstable.getColumnModel().getColumn(3).setCellRenderer(centerer);
+        resultstable.getColumnModel().getColumn(4).setPreferredWidth(120);
+        resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
 
         /*tablepanel.add(resultstable, BorderLayout.CENTER);
         resultstable.setRowHeight(50);
@@ -242,13 +271,7 @@ public class GameFrame extends SecondFrame {
         resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
         resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
 
-        DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
-        centerer.setHorizontalAlignment(JLabel.CENTER);
-        resultstable.getColumnModel().getColumn(0).setCellRenderer(centerer);
-        resultstable.getColumnModel().getColumn(1).setCellRenderer(centerer);
-        resultstable.getColumnModel().getColumn(2).setCellRenderer(centerer);
-        resultstable.getColumnModel().getColumn(3).setCellRenderer(centerer);
-        resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
+
 
 
         //wrapperpanel.add(resultstable, BorderLayout.SOUTH);
@@ -334,9 +357,7 @@ public class GameFrame extends SecondFrame {
             System.out.println("point"+pointP1);
             System.out.println("point"+pointP2);
 
-            if(pointP1 != pointP2)
-            {
-                pointPlayer1[roundNumLeft] = pointP1;
+            pointPlayer1[roundNumLeft] = pointP1;
                 System.out.println("saved point "+pointPlayer1[roundNumLeft]);
                 pointPlayer2[roundNumRight] = pointP2;
                 System.out.println("saved point "+pointPlayer2[roundNumRight]);
@@ -345,8 +366,8 @@ public class GameFrame extends SecondFrame {
                 {
                     //rowPoint1[0] = pointPlayer1[0];
                     //rowPoint2[0] = pointPlayer2[0];
-                    headmodel.setValueAt(pointP1,0, 1);
-                    headmodel.setValueAt(pointP2,1, 1);
+                    headmodel.setValueAt(String.valueOf(pointP1),0, 1);
+                    headmodel.setValueAt(String.valueOf(pointP2),1, 1);
                     //headmodel.addRow(rowPoint2);
                 }
                 else if(roundNumLeft == 1 && roundNumRight == 1)
@@ -355,8 +376,8 @@ public class GameFrame extends SecondFrame {
                     rowPoint2[1] = pointPlayer2[1];
                     headmodel.addRow(rowPoint1);
                     headmodel.addRow(rowPoint2);*/
-                    headmodel.setValueAt(pointP1,0, 2);
-                    headmodel.setValueAt(pointP2,1, 2);
+                    headmodel.setValueAt(String.valueOf(pointP1),0, 2);
+                    headmodel.setValueAt(String.valueOf(pointP2),1, 2);
                 }
                 else if(roundNumLeft == 2 && roundNumRight == 2)
                 {
@@ -364,11 +385,11 @@ public class GameFrame extends SecondFrame {
                     rowPoint2[2] = pointPlayer2[2];
                     headmodel.addRow(rowPoint1);
                     headmodel.addRow(rowPoint2);*/
-                    headmodel.setValueAt(pointP1,0, 3);
-                    headmodel.setValueAt(pointP2,1, 3);
+                    headmodel.setValueAt(String.valueOf(pointP1),0, 3);
+                    headmodel.setValueAt(String.valueOf(pointP2),1, 3);
                 }
 
-            }
+
 
             totalPointP1 += pointP1;
             totalPointP2 += pointP2;
@@ -378,14 +399,14 @@ public class GameFrame extends SecondFrame {
             rowPoint2[3] = pointPlayer2[3];
             headmodel.addRow(rowPoint1);
             headmodel.addRow(rowPoint2);*/
-            headmodel.setValueAt(totalPointP1,0, 4);
-            headmodel.setValueAt(totalPointP2,1, 4);
+            headmodel.setValueAt(String.valueOf(totalPointP1),0, 4);
+            headmodel.setValueAt(String.valueOf(totalPointP2),1, 4);
 
-            if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
-            {
-                roundNumLeft--;
-                roundNumRight--;
-            }
+        }
+
+        if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
+        {
+            roundNum--;
         }
 
         if(roundNum==4)
