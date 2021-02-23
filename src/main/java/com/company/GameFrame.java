@@ -31,17 +31,23 @@ import javax.swing.border.LineBorder;
 public class GameFrame extends SecondFrame {
 
     int roundNumLeft = -1, roundNumRight = -1;
-    int roundNum = 1;
+    int roundNum = 0;
     String imageName = "assets/rock.png"; //default image
     int imageNo = 0;
-    int player1 = 0, player2 = 0;
+    int team1 = 0, team2 = 0;
     int point = 0;
-    int pointP1 = 0, pointP2 = 0;
-    int totalPointP1 = 0, totalPointP2 = 0;
-    int pointPlayer1[] = new int[3];
-    int pointPlayer2[] = new int[3];
+    int pointT1 = 0, pointT2 = 0;
+    int totalPointT1 = 0, totalPointT2 = 0;
+    int totalPointTeam1[][] = new int[1][2];
+    int totalPointTeam2[][] = new int[1][2];
+    //int totalPointP1 = 0, totalPointP2 = 0;
+    int pointTeam1[][] = new int[2][3];
+    int pointTeam2[][] = new int[2][3];
+    //int pointT2P1[] = new int[3];
+    //int pointT2P2[] = new int[3];
     int visibleRowCount = 2;
-    int gameRoundNum = 1;
+    int gameRoundNum = 0;
+    int team1Checked = 0, team2Checked = 0;
 
     JFrame f3 = new JFrame();
 
@@ -333,14 +339,19 @@ public class GameFrame extends SecondFrame {
 
     public void boomAction(ActionEvent boom)
     {
+        team1Checked = 0;
+        team2Checked = 0;
+
         if(boom.getSource() == boom1button)
         {
+            team1Checked = 0;
+
             if(roundNumLeft<2)
             {
                 boom1button.setEnabled(false);
                 boom2button.setEnabled(true);
-                player1 = randomizeImageNo();
-                imageName = setImageName(player1);
+                team1 = randomizeImageNo();
+                imageName = setImageName(team1);
                 renderImageLeft(imageName);
                 //gameFrame.storeHandsignLeft();
             }
@@ -353,12 +364,14 @@ public class GameFrame extends SecondFrame {
         }
         else if(boom.getSource() == boom2button)
         {
+            team1Checked = 1;
+
             if(roundNumRight<2)
             {
                 boom2button.setEnabled(false);
                 boom1button.setEnabled(true);
-                player2 = randomizeImageNo();
-                imageName = setImageName(player2);
+                team2 = randomizeImageNo();
+                imageName = setImageName(team2);
                 renderImageRight(imageName);
                 //gameFrame.storeHandsignRight();
             }
@@ -372,24 +385,24 @@ public class GameFrame extends SecondFrame {
 
         if(roundNumLeft == roundNumRight)
         {
-            pointP1 = setPoint(player1, player2);
-            pointP2 = setPoint(player2, player1);
-            System.out.println("point"+pointP1);
-            System.out.println("point"+pointP2);
+            pointT1 = setPoint(team1, team2);
+            pointT2 = setPoint(team2, team1);
+            System.out.println("point"+pointT1);
+            System.out.println("point"+pointT2);
 
-            if(pointP1!=pointP2)
+            if(pointT1!=pointT2)
             {
-                pointPlayer1[roundNumLeft] = pointP1;
-                System.out.println("saved point " + pointPlayer1[roundNumLeft]);
-                pointPlayer2[roundNumRight] = pointP2;
-                System.out.println("saved point " + pointPlayer2[roundNumRight]);
+                pointTeam1[gameRoundNum][roundNum] = pointT1;
+                System.out.println("saved point " + pointTeam1[gameRoundNum][roundNum]);
+                pointTeam2[gameRoundNum][roundNum] = pointT2;
+                System.out.println("saved point " + pointTeam2[gameRoundNum][roundNum]);
 
                 if (roundNumLeft == 0 && roundNumRight == 0)
                 {
                     //rowPoint1[0] = pointPlayer1[0];
                     //rowPoint2[0] = pointPlayer2[0];
-                    headmodel.setValueAt(pointP1, 0, 1);
-                    headmodel.setValueAt(pointP2, 1, 1);
+                    headmodel.setValueAt(pointT1, 0, 1);
+                    headmodel.setValueAt(pointT2, 1, 1);
                     //headmodel.addRow(rowPoint2);
                 }
                 else if (roundNumLeft == 1 && roundNumRight == 1)
@@ -398,8 +411,8 @@ public class GameFrame extends SecondFrame {
                     rowPoint2[1] = pointPlayer2[1];
                     headmodel.addRow(rowPoint1);
                     headmodel.addRow(rowPoint2);*/
-                    headmodel.setValueAt(pointP1, 0, 2);
-                    headmodel.setValueAt(pointP2, 1, 2);
+                    headmodel.setValueAt(pointT1, 0, 2);
+                    headmodel.setValueAt(pointT2, 1, 2);
                 }
                 else if (roundNumLeft == 2 && roundNumRight == 2)
                 {
@@ -407,24 +420,24 @@ public class GameFrame extends SecondFrame {
                     rowPoint2[2] = pointPlayer2[2];
                     headmodel.addRow(rowPoint1);
                     headmodel.addRow(rowPoint2);*/
-                    headmodel.setValueAt(pointP1, 0, 3);
-                    headmodel.setValueAt(pointP2, 1, 3);
+                    headmodel.setValueAt(pointT1, 0, 3);
+                    headmodel.setValueAt(pointT2, 1, 3);
                 }
 
-                totalPointP1 += pointP1;
-                totalPointP2 += pointP2;
-                System.out.println(totalPointP1);
-                System.out.println(totalPointP2);
+                totalPointT1 += pointT1;
+                totalPointT2 += pointT2;
+                System.out.println(totalPointT1);
+                System.out.println(totalPointT2);
                 /*rowPoint1[3] = pointPlayer1[3];
                 rowPoint2[3] = pointPlayer2[3];
                 headmodel.addRow(rowPoint1);
                 headmodel.addRow(rowPoint2);*/
-                headmodel.setValueAt(totalPointP1,0, 4);
-                headmodel.setValueAt(totalPointP2,1, 4);
+                headmodel.setValueAt(totalPointT1,0, 4);
+                headmodel.setValueAt(totalPointT2,1, 4);
 
                 roundNum++;
             }
-            else if(pointP1 == pointP2)
+            else if(pointT1 == pointT2)
             {
                 //roundNum--;
                 roundNumLeft--;
@@ -433,9 +446,11 @@ public class GameFrame extends SecondFrame {
 
         }
 
-        if(roundNum<4)
+        if(roundNum<3)
         {
-            roundCountLabel.setText("Round " + roundNum);
+            totalPointTeam1[gameRoundNum][team1Checked] = totalPointT1;
+            totalPointTeam2[gameRoundNum][team2Checked] = totalPointT2;
+            roundCountLabel.setText("Round " + (int)(roundNum+1));
         }
 
         /*if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
@@ -443,7 +458,7 @@ public class GameFrame extends SecondFrame {
             roundNum--;
         }*/
 
-        if(roundNum==4)
+        if(roundNum==3)
         {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
@@ -454,28 +469,28 @@ public class GameFrame extends SecondFrame {
             dl.setSize(200,200);
             dl.setVisible(true);
 
-            if(gameRoundNum == 1)
+            if(gameRoundNum == 0)
             {
                 dialogpanel.add(nextButton, BorderLayout.SOUTH);
                 nextButton.addActionListener(this::nextAction);
             }
 
-            if(gameRoundNum==2)
+            if(gameRoundNum == 1)
             {
                 dialogpanel.add(viewResultButton, BorderLayout.SOUTH);
                 //viewResultButton.addActionListener(this);
             }
 
         }
-        System.out.println("saved point array "+pointPlayer1[0]+pointPlayer1[1]+pointPlayer1[2]);
-        System.out.println("saved point array "+pointPlayer2[0]+pointPlayer2[1]+pointPlayer2[2]);
+        //System.out.println("saved point array "+pointPlayer1[0]+pointPlayer1[1]+pointPlayer1[2]);
+        //System.out.println("saved point array "+pointPlayer2[0]+pointPlayer2[1]+pointPlayer2[2]);
    }
 
     public void nextAction(ActionEvent next)
     {
         if(next.getSource() == nextButton)
         {
-            if(gameRoundNum == 1)
+            if(gameRoundNum == 0)
             {
                 dl.dispose();
                 f3.dispose();
@@ -484,8 +499,8 @@ public class GameFrame extends SecondFrame {
 
                 roundNumLeft = -1;
                 roundNumRight = -1;
-                roundNum = 1;
-                roundCountLabel.setText("Round " + roundNum);
+                roundNum = 0;
+                roundCountLabel.setText("Round " + (int)(roundNum+1));
 
 
                 imageName = "assets/rock.png"; //default image
@@ -493,15 +508,15 @@ public class GameFrame extends SecondFrame {
                 renderImageRight(imageName);
 
                 imageNo = 0;
-                player1 = 0;
-                player2 = 0;
+                team1 = 0;
+                team2 = 0;
                 point = 0;
-                pointP1 = 0;
-                pointP2 = 0;
-                totalPointP1 = 0;
-                totalPointP2 = 0;
-                int point2Player1[] = new int[3];
-                int pointP2layer2[] = new int[3];
+                pointT1 = 0;
+                pointT2 = 0;
+                totalPointT1 = 0;
+                totalPointT2 = 0;
+                //int point2Player1[] = new int[2][3];
+                //int pointP2layer2[] = new int[2][3];
 
                 gameRoundNum++;
                 System.out.println(gameRoundNum);
