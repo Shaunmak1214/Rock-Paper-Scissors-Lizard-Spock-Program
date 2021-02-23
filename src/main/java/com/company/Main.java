@@ -141,8 +141,10 @@ public class Main{
                         gameFrame.name1Label.setText(playername[0][0]);
                         gameFrame.name2Label.setText(playername[1][0]);
 
-                        //gameFrame.resultscolumn[0][0] = gameFrame.resultscolumn[0][0]+frame2.team1player1.getText();
-                        //gameFrame.resultscolumn[0][1] = gameFrame.resultscolumn[0][1]+frame2.team2player1.getText();
+                        gameFrame.resultscolumn[0][0] = gameFrame.resultscolumn[0][0]+playername[0][0];
+                        gameFrame.resultscolumn[0][1] = gameFrame.resultscolumn[0][1]+playername[0][1];
+
+                        System.out.println(Arrays.deepToString(gameFrame.resultscolumn));
                     }
                 }
             }

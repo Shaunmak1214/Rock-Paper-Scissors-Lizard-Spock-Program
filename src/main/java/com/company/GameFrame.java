@@ -109,14 +109,13 @@ public class GameFrame extends SecondFrame {
 
 ///////////////// SECOND PANEL BELOW////////////////////////////
 
-        secondpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
+        secondpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
         f3.add(secondpanel, BorderLayout.BEFORE_LINE_BEGINS);
-        secondpanel.setPreferredSize(new Dimension(1000, 250));
+        secondpanel.setPreferredSize(new Dimension(1000, 200));
         //secondpanel.setBackground(Color.GRAY);
 
-        roundCountLabel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        roundCountLabel.setBorder((BorderFactory.createEmptyBorder(35, 10, 10, 10)));
         roundCountLabel.setFont(new Font("Verdana", Font.PLAIN, 22));
-
         roundCountLabel.setText("Round "+roundNum);
 
         secondpanel.add(roundCountLabel, BorderLayout.CENTER);
@@ -124,9 +123,9 @@ public class GameFrame extends SecondFrame {
 
 //////////////// WRAPPER PANEL BELOW //////////////////////////
 
-        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(60, 0, 0, 0)));
+        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
         f3.add(wrapperpanel, BorderLayout.SOUTH);
-        wrapperpanel.setPreferredSize(new Dimension(1000, 550));
+        wrapperpanel.setPreferredSize(new Dimension(1000, 500));
         wrapperpanel.add(thirdpanel, BorderLayout.EAST);
         wrapperpanel.add(forthpanel, BorderLayout.WEST);
 
@@ -149,7 +148,7 @@ public class GameFrame extends SecondFrame {
         name1Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
         name1Label.setFont(new Font("Verdana", Font.PLAIN, 22));
 
-        name1Label.setText(team1player1.getText());
+        //name1Label.setText(team1player1.getText());
         name1Label.setOpaque(true);
         name1Label.setVerticalAlignment(JLabel.CENTER);
         //name1Label.setBackground(Color.ORANGE);
@@ -200,7 +199,7 @@ public class GameFrame extends SecondFrame {
 
         name2Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
         name2Label.setFont(new Font("Verdana", Font.PLAIN, 22));
-        name2Label.setText(team1player2.getText());
+        //name2Label.setText(team1player2.getText());
         name2Label.setOpaque(true);
         name2Label.setVerticalAlignment(JLabel.CENTER);
         //name2Label.setBackground(Color.ORANGE);
@@ -367,13 +366,6 @@ public class GameFrame extends SecondFrame {
 
         if(roundNumLeft == roundNumRight)
         {
-            roundNum++;
-
-            if(roundNum<4)
-            {
-                roundCountLabel.setText("Round " + roundNum);
-            }
-
             pointP1 = setPoint(player1, player2);
             pointP2 = setPoint(player2, player1);
             System.out.println("point"+pointP1);
@@ -423,14 +415,21 @@ public class GameFrame extends SecondFrame {
                 headmodel.addRow(rowPoint2);*/
                 headmodel.setValueAt(totalPointP1,0, 4);
                 headmodel.setValueAt(totalPointP2,1, 4);
+
+                roundNum++;
             }
             else if(pointP1 == pointP2)
             {
-                roundNum--;
+                //roundNum--;
                 roundNumLeft--;
                 roundNumRight--;
             }
 
+        }
+
+        if(roundNum<4)
+        {
+            roundCountLabel.setText("Round " + roundNum);
         }
 
         /*if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
