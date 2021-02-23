@@ -122,7 +122,7 @@ public class GameFrame extends SecondFrame {
 
 //////////////// WRAPPER PANEL BELOW //////////////////////////
 
-        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(60, 0, 100, 0)));
+        wrapperpanel.setBorder((BorderFactory.createEmptyBorder(60, 0, 0, 0)));
         f3.add(wrapperpanel, BorderLayout.SOUTH);
         wrapperpanel.setPreferredSize(new Dimension(1000, 550));
         wrapperpanel.add(thirdpanel, BorderLayout.EAST);
@@ -216,10 +216,11 @@ public class GameFrame extends SecondFrame {
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
         wrapperpanel.add(tablepanel, BorderLayout.NORTH);
-        tablepanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        //tablepanel.add(resultstable.getTableHeader(), BorderLayout.PAGE_START);
+        //tablepanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
         tablepanel.setSize(949,160);
         tablepanel.setPreferredSize(new Dimension(960,154));
-        //resultstable.setFillsViewportHeight(true);
+        resultstable.setFillsViewportHeight(true);
         resultstable.setPreferredScrollableViewportSize(tablepanel.getSize());
         //tablepanel.setSize(970,154);
         //resultstable.setBounds(0, 0, 970, 154);
@@ -227,12 +228,14 @@ public class GameFrame extends SecondFrame {
         //resultstable.setSize(960,154);
         //tablepanel.setSize(970,154);
         resultstable.setSize(tablepanel.getSize());
-        tablepanel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
+        resultstable.getTableHeader().setBorder(BorderFactory.createMatteBorder(5, 5, 0, 5, Color.BLACK));
+        resultstable.setBorder(BorderFactory.createMatteBorder(0, 5, 5, 5, Color.BLACK));
+
 
         resultstable.getTableHeader().setBackground(Color.white);
         resultstable.getTableHeader().setFont(new Font("Verdana", Font.PLAIN, 19));
         resultstable.getTableHeader().setResizingAllowed(true);
-        resultstable.getTableHeader().setPreferredSize(new Dimension(949, 50));
+        resultstable.getTableHeader().setPreferredSize(new Dimension(949, 55));
         //resultstable.getTableHeader().setSize(960,154);
 
         headmodel.setColumnIdentifiers(resultshead); //create table model and set column identifiers
