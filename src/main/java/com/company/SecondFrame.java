@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 
 public class SecondFrame {
 
+    String[][] playername = new String[2][2];
+
     JFrame f2 = new JFrame();
 
     JPanel firstpanel = new JPanel();   // TITLE PANEL

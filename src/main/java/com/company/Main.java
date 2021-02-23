@@ -99,7 +99,7 @@ public class Main{
                         break;
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true
-                finalFrame.f.setVisible(true);
+                //finalFrame.f4.setVisible(true);
             }
         });
 
@@ -141,10 +141,10 @@ public class Main{
                         gameFrame.name1Label.setText(playername[0][0]);
                         gameFrame.name2Label.setText(playername[1][0]);
 
-                        gameFrame.resultscolumn[0][0] = gameFrame.resultscolumn[0][0]+playername[0][0];
-                        gameFrame.resultscolumn[0][1] = gameFrame.resultscolumn[0][1]+playername[0][1];
+                        //gameFrame.resultscolumn[0][0] = gameFrame.resultscolumn[0][0]+playername[0][0];
+                        //gameFrame.resultscolumn[0][1] = gameFrame.resultscolumn[0][1]+playername[0][1];
 
-                        System.out.println(Arrays.deepToString(gameFrame.resultscolumn));
+                        //System.out.println(Arrays.deepToString(gameFrame.resultscolumn));
                     }
                 }
             }
@@ -195,6 +195,16 @@ public class Main{
 
         gameFrame.boom1button.addActionListener(gameFrame::boomAction);
         gameFrame.boom2button.addActionListener(gameFrame::boomAction);
+
+        gameFrame.viewResultButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent openFrame) {
+
+                gameFrame.f3.setVisible(false);
+                finalFrame.f4.setVisible(true);
+            }
+        });
+
     /*  gameFrame.boom1button.addActionListener(gameFrame::scorerecorder);
         gameFrame.boom2button.addActionListener(gameFrame::scorerecorder);*/
         /*gameFrame.boom1button.addActionListener(new ActionListener() {
@@ -277,9 +287,9 @@ public class Main{
         gameFrame.roundCountLabel.setText(String.valueOf(roundCount));
     }
 
-    public static void displayTable(GameFrame gameFrame){
+    /*public static void displayTable(GameFrame gameFrame){
         gameFrame.setTable();
-    }
+    }*/
 
 }
 

@@ -15,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.border.Border;
@@ -40,6 +41,7 @@ public class GameFrame extends SecondFrame {
     int pointPlayer1[] = new int[3];
     int pointPlayer2[] = new int[3];
     int visibleRowCount = 2;
+    int gameRoundNum = 1;
 
     JFrame f3 = new JFrame();
 
@@ -53,6 +55,7 @@ public class GameFrame extends SecondFrame {
     JPanel forthwestpanel = new JPanel();
     JPanel wrapperpanel = new JPanel();
     JPanel tablepanel = new JPanel();
+    JPanel dialogpanel = new JPanel();
 
     JLabel upperlabel = new JLabel();
     JLabel roundCountLabel = new JLabel();
@@ -65,7 +68,8 @@ public class GameFrame extends SecondFrame {
 
     JDialog dl = new JDialog(f3, "Scoreboard");
     JLabel winnerLabel = new JLabel("The Winner is");
-    JButton nextButton = new JButton("Next");
+    JButton nextButton = new JButton("Next Player");
+    JButton viewResultButton = new JButton("View Result");
 
     JButton boom1button = new JButton("BOOM!");
     JButton boom2button = new JButton("BOOM!");
@@ -277,6 +281,8 @@ public class GameFrame extends SecondFrame {
         resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
 
 
+
+        //System.out.println(playername[0][0]);
         //f3.getContentPane();
 
         //f3.pack();
@@ -442,14 +448,131 @@ public class GameFrame extends SecondFrame {
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
 
-            dl.add(winnerLabel);
+            dl.add(dialogpanel);
+            dialogpanel.setLayout(new BorderLayout());
+            dialogpanel.add(winnerLabel, BorderLayout.CENTER);
             dl.setSize(200,200);
             dl.setVisible(true);
+
+            if(gameRoundNum == 1)
+            {
+                dialogpanel.add(nextButton, BorderLayout.SOUTH);
+                nextButton.addActionListener(this::nextAction);
+            }
+
+            if(gameRoundNum==2)
+            {
+                dialogpanel.add(viewResultButton, BorderLayout.SOUTH);
+                //viewResultButton.addActionListener(this);
+            }
 
         }
         System.out.println("saved point array "+pointPlayer1[0]+pointPlayer1[1]+pointPlayer1[2]);
         System.out.println("saved point array "+pointPlayer2[0]+pointPlayer2[1]+pointPlayer2[2]);
    }
+
+    public void nextAction(ActionEvent next)
+    {
+        if(next.getSource() == nextButton)
+        {
+            if(gameRoundNum == 1)
+            {
+                dl.dispose();
+                f3.dispose();
+                //new GameFrame();
+                f3.setVisible(true);
+
+                roundNumLeft = -1;
+                roundNumRight = -1;
+                roundNum = 1;
+                roundCountLabel.setText("Round " + roundNum);
+
+
+                imageName = "assets/rock.png"; //default image
+                renderImageLeft(imageName);
+                renderImageRight(imageName);
+
+                imageNo = 0;
+                player1 = 0;
+                player2 = 0;
+                point = 0;
+                pointP1 = 0;
+                pointP2 = 0;
+                totalPointP1 = 0;
+                totalPointP2 = 0;
+                int point2Player1[] = new int[3];
+                int pointP2layer2[] = new int[3];
+
+                gameRoundNum++;
+                System.out.println(gameRoundNum);
+
+                headmodel.setValueAt("", 0, 1);
+                headmodel.setValueAt("", 1, 1);
+                headmodel.setValueAt("", 0, 2);
+                headmodel.setValueAt("", 1, 2);
+                headmodel.setValueAt("", 0, 3);
+                headmodel.setValueAt("", 1, 3);
+                headmodel.setValueAt("", 0, 4);
+                headmodel.setValueAt("", 1, 4);
+
+                /*boom1button.addActionListener(this::boomAction);
+                boom2button.addActionListener(this::boomAction);*/
+                //f3.add(f3);
+                //restart();*/
+
+                //System.out.println("roundNum"+roundNum);
+
+                boom1button.setEnabled(true);
+                boom2button.setEnabled(true);
+
+                //gameRoundNum++;
+
+                if(next.getSource() == boom1button)
+                {
+                    boom1button.addActionListener(this::boomAction);
+                }
+                else  if(next.getSource() == boom2button)
+                {
+                    boom2button.addActionListener(this::boomAction);
+                }
+            }
+
+        }
+
+        /*SwingUtilities.updateComponentTreeUI(f3);
+        f3.invalidate();
+        f3.validate();
+        f3.repaint();*/
+
+
+
+    }
+
+    /*public void
+    {
+        if(next.getSource() == nextButton)
+        {
+
+    }*/
+    /*public void restart(){
+        stop(); // if necessary
+        setup(); // set everything to initial state
+        start(); // start game
+    }
+
+    public void stop(){
+        // stop any timers, threads, operations etc.
+    }
+
+    public void setup(){
+        // set to initial state.
+        // something like recreate the deck,
+        // clear hands and table, shuffle, and deal.
+    }
+
+    public void start(){
+        // code to initiate the game.
+    }*/
 
  /*  public void scorerecorder(ActionEvent scoring)
    {
@@ -618,10 +741,10 @@ public class GameFrame extends SecondFrame {
 
     //////////////// GAME RESULT TABLE BELOW /////////////////////////
 
-    public void setTable(){
+    /*public void setTable(){
 
 
 
-        }
+        }*/
 
 }

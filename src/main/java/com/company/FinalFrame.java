@@ -19,67 +19,56 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class FinalFrame {
+public class FinalFrame extends GameFrame{
 
-    JFrame f = new JFrame("Assignment Sample");
+    JFrame f4 = new JFrame("Assignment Sample");
+    ImageIcon image = new ImageIcon("assets/party2.png");
+
+    JPanel firstpanel = new JPanel();
+    JPanel secondpanel = new JPanel();
+    JPanel thirdpanel = new JPanel();
+    JPanel fourpanel = new JPanel();
+    JPanel fifthpanel = new JPanel();
+
+    /////secondpanel labels/////
+    JLabel upperlabel = new JLabel();
+    JLabel team1 = new JLabel();
+    JLabel team2 = new JLabel();
+    JLabel congraz = new JLabel();
+    JLabel winning_team = new JLabel();
+    JLabel party = new JLabel(image);
+    JButton b = new JButton("EXIT");
+
+////////////////////////////thirdpanel labels////////////////////////////
+    ///Table 1 data////
+    String data[][] = {
+            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+            {"Team 1 : Sheldon", "1", "1", "0", "2"},
+            {"Team 2 : Howard", "0", "0", "1", "1"}
+    };
+
+    String column[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
+
+    ///Table 2 data////
+    String data2[][] = {
+            {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"},
+            {"Team 1 : Sheldon", "1", "1", "0", "2"},
+            {"Team 2 : Howard", "0", "0", "1", "1"}
+    };
+
+    String column2[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
+
     FinalFrame() {
 
-        f.setVisible(true);
-
-        f.setSize(1000, 700);
-
-        JButton b = new JButton("EXIT");
-        b.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-
-        ImageIcon image = new ImageIcon("assets/party2.png");
-
-        JPanel firstpanel = new JPanel();
-        JPanel secondpanel = new JPanel();
-        JPanel thirdpanel = new JPanel();
-        JPanel fourpanel = new JPanel();
-        JPanel fifthpanel = new JPanel();
-
-        /////secondpanel labels/////
-        JLabel upperlabel = new JLabel();
-        JLabel team1 = new JLabel();
-        JLabel team2 = new JLabel();
-        JLabel congraz = new JLabel();
-        JLabel winning_team = new JLabel();
-        JLabel party = new JLabel(image);
-
-        ////////////////////////////thirdpanel labels////////////////////////////
-
-        ///Table 1 data////
-        String data[][] = {
-                {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-                {"Team 1 : Sheldon", "1", "1", "0", "2"},
-                {"Team 2 : Howard", "0", "0", "1", "1"}
-        };
-
-        String column[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
-
-        ///Table 2 data////
-        String data2[][] = {
-                {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"},
-                {"Team 1 : Sheldon", "1", "1", "0", "2"},
-                {"Team 2 : Howard", "0", "0", "1", "1"}
-        };
-
-        String column2[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
-
+        //f4.setVisible(true);
+        f4.setSize(1000, 700);
 
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
         firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
         firstpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
 
-        f.add(firstpanel, BorderLayout.NORTH);//panel position
+        f4.add(firstpanel, BorderLayout.NORTH);//panel position
         firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
         firstpanel.setPreferredSize(new Dimension(1000, 60));//FIRST PANEL SIZE
         upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
@@ -96,7 +85,7 @@ public class FinalFrame {
         secondpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
 
         /////EXIT BUTTON/////
-        f.add(secondpanel, BorderLayout.CENTER);
+        f4.add(secondpanel, BorderLayout.CENTER);
         secondpanel.setLayout(null);
         secondpanel.add(b);
         b.setBounds(850, 20, 75, 35);
@@ -209,12 +198,19 @@ public class FinalFrame {
         fifthpanel.add(thirdpanel);
         fifthpanel.add(fourpanel);
 
-        f.add(fifthpanel, BorderLayout.SOUTH);
+        f4.add(fifthpanel, BorderLayout.SOUTH);
 
         team1.setText("Team 1:  ");
         team2.setText("Team 2:  ");
         winning_team.setText("Team ");
 
-
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     }
+
+
 }
