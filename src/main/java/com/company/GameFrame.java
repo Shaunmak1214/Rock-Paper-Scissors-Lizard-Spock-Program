@@ -25,6 +25,7 @@ import javax.swing.table.TableColumn;
 import java.io.IOException;
 import java.io.File;
 import java.util.Vector;
+import javax.swing.border.LineBorder;
 
 public class GameFrame extends SecondFrame {
 
@@ -38,6 +39,7 @@ public class GameFrame extends SecondFrame {
     int totalPointP1 = 0, totalPointP2 = 0;
     int pointPlayer1[] = new int[3];
     int pointPlayer2[] = new int[3];
+    int visibleRowCount = 2;
 
     JFrame f3 = new JFrame();
 
@@ -74,7 +76,7 @@ public class GameFrame extends SecondFrame {
             {"Team 2 : POHKANG"}
     };*/
 
-    JTable resultstable = new JTable(3, 5);
+    JTable resultstable = new JTable(2, 5);
     String[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
     String[][] resultscolumn = {{"Team 1: "}, {"Team 2: "}};
 
@@ -215,22 +217,24 @@ public class GameFrame extends SecondFrame {
 
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
-        wrapperpanel.add(tablepanel, BorderLayout.NORTH);
+        wrapperpanel.add(tablepanel, BorderLayout.SOUTH);
         //tablepanel.add(resultstable.getTableHeader(), BorderLayout.PAGE_START);
-        //tablepanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
+        //tablepanel.setBorder(new LineBorder(Color.black, 5));
         tablepanel.setSize(949,160);
-        tablepanel.setPreferredSize(new Dimension(960,154));
+        tablepanel.setPreferredSize(new Dimension(960,165));
         resultstable.setFillsViewportHeight(true);
-        resultstable.setPreferredScrollableViewportSize(tablepanel.getSize());
+        resultstable.setRowHeight(50);
+        resultstable.setPreferredScrollableViewportSize(new Dimension(940, visibleRowCount * resultstable.getRowHeight()));
         //tablepanel.setSize(970,154);
         //resultstable.setBounds(0, 0, 970, 154);
 
         //resultstable.setSize(960,154);
         //tablepanel.setSize(970,154);
-        resultstable.setSize(tablepanel.getSize());
+        //resultstable.setPreferredSize(tablepanel.getPreferredSize());
+        //resultstable.setPreferredSize(new Dimension(0,0));
         resultstable.getTableHeader().setBorder(BorderFactory.createMatteBorder(5, 5, 0, 5, Color.BLACK));
         resultstable.setBorder(BorderFactory.createMatteBorder(0, 5, 5, 5, Color.BLACK));
-
+        resultstable.setOpaque (false); //set false for non-transparent
 
         resultstable.getTableHeader().setBackground(Color.white);
         resultstable.getTableHeader().setFont(new Font("Verdana", Font.PLAIN, 19));
@@ -246,16 +250,19 @@ public class GameFrame extends SecondFrame {
         resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
         //resultstable.setFont(font);
 
-        resultstable.setRowHeight(50);
+
         //pane.setBounds(0, 0, 880, 200);
 
         //jsp.setPreferredSize(new Dimension(951,150));
         //resultstable.setAutoResizeMode(300);
 
-        tablepanel.add(resultstable.getTableHeader(), BorderLayout.NORTH);
+
+
+        tablepanel.add(resultstable.getTableHeader(), BorderLayout.SOUTH);
         //tablepanel.setLayout(null);
 
         tablepanel.add(jsp);
+        //jsp.setBorder(BorderFactory.createMatteBorder(0, 0, 50, 0, Color.BLACK));
 
         DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
         centerer.setHorizontalAlignment(JLabel.CENTER);
@@ -269,6 +276,11 @@ public class GameFrame extends SecondFrame {
         resultstable.getColumnModel().getColumn(3).setCellRenderer(centerer);
         resultstable.getColumnModel().getColumn(4).setPreferredWidth(120);
         resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
+
+
+        //f3.getContentPane();
+
+        //f3.pack();
 
         /*tablepanel.add(resultstable, BorderLayout.CENTER);
         resultstable.setRowHeight(50);
