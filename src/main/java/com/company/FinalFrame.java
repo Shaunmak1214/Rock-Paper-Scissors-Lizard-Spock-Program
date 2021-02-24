@@ -25,7 +25,7 @@ public class FinalFrame {
 
     public void setP1Result(int totalPointT1P1, int totalPointT2P1, int pointT1P1[], int pointT2P1[], int totalPointT1P2, int totalPointT2P2, int pointT1P2[], int pointT2P2[])
     {
-        JFrame f4 = new JFrame("Assignment Sample");
+        JFrame f4 = new JFrame();
         ImageIcon image = new ImageIcon("assets/party2.png");
 
         JPanel firstpanel = new JPanel();
@@ -59,6 +59,8 @@ public class FinalFrame {
 
         String column2[] = {"Player 2", "Round 1", "Round 2", "Round 3", "Total"};
 
+        int finalTotalPointT1 = totalPointT1P1 + totalPointT1P2;
+        int finalTotalPointT2 = totalPointT2P1 + totalPointT2P2;
         //int t1 = totalPointT1P1;//String data[][] = {};
         //System.out.println("t1:" + t1);
 
@@ -86,6 +88,8 @@ public class FinalFrame {
 
         data2[1][4] = String.valueOf(totalPointT1P2);
         data2[2][4] = String.valueOf(totalPointT2P2);
+
+
 
         //System.out.println("this data" + data[1][4]);
         /*data[][] = {
@@ -262,9 +266,22 @@ public class FinalFrame {
 
         f4.add(fifthpanel, BorderLayout.SOUTH);
 
-        team1.setText("Team 1:  ");
-        team2.setText("Team 2:  ");
-        winning_team.setText("Team ");
+        team1.setText("Team 1:  "+finalTotalPointT1);
+        team2.setText("Team 2:  "+finalTotalPointT2);
+
+        if(finalTotalPointT1>finalTotalPointT1)
+        {
+            winning_team.setText("Team 1");
+        }
+        else if (finalTotalPointT1<finalTotalPointT1)
+        {
+            winning_team.setText("Team 2");
+        }
+        else if(finalTotalPointT1==finalTotalPointT1)
+        {
+            winning_team.setText("Draw");
+        }
+
 
         b.addActionListener(new ActionListener() {
             @Override

@@ -358,13 +358,9 @@ public class GameFrame extends FinalFrame {
 
     public void boomAction(ActionEvent boom)
     {
-        team1Checked = 0;
-        team2Checked = 0;
 
         if(boom.getSource() == boom1button)
         {
-            team1Checked = 0;
-
             if(roundNumLeft<2)
             {
                 boom1button.setEnabled(false);
@@ -383,8 +379,6 @@ public class GameFrame extends FinalFrame {
         }
         else if(boom.getSource() == boom2button)
         {
-            team1Checked = 1;
-
             if(roundNumRight<2)
             {
                 boom2button.setEnabled(false);
@@ -470,19 +464,32 @@ public class GameFrame extends FinalFrame {
             }
         }
 
-        if(roundNum<3)
+        if(roundNum<4)
         {
             if(gameRoundNum == 0)
             {
                 totalPointT1P1 = totalPointT1;
+                System.out.println("totalPointT1P1"+totalPointT1P1);
                 totalPointT2P1 = totalPointT2;
+                System.out.println("totalPointT1P1"+totalPointT2P1);
             }
             else if(gameRoundNum == 1)
             {
                 totalPointT1P2 = totalPointT1;
+                System.out.println("totalPointT1P1"+totalPointT1P2);
                 totalPointT2P2 = totalPointT2;
+                System.out.println("totalPointT1P1"+totalPointT2P2);
             }
-            roundCountLabel.setText("Round " + (int)(roundNum+1));
+
+            if(roundNum<3)
+            {
+                roundCountLabel.setText("Round " + (int) (roundNum + 1));
+            }
+            else if(roundNum==4)
+            {
+                roundCountLabel.setText("Round " + roundNum);
+            }
+
         }
 
         /*if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
@@ -552,8 +559,6 @@ public class GameFrame extends FinalFrame {
                 totalPointT2 = 0;
                 totalPointT1P2 = 0;
                 totalPointT2P2 = 0;
-                team1Checked = 0;
-                team2Checked = 0;
 
                 gameRoundNum++;
                 System.out.println(gameRoundNum);
