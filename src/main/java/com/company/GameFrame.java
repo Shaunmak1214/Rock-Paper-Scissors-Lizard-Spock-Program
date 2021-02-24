@@ -27,8 +27,9 @@ import java.io.IOException;
 import java.io.File;
 import java.util.Vector;
 import javax.swing.border.LineBorder;
+import java.awt.Component;
 
-public class GameFrame extends SecondFrame {
+public class GameFrame extends FinalFrame {
 
     int roundNumLeft = -1, roundNumRight = -1;
     int roundNum = 0;
@@ -43,8 +44,8 @@ public class GameFrame extends SecondFrame {
     int totalPointT1P2 = 0;
     int totalPointT2P2 = 0;
     //int totalPointP1 = 0, totalPointP2 = 0;
-    int pointT1P1[] = new int[3];
-    int pointT2P1[] = new int[3];
+    public int pointT1P1[] = new int[3];
+    public int pointT2P1[] = new int[3];
     int pointT1P2[] = new int[3];
     int pointT2P2[] = new int[3];
     //int pointT2P1[] = new int[3];
@@ -69,8 +70,12 @@ public class GameFrame extends SecondFrame {
 
     JLabel upperlabel = new JLabel();
     JLabel roundCountLabel = new JLabel();
+
     JLabel name1Label = new JLabel();
     JLabel name2Label = new JLabel();
+    JLabel name3Label = new JLabel();
+    JLabel name4Label = new JLabel();
+
     JLabel icon1Label = new JLabel();
     JLabel icon2Label = new JLabel();
     //JLabel team1label = new JLabel();
@@ -105,6 +110,12 @@ public class GameFrame extends SecondFrame {
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
+    public int getTotalPointT1P1()
+    {
+        System.out.println("total point:"+this.totalPointT1P1);
+        return this.totalPointT1P1;
+    }
+
     GameFrame() {
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
@@ -130,7 +141,7 @@ public class GameFrame extends SecondFrame {
 
         roundCountLabel.setBorder((BorderFactory.createEmptyBorder(35, 10, 10, 10)));
         roundCountLabel.setFont(new Font("Verdana", Font.PLAIN, 22));
-        roundCountLabel.setText("Round "+roundNum);
+        roundCountLabel.setText("Round 1");
 
         secondpanel.add(roundCountLabel, BorderLayout.CENTER);
         roundCountLabel.setOpaque(true);
@@ -291,6 +302,8 @@ public class GameFrame extends SecondFrame {
         resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
 
 
+        //headmodel.setValueAt("Team 1: "+ name1Label.getText(), 0, 0);
+        headmodel.setValueAt("Team 2: "+ name2Label.getText(), 1, 0);
 
         //System.out.println(playername[0][0]);
         //f3.getContentPane();
@@ -331,14 +344,16 @@ public class GameFrame extends SecondFrame {
 
     }*/
 
-    public void setBackgrounds(Color backgrounds) {
+    public void setBackgrounds(Color background) {
 
-        f2.setBackground(backgrounds);
-        wrapperpanel.setBackground(backgrounds);
-        thirdpanel.setBackground(backgrounds);
-        forthpanel.setBackground(backgrounds);
+        //Color background = Color.red;
+        f3.setBackground(background);
+        wrapperpanel.setBackground(background);
+        thirdpanel.setBackground(background);
+        forthpanel.setBackground(background);
 
-        System.out.println(backgrounds);
+
+        System.out.println("background:"+background);
     }
 
     public void boomAction(ActionEvent boom)
@@ -403,7 +418,7 @@ public class GameFrame extends SecondFrame {
                     pointT2P1[roundNum] = pointT2;
                     System.out.println("saved point " + pointT2P1[roundNum]);
                 }
-                else if(gameRoundNum ==1) {
+                else if(gameRoundNum == 1) {
 
                     pointT1P2[roundNum] = pointT1;
                     System.out.println("saved point " + pointT1P2[roundNum]);
@@ -477,6 +492,8 @@ public class GameFrame extends SecondFrame {
 
         if(roundNum==3)
         {
+            //setP1Result(totalPointT1P1, totalPointT2P1, pointT1P1, pointT2P1, totalPointT1P2, totalPointT2P2, pointT1P2, pointT2P2);
+            //setP2Result();
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
 
@@ -496,7 +513,7 @@ public class GameFrame extends SecondFrame {
             {
                 dialogpanel.remove(nextButton);
                 dialogpanel.add(viewResultButton, BorderLayout.SOUTH);
-                //viewResultButton.addActionListener();
+                viewResultButton.addActionListener(this::actionPerformed);
             }
 
         }
@@ -533,8 +550,6 @@ public class GameFrame extends SecondFrame {
                 pointT2 = 0;
                 totalPointT1 = 0;
                 totalPointT2 = 0;
-                totalPointT1P1 = 0;
-                totalPointT2P1 = 0;
                 totalPointT1P2 = 0;
                 totalPointT2P2 = 0;
                 team1Checked = 0;
@@ -749,6 +764,18 @@ public class GameFrame extends SecondFrame {
         return point;
     }
 
+    public void actionPerformed(ActionEvent openFrame) {
+
+        f3.setVisible(false);
+        //FinalFrame finalFrame = new FinalFrame();
+        //finalFrame.data[1][4] = String.valueOf(gameFrame.totalPointT1P1);
+
+        setP1Result(totalPointT1P1, totalPointT2P1, pointT1P1, pointT2P1, totalPointT1P2, totalPointT2P2, pointT1P2, pointT2P2);
+        //finalFrame.setFinalFrame();
+
+        //finalFrame.data[1][4] = String.valueOf(finalFrame.totalPointT1P1);
+    }
+
     /*public void storeHandsignLeft(int imgNo){
 
         if(roundNumLeft==0)
@@ -777,10 +804,9 @@ public class GameFrame extends SecondFrame {
 
     //////////////// GAME RESULT TABLE BELOW /////////////////////////
 
-    /*public void setTable(){
+    /*public void setTable(){*/
 
 
 
-        }*/
 
 }

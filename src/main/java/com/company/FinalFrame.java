@@ -19,49 +19,111 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class FinalFrame extends GameFrame{
+public class FinalFrame {
 
-    JFrame f4 = new JFrame("Assignment Sample");
-    ImageIcon image = new ImageIcon("assets/party2.png");
+    //private int t1;
 
-    JPanel firstpanel = new JPanel();
-    JPanel secondpanel = new JPanel();
-    JPanel thirdpanel = new JPanel();
-    JPanel fourpanel = new JPanel();
-    JPanel fifthpanel = new JPanel();
+    public void setP1Result(int totalPointT1P1, int totalPointT2P1, int pointT1P1[], int pointT2P1[], int totalPointT1P2, int totalPointT2P2, int pointT1P2[], int pointT2P2[])
+    {
+        JFrame f4 = new JFrame("Assignment Sample");
+        ImageIcon image = new ImageIcon("assets/party2.png");
 
-    /////secondpanel labels/////
-    JLabel upperlabel = new JLabel();
-    JLabel team1 = new JLabel();
-    JLabel team2 = new JLabel();
-    JLabel congraz = new JLabel();
-    JLabel winning_team = new JLabel();
-    JLabel party = new JLabel(image);
-    JButton b = new JButton("EXIT");
+        JPanel firstpanel = new JPanel();
+        JPanel secondpanel = new JPanel();
+        JPanel thirdpanel = new JPanel();
+        JPanel fourpanel = new JPanel();
+        JPanel fifthpanel = new JPanel();
 
-////////////////////////////thirdpanel labels////////////////////////////
-    ///Table 1 data////
-    String data[][] = {
-            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-            {"Team 1 : Sheldon", "1", "1", "0", "2"},
-            {"Team 2 : Howard", "0", "0", "1", "1"}
-    };
+        /////secondpanel labels/////
+        JLabel upperlabel = new JLabel();
+        JLabel team1 = new JLabel();
+        JLabel team2 = new JLabel();
+        JLabel congraz = new JLabel();
+        JLabel winning_team = new JLabel();
+        JLabel party = new JLabel(image);
+        JButton b = new JButton("EXIT");
 
-    String column[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
+        String data[][] = {
+                {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+                {"Team 1 : Sheldon", "", "", "", ""},
+                {"Team 2 : Howard", "", "", "", ""}
+        };
+        String column[] = {"Player 2", "Round 1", "Round 2", "Round 3", "Total"};
 
-    ///Table 2 data////
-    String data2[][] = {
-            {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"},
-            {"Team 1 : Sheldon", "1", "1", "0", "2"},
-            {"Team 2 : Howard", "0", "0", "1", "1"}
-    };
+        ///Table 2 data////
+        String data2[][] = {
+                {"Player 2", "Round 1", "Round 2", "Round 3", "Total"},
+                {"Team 1 : Sheldon", "", "", "", ""},
+                {"Team 2 : Howard", "", "", "", ""}
+        };
 
-    String column2[] = {"BRUUH", "Round 1", "Round 2", "Round 3", "Total"};
+        String column2[] = {"Player 2", "Round 1", "Round 2", "Round 3", "Total"};
 
-    FinalFrame() {
+        //int t1 = totalPointT1P1;//String data[][] = {};
+        //System.out.println("t1:" + t1);
+
+        data[1][1] = String.valueOf(pointT1P1[0]);
+        data[2][1] = String.valueOf(pointT2P1[0]);
+
+        data[1][2] = String.valueOf(pointT1P1[1]);
+        data[2][2] = String.valueOf(pointT2P1[1]);
+
+        data[1][3] = String.valueOf(pointT1P1[2]);
+        data[2][3] = String.valueOf(pointT2P1[2]);
+
+        data[1][4] = String.valueOf(totalPointT1P1);
+        data[2][4] = String.valueOf(totalPointT2P1);
+
+        ///DATA 2
+        data2[1][1] = String.valueOf(pointT1P2[0]);
+        data2[2][1] = String.valueOf(pointT2P2[0]);
+
+        data2[1][2] = String.valueOf(pointT1P2[1]);
+        data2[2][2] = String.valueOf(pointT2P2[1]);
+
+        data2[1][3] = String.valueOf(pointT1P2[2]);
+        data2[2][3] = String.valueOf(pointT2P2[2]);
+
+        data2[1][4] = String.valueOf(totalPointT1P2);
+        data2[2][4] = String.valueOf(totalPointT2P2);
+
+        //System.out.println("this data" + data[1][4]);
+        /*data[][] = {
+                {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
+                {"Team 1 : Sheldon",  "", "", "", String.valueOf(totalPointT1P1)},
+                {"Team 2 : Howard", "", "", "", ""}
+        };*/
+
+        //data[1][3] = String.valueOf(totalPointT1P1);
+        System.out.println("fk me fk u" + totalPointT1P1 + totalPointT2P1 + pointT1P1[0] + pointT1P1[1] + pointT1P1[2] + pointT2P1[0] + pointT2P1[1] + pointT2P1[2]);
+        System.out.println("fk u fk me" + totalPointT1P2 + totalPointT2P2 + pointT1P2[0] + pointT1P2[1] + pointT1P2[2] + pointT2P2[0] + pointT2P2[1] + pointT2P2[2]);
+
+
+    /*public void setP2Result(int totalPointT1P2, int totalPointT2P2,  int pointT1P2[], int pointT2P2[])
+    {
+
+    }*/
+
+        /*public void setFinalFrame() {*/
+
+        //System.out.println("final t1:"+this.t1);
+        ////////////////////////////thirdpanel labels////////////////////////////
+        ///Table 1 data////
+
+
+
+
+        //GameFrame game = new GameFrame();
+        //data[1][4] = String.valueOf(totalPointT1P1);
+        /*System.out.println("get total"+getTotalPointT1P1());
+        data[1][4] = String.valueOf(getTotalPointT1P1());*/
+        //System.out.println(data[1][4]);
+
 
         //f4.setVisible(true);
         f4.setSize(1000, 700);
+        f4.setVisible(true);
+
 
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
@@ -133,7 +195,7 @@ public class FinalFrame extends GameFrame{
 
 /////////////////// Third PANEL BELOW/////////////////////////////
 
-        fifthpanel.setLayout(new GridLayout(2,1));
+        fifthpanel.setLayout(new GridLayout(2, 1));
         fifthpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         thirdpanel.setLayout(new GridLayout());
         thirdpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 30, 0)));
@@ -212,5 +274,7 @@ public class FinalFrame extends GameFrame{
         });
     }
 
-
 }
+
+
+

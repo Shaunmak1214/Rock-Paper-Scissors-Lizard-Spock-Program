@@ -11,6 +11,8 @@
 
 package com.company;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,13 +22,24 @@ import java.util.Arrays;
 
 public class Main{
 
+    /*static String T1P1 = "";
+    static String T2P1 = "";
+    static String T1P2 = "";
+    static String T2P2 = "";*/
+    //static int totalPointT1P1 = 0;/DELETE LAAAAAA
+
     public static void main(String[] args) {
+
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
         GameFrame gameFrame = new GameFrame();
+        //FinalFrame finalFrame = new FinalFrame();
 
         String[][] playername = new String[2][2];
-        FinalFrame finalFrame = new FinalFrame();
+        /*String T1P1 = "";
+        String T2P1 = "";
+        String T1P2 = "";
+        String T2P2 = "";*///DELETE LAAAAAA
 
         frame.cb.addActionListener(frame::actionPerformed);
 
@@ -41,6 +54,7 @@ public class Main{
                 frame.f.setVisible(false);//frame 1 visible false
                 frame2.f2.setSize(1000,700);
                 frame2.f2.setResizable(false);
+
                 switch (colorSelected)
                 {
                     case "Red":
@@ -100,6 +114,15 @@ public class Main{
                 }
                 frame2.f2.setVisible(true);//frame 2 visible true
                 //finalFrame.f4.setVisible(true);
+
+                Color backgrounds = Color.RED;
+
+                switch (colorSelected)
+                {
+                    case "Red": backgrounds = Color.RED; break;
+                    case "Green": backgrounds = Color.GREEN; break;
+                }
+                gameFrame.setBackgrounds(backgrounds);
             }
         });
 
@@ -130,21 +153,43 @@ public class Main{
                         gameFrame.f3.setSize(1000,700);
                         gameFrame.f3.setResizable(false);
 
+                        //System.out.println(backgrounds);
+
                         playername[0][0] = frame2.team1player1.getText();
                         playername[0][1] = frame2.team1player2.getText();
 
                         playername[1][0] = frame2.team2player1.getText();
                         playername[1][1] = frame2.team2player2.getText();
 
+                        //System.out.println(frame2.team1player1.getText());
                         System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
 
-                        gameFrame.name1Label.setText(playername[0][0]);
-                        gameFrame.name2Label.setText(playername[1][0]);
+                        String T1P1 = "";
+                        String T2P1 = "";
+                        String T1P2 = "";
+                        String T2P2 = "";
+
+                        T1P1 = playername[0][0];
+                        T2P1 = playername[0][1];
+                        T1P2 = playername[1][0];
+                        T2P2 = playername[1][1];
+
+                        gameFrame.name1Label.setText(T1P1);
+                        gameFrame.name2Label.setText(T2P1);
+
+                        gameFrame.headmodel.setValueAt("Team 1: "+ T1P1, 0, 0);
+                        gameFrame.headmodel.setValueAt("Team 1: "+ T2P1, 1, 0);
+
+                        //Color backgrounds = frame2.f2.getBackground();
+                        //gameFrame.setBackgrounds(backgrounds);
+
+                        //gameFrame.wrapperpanel.setBackground(Color.red);
 
                         //gameFrame.resultscolumn[0][0] = gameFrame.resultscolumn[0][0]+playername[0][0];
                         //gameFrame.resultscolumn[0][1] = gameFrame.resultscolumn[0][1]+playername[0][1];
 
                         //System.out.println(Arrays.deepToString(gameFrame.resultscolumn));
+                        //gameFrame.setBackgrounds();
                     }
                 }
             }
@@ -175,8 +220,9 @@ public class Main{
                         gameFrame.f3.setVisible(true);
                         gameFrame.f3.setSize(1000,700);
                         gameFrame.f3.setResizable(false);
-                        Color background = frame2.f2.getBackground();
-                        gameFrame.setBackgrounds(background);
+
+                        //Color backgrounds = frame2.f2.getBackground();
+                        //gameFrame.setBackgrounds(backgrounds);
 
                         playername[0][0] = frame2.team1player1.getText();
                         playername[0][1] = frame2.team1player2.getText();
@@ -186,8 +232,21 @@ public class Main{
 
                         System.out.println(Arrays.deepToString(playername)); //DELETE THIS AFTER FINISH PROJECT
 
-                        gameFrame.name1Label.setText(playername[0][0]);
-                        gameFrame.name2Label.setText(playername[1][0]);
+                        String T1P1 = "";
+                        String T2P1 = "";
+                        String T1P2 = "";
+                        String T2P2 = "";
+
+                        T1P1 = playername[0][0];
+                        T2P1 = playername[0][1];
+                        T2P1 = playername[1][0];
+                        T2P2 = playername[1][1];
+
+                        gameFrame.name1Label.setText(T1P1);
+                        gameFrame.name2Label.setText(T2P1);
+
+                        gameFrame.headmodel.setValueAt("Team 1: "+ T1P1, 0, 0);
+                        gameFrame.headmodel.setValueAt("Team 2: "+ T2P1, 1, 0);
                     }
                 }
             }
@@ -196,14 +255,22 @@ public class Main{
         gameFrame.boom1button.addActionListener(gameFrame::boomAction);
         gameFrame.boom2button.addActionListener(gameFrame::boomAction);
 
-        gameFrame.viewResultButton.addActionListener(new ActionListener() {
+        /*gameFrame.viewResultButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent openFrame) {
 
                 gameFrame.f3.setVisible(false);
-                finalFrame.f4.setVisible(true);
+                FinalFrame finalFrame = new FinalFrame();
+                finalFrame.data[1][4] = String.valueOf(gameFrame.totalPointT1P1);
+
+                finalFrame.setP1Result();
+                //finalFrame.setFinalFrame();
+
+                //finalFrame.data[1][4] = String.valueOf(finalFrame.totalPointT1P1);
             }
-        });
+        });*/
+
+
 
     /*  gameFrame.boom1button.addActionListener(gameFrame::scorerecorder);
         gameFrame.boom2button.addActionListener(gameFrame::scorerecorder);*/
