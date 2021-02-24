@@ -38,11 +38,15 @@ public class GameFrame extends SecondFrame {
     int point = 0;
     int pointT1 = 0, pointT2 = 0;
     int totalPointT1 = 0, totalPointT2 = 0;
-    int totalPointTeam1[][] = new int[1][2];
-    int totalPointTeam2[][] = new int[1][2];
+    int totalPointT1P1 = 0;
+    int totalPointT2P1 = 0;
+    int totalPointT1P2 = 0;
+    int totalPointT2P2 = 0;
     //int totalPointP1 = 0, totalPointP2 = 0;
-    int pointTeam1[][] = new int[2][3];
-    int pointTeam2[][] = new int[2][3];
+    int pointT1P1[] = new int[3];
+    int pointT2P1[] = new int[3];
+    int pointT1P2[] = new int[3];
+    int pointT2P2[] = new int[3];
     //int pointT2P1[] = new int[3];
     //int pointT2P2[] = new int[3];
     int visibleRowCount = 2;
@@ -392,30 +396,35 @@ public class GameFrame extends SecondFrame {
 
             if(pointT1!=pointT2)
             {
-                pointTeam1[gameRoundNum][roundNum] = pointT1;
-                System.out.println("saved point " + pointTeam1[gameRoundNum][roundNum]);
-                pointTeam2[gameRoundNum][roundNum] = pointT2;
-                System.out.println("saved point " + pointTeam2[gameRoundNum][roundNum]);
-
-                if (roundNumLeft == 0 && roundNumRight == 0)
+                if(gameRoundNum == 0)
                 {
+                    pointT1P1[roundNum] = pointT1;
+                    System.out.println("saved point " + pointT1P1[roundNum]);
+                    pointT2P1[roundNum] = pointT2;
+                    System.out.println("saved point " + pointT2P1[roundNum]);
+                }
+                else if(gameRoundNum ==1) {
+
+                    pointT1P2[roundNum] = pointT1;
+                    System.out.println("saved point " + pointT1P2[roundNum]);
+                    pointT2P2[roundNum] = pointT2;
+                    System.out.println("saved point " + pointT2P2[roundNum]);
+                }
+
+                if (roundNumLeft == 0 && roundNumRight == 0) {
                     //rowPoint1[0] = pointPlayer1[0];
                     //rowPoint2[0] = pointPlayer2[0];
                     headmodel.setValueAt(pointT1, 0, 1);
                     headmodel.setValueAt(pointT2, 1, 1);
                     //headmodel.addRow(rowPoint2);
-                }
-                else if (roundNumLeft == 1 && roundNumRight == 1)
-                {
+                } else if (roundNumLeft == 1 && roundNumRight == 1) {
                     /*rowPoint1[1] = pointPlayer1[1];
                     rowPoint2[1] = pointPlayer2[1];
                     headmodel.addRow(rowPoint1);
                     headmodel.addRow(rowPoint2);*/
                     headmodel.setValueAt(pointT1, 0, 2);
                     headmodel.setValueAt(pointT2, 1, 2);
-                }
-                else if (roundNumLeft == 2 && roundNumRight == 2)
-                {
+                } else if (roundNumLeft == 2 && roundNumRight == 2) {
                     /*rowPoint1[2] = pointPlayer1[2];
                     rowPoint2[2] = pointPlayer2[2];
                     headmodel.addRow(rowPoint1);
@@ -432,10 +441,11 @@ public class GameFrame extends SecondFrame {
                 rowPoint2[3] = pointPlayer2[3];
                 headmodel.addRow(rowPoint1);
                 headmodel.addRow(rowPoint2);*/
-                headmodel.setValueAt(totalPointT1,0, 4);
-                headmodel.setValueAt(totalPointT2,1, 4);
+                headmodel.setValueAt(totalPointT1, 0, 4);
+                headmodel.setValueAt(totalPointT2, 1, 4);
 
                 roundNum++;
+
             }
             else if(pointT1 == pointT2)
             {
@@ -443,13 +453,20 @@ public class GameFrame extends SecondFrame {
                 roundNumLeft--;
                 roundNumRight--;
             }
-
         }
 
         if(roundNum<3)
         {
-            totalPointTeam1[gameRoundNum][team1Checked] = totalPointT1;
-            totalPointTeam2[gameRoundNum][team2Checked] = totalPointT2;
+            if(gameRoundNum == 0)
+            {
+                totalPointT1P1 = totalPointT1;
+                totalPointT2P1 = totalPointT2;
+            }
+            else if(gameRoundNum == 1)
+            {
+                totalPointT1P2 = totalPointT1;
+                totalPointT2P2 = totalPointT2;
+            }
             roundCountLabel.setText("Round " + (int)(roundNum+1));
         }
 
@@ -477,8 +494,9 @@ public class GameFrame extends SecondFrame {
 
             if(gameRoundNum == 1)
             {
+                dialogpanel.remove(nextButton);
                 dialogpanel.add(viewResultButton, BorderLayout.SOUTH);
-                //viewResultButton.addActionListener(this);
+                //viewResultButton.addActionListener();
             }
 
         }
@@ -492,7 +510,7 @@ public class GameFrame extends SecondFrame {
         {
             if(gameRoundNum == 0)
             {
-                dl.dispose();
+                dl.dispose(); // close the JDialog
                 f3.dispose();
                 //new GameFrame();
                 f3.setVisible(true);
@@ -515,8 +533,12 @@ public class GameFrame extends SecondFrame {
                 pointT2 = 0;
                 totalPointT1 = 0;
                 totalPointT2 = 0;
-                //int point2Player1[] = new int[2][3];
-                //int pointP2layer2[] = new int[2][3];
+                totalPointT1P1 = 0;
+                totalPointT2P1 = 0;
+                totalPointT1P2 = 0;
+                totalPointT2P2 = 0;
+                team1Checked = 0;
+                team2Checked = 0;
 
                 gameRoundNum++;
                 System.out.println(gameRoundNum);
@@ -551,7 +573,6 @@ public class GameFrame extends SecondFrame {
                     boom2button.addActionListener(this::boomAction);
                 }
             }
-
         }
 
         /*SwingUtilities.updateComponentTreeUI(f3);
