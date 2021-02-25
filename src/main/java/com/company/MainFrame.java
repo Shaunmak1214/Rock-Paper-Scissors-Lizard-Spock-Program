@@ -54,9 +54,11 @@ public class MainFrame extends JFrame
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
                 firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
+
                 firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR FIRST PANEL
 
                 f.add(firstpanel,BorderLayout.NORTH);//ADD FIRST PANEL TO FRAME
+
                 firstpanel.setBackground(new Color(253, 105, 0));//BACKGROUND COLOR OF FIRST PANEL
                 firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE
                 upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text

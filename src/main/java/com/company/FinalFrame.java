@@ -26,7 +26,7 @@ public class FinalFrame {
 
     //private int t1;
 
-    public void setP1Result(int totalPointT1P1, int totalPointT2P1, int pointT1P1[], int pointT2P1[], int totalPointT1P2, int totalPointT2P2, int pointT1P2[], int pointT2P2[])
+    public void setP1Result(int totalPointT1P1, int totalPointT2P1, int pointT1P1[], int pointT2P1[], int totalPointT1P2, int totalPointT2P2, int pointT1P2[], int pointT2P2[], Color bg)
     {
         JFrame f4 = new JFrame();
         ImageIcon image = new ImageIcon("assets/party2.png");
@@ -45,6 +45,8 @@ public class FinalFrame {
         JLabel winning_team = new JLabel();
         JLabel party = new JLabel(image);
         JButton b = new JButton("EXIT");
+
+
 
         String data[][] = {
                 {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
@@ -162,12 +164,20 @@ public class FinalFrame {
 
 
 
+
         //GameFrame game = new GameFrame();
         //data[1][4] = String.valueOf(totalPointT1P1);
         /*System.out.println("get total"+getTotalPointT1P1());
         data[1][4] = String.valueOf(getTotalPointT1P1());*/
         //System.out.println(data[1][4]);
+        secondpanel.setBackground(bg);
+        thirdpanel.setBackground(bg);
+        fourpanel.setBackground(bg);
+        fifthpanel.setBackground(bg);
+        team1.setBackground(bg);
+        team2.setBackground(bg);
 
+        System.out.println("BG: "+bg);
 
         //f4.setVisible(true);
         f4.setSize(1000, 700);
@@ -310,6 +320,9 @@ public class FinalFrame {
         fifthpanel.add(fourpanel);
 
         f4.add(fifthpanel, BorderLayout.SOUTH);
+
+        /*f4.setBackground(bg);
+        System.out.println("BG: "+bg);*/
 
         team1.setText("Team 1:  "+finalTotalPointT1);
         team2.setText("Team 2:  "+finalTotalPointT2);

@@ -54,8 +54,9 @@ public class GameFrame extends FinalFrame {
     //int pointT2P2[] = new int[3];
     int visibleRowCount = 2;
     int gameRoundNum = 0;
-    int team1Checked = 0, team2Checked = 0;
-    String name3;
+    //int team1Checked = 0, team2Checked = 0;
+    //String name3;
+    Color background;
 
     JFrame f3 = new JFrame();
 
@@ -85,7 +86,7 @@ public class GameFrame extends FinalFrame {
     //JLabel team2label = new JLabel();
 
     JDialog dl = new JDialog(f3, "Scoreboard");
-    JLabel winnerLabel = new JLabel("The Winner is");
+    JLabel winnerLabel = new JLabel();
     JButton nextButton = new JButton("Next Player");
     JButton viewResultButton = new JButton("View Result");
 
@@ -248,7 +249,7 @@ public class GameFrame extends FinalFrame {
         wrapperpanel.add(tablepanel, BorderLayout.SOUTH);
         //tablepanel.add(resultstable.getTableHeader(), BorderLayout.PAGE_START);
         //tablepanel.setBorder(new LineBorder(Color.black, 5));
-        tablepanel.setSize(949,160);
+        tablepanel.setSize(950,160);
         tablepanel.setPreferredSize(new Dimension(960,165));
         resultstable.setFillsViewportHeight(true);
         resultstable.setRowHeight(50);
@@ -355,9 +356,18 @@ public class GameFrame extends FinalFrame {
         wrapperpanel.setBackground(background);
         thirdpanel.setBackground(background);
         forthpanel.setBackground(background);
+        secondpanel.setBackground(background);
+        roundCountLabel.setBackground(background);
+        thirdeastpanel.setBackground(background);
+        forthwestpanel.setBackground(background);
+        tablepanel.setBackground(background);
+        name1Label.setBackground(background);
+        name2Label.setBackground(background);
+        name3Label.setBackground(background);
+        name4Label.setBackground(background);
 
-
-        System.out.println("background:"+background);
+        this.background = background;
+        System.out.println("background:"+this.background);
     }
 
     public void boomAction(ActionEvent boom)
@@ -511,20 +521,47 @@ public class GameFrame extends FinalFrame {
             dl.add(dialogpanel);
             dialogpanel.setLayout(new BorderLayout());
             dialogpanel.add(winnerLabel, BorderLayout.CENTER);
-            dl.setSize(200,200);
+
+            dl.setSize(250,200);
+            dl.setLocationRelativeTo(f3);
             dl.setVisible(true);
+
+            //winnerLabel.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+            winnerLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
+            winnerLabel.setOpaque(true);
+            //winnerLabel.setVerticalAlignment(JLabel.CENTER);
 
             if(gameRoundNum == 0)
             {
+                if(totalPointT1P1>totalPointT2P1)
+                {
+                    winnerLabel.setText("The Winner is Team 1!");
+                }
+                else if(totalPointT1P1<totalPointT2P1)
+                {
+                    winnerLabel.setText("The Winner is Team 2!");
+                }
+
                 dialogpanel.add(nextButton, BorderLayout.SOUTH);
+                nextButton.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
                 //nextButton.addActionListener(this::fakeAction);
                 nextButton.addActionListener(this::nextAction);
             }
 
             if(gameRoundNum == 1)
             {
+                if(totalPointT1P2>totalPointT2P2)
+                {
+                    winnerLabel.setText("The Winner is Team 1!");
+                }
+                else if(totalPointT1P2<totalPointT2P2)
+                {
+                    winnerLabel.setText("The Winner is Team 2!");
+                }
+
                 dialogpanel.remove(nextButton);
                 dialogpanel.add(viewResultButton, BorderLayout.SOUTH);
+                viewResultButton.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
                 viewResultButton.addActionListener(this::actionPerformed);
             }
 
@@ -543,18 +580,36 @@ public class GameFrame extends FinalFrame {
             {
                 dl.dispose(); // close the JDialog
                 f3.dispose();
+
+                thirdeastpanel.remove(name1Label);
+                thirdeastpanel.remove(boom1button);
+
+                forthwestpanel.remove(name2Label);
+                forthwestpanel.remove(boom2button);
                 //new GameFrame();
                 f3.setVisible(true);
+
+                gameRoundNum++;
+                System.out.println(gameRoundNum);
+                setName();
 
                 roundNumLeft = -1;
                 roundNumRight = -1;
                 roundNum = 0;
                 roundCountLabel.setText("Round " + (int)(roundNum+1));
 
-                thirdeastpanel.remove(name1Label);
-                //thirdeastpanel.remove(name2Label);
-                thirdeastpanel.add(name3Label, BorderLayout.NORTH);
-                forthwestpanel.add(name4Label, BorderLayout.NORTH);
+                /*name3Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+                name3Label.setFont(new Font("Verdana", Font.PLAIN, 18));
+                name3Label.setOpaque(true);
+                name3Label.setVerticalAlignment(JLabel.CENTER);
+                thirdeastpanel.add(name3Label, BorderLayout.NORTH);*/
+
+                /*name4Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+                name4Label.setFont(new Font("Verdana", Font.PLAIN, 18));
+                name4Label.setOpaque(true);
+                name4Label.setVerticalAlignment(JLabel.CENTER);
+                forthwestpanel.add(name4Label, BorderLayout.NORTH);*/
+
                 /*String name3 = Main.setName3();
                 System.out.println("NAME 3: "+name3);*/
 
@@ -572,11 +627,6 @@ public class GameFrame extends FinalFrame {
                 totalPointT2 = 0;
                 totalPointT1P2 = 0;
                 totalPointT2P2 = 0;
-
-                gameRoundNum++;
-                System.out.println(gameRoundNum);
-
-                setName();
 
                 headmodel.setValueAt("", 0, 1);
                 headmodel.setValueAt("", 1, 1);
@@ -799,7 +849,7 @@ public class GameFrame extends FinalFrame {
         //FinalFrame finalFrame = new FinalFrame();
         //finalFrame.data[1][4] = String.valueOf(gameFrame.totalPointT1P1);
 
-        setP1Result(totalPointT1P1, totalPointT2P1, pointT1P1, pointT2P1, totalPointT1P2, totalPointT2P2, pointT1P2, pointT2P2);
+        setP1Result(totalPointT1P1, totalPointT2P1, pointT1P1, pointT2P1, totalPointT1P2, totalPointT2P2, pointT1P2, pointT2P2, this.background);
         //finalFrame.setFinalFrame();
 
         //finalFrame.data[1][4] = String.valueOf(finalFrame.totalPointT1P1);
@@ -807,6 +857,7 @@ public class GameFrame extends FinalFrame {
 
     public void setName(){
 
+        System.out.println("gameroundNum: !!"+gameRoundNum);
         int counter = 0;
 
         try {
@@ -816,18 +867,43 @@ public class GameFrame extends FinalFrame {
                 String data = myReader.nextLine();
                 System.out.println(data);
 
-                if(counter == 2){
+                if(gameRoundNum==0) {
+                    if (counter == 0) {
 
-                    name3Label.setText( data );
-                    headmodel.setValueAt( "Team 1 :" +  data , 0, 0);
+                        name1Label.setText(data);
+                    }
 
+                    if (counter == 1) {
+
+                        name2Label.setText(data);
+                    }
                 }
+                else if(gameRoundNum==1)
+                {
+                    if(counter == 2){
 
-                if(counter == 3){
+                        name3Label.setText( data );
+                        name3Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+                        name3Label.setFont(new Font("Verdana", Font.PLAIN, 18));
+                        name3Label.setOpaque(true);
+                        name3Label.setVerticalAlignment(JLabel.CENTER);
+                        thirdeastpanel.add(name3Label, BorderLayout.NORTH);
+                        headmodel.setValueAt( "Team 1: " +  data , 0, 0);
+                        thirdeastpanel.add(boom1button, BorderLayout.CENTER);
+                        //System.out.println("yoo"+name3Label);
+                    }
 
-                    name4Label.setText( data );
-                    headmodel.setValueAt( "Team 2 :" + data , 1, 0);
+                    if(counter == 3){
 
+                        name4Label.setText( data );
+                        name4Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
+                        name4Label.setFont(new Font("Verdana", Font.PLAIN, 18));
+                        name4Label.setOpaque(true);
+                        name4Label.setVerticalAlignment(JLabel.CENTER);
+                        forthwestpanel.add(name4Label, BorderLayout.NORTH);
+                        headmodel.setValueAt( "Team 2: " + data , 1, 0);
+                        forthwestpanel.add(boom2button, BorderLayout.CENTER);
+                    }
                 }
 
                 counter++;

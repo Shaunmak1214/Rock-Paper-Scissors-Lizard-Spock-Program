@@ -139,6 +139,9 @@ public class Main{
                 {
                     case "Red": backgrounds = Color.RED; break;
                     case "Green": backgrounds = Color.GREEN; break;
+                    case "Blue": backgrounds = Color.BLUE; break;
+                    case "Yellow": backgrounds = Color.YELLOW; break;
+                    case "Grey": backgrounds = Color.GRAY; break;
                 }
                 gameFrame.setBackgrounds(backgrounds);
             }
@@ -173,11 +176,11 @@ public class Main{
 
                         //System.out.println(backgrounds);
 
-                        playername[0][0] = frame2.team1player1.getText();
-                        playername[0][1] = frame2.team1player2.getText();
+                        T1P1 = frame2.team1player1.getText();
+                        T2P1 = frame2.team1player2.getText();
 
-                        playername[1][0] = frame2.team2player1.getText();
-                        playername[1][1] = frame2.team2player2.getText();
+                        T1P2 = frame2.team2player1.getText();
+                        T2P2 = frame2.team2player2.getText();
 
                         //System.out.println(frame2.team1player1.getText());
                         System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
@@ -187,10 +190,10 @@ public class Main{
                         String T1P2 = "";
                         String T2P2 = "";*/
 
-                        T1P1 = playername[0][0];
+                        /*T1P1 = playername[0][0];
                         T2P1 = playername[0][1];
                         T1P2 = playername[1][0];
-                        T2P2 = playername[1][1];
+                        T2P2 = playername[1][1];*/
 
                         FileWriter myWriter = null;
                         try {
@@ -213,8 +216,8 @@ public class Main{
 
                         gameFrame.setName();
 
-                        gameFrame.name1Label.setText(T1P1);
-                        gameFrame.name2Label.setText(T2P1);
+                        //gameFrame.name1Label.setText(T1P1);
+                        //gameFrame.name2Label.setText(T2P1);
                         //gameFrame.name3Label.setText(T1P2);
                         //gameFrame.name4Label.setText(T2P2);
 
@@ -265,11 +268,11 @@ public class Main{
                         //Color backgrounds = frame2.f2.getBackground();
                         //gameFrame.setBackgrounds(backgrounds);
 
-                        playername[0][0] = frame2.team1player1.getText();
-                        playername[0][1] = frame2.team1player2.getText();
+                        T1P1 = frame2.team1player1.getText();
+                        T2P1 = frame2.team1player2.getText();
 
-                        playername[1][0] = frame2.team2player1.getText();
-                        playername[1][1] = frame2.team2player2.getText();
+                        T1P2 = frame2.team2player1.getText();
+                        T2P2 = frame2.team2player2.getText();
 
                         System.out.println(Arrays.deepToString(playername)); //DELETE THIS AFTER FINISH PROJECT
 
@@ -277,11 +280,6 @@ public class Main{
                         String T2P1 = "";
                         String T1P2 = "";
                         String T2P2 = "";*/
-
-                        T1P1 = playername[0][0];
-                        T2P1 = playername[0][1];
-                        T1P2 = playername[1][0];
-                        T2P2 = playername[1][1];
 
                         FileWriter myWriter = null;
                         try {
@@ -304,8 +302,8 @@ public class Main{
 
                         gameFrame.setName();
 
-                        gameFrame.name1Label.setText(T1P1);
-                        gameFrame.name2Label.setText(T2P1);
+                        //gameFrame.name1Label.setText(T1P1);
+                        //gameFrame.name2Label.setText(T2P1);
 
 
                         //name3Label.setText(T1P2);
