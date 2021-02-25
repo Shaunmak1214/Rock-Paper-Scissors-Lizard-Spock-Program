@@ -38,18 +38,18 @@ public class Main{
         GameFrame gameFrame = new GameFrame();
         //FinalFrame finalFrame = new FinalFrame();
 
+        //Create new temp file for name storing
         File storeName = new File("temp.txt");
-
-        try {
-            if (storeName.createNewFile()) {
-                System.out.println("File created: " + storeName.getName());
-            } else {
-                System.out.println("File already exists.");
+            try {
+                if (storeName.createNewFile()) {
+                    System.out.println("File created: " + storeName.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
 
         //JLabel name3Label = new JLabel();
 
@@ -195,6 +195,7 @@ public class Main{
                         T1P2 = playername[1][0];
                         T2P2 = playername[1][1];*/
 
+                        //Initilize filewriter, and write stored name to temp file
                         FileWriter myWriter = null;
                         try {
                             myWriter = new FileWriter("temp.txt");
@@ -214,6 +215,7 @@ public class Main{
                             System.out.println("failed");
                         }
 
+                        //caling inbuilt function in gameframe for setting names
                         gameFrame.setName();
 
                         //gameFrame.name1Label.setText(T1P1);
@@ -281,6 +283,7 @@ public class Main{
                         String T1P2 = "";
                         String T2P2 = "";*/
 
+                        //Initilize filewriter, and write stored name to temp file
                         FileWriter myWriter = null;
                         try {
                             myWriter = new FileWriter("temp.txt");
@@ -300,6 +303,7 @@ public class Main{
                             System.out.println("failed");
                         }
 
+                        //caling inbuilt function in gameframe for setting names
                         gameFrame.setName();
 
                         //gameFrame.name1Label.setText(T1P1);
@@ -321,6 +325,7 @@ public class Main{
             }
         });
 
+        //binding action listener to both of the "boom" buttons
         gameFrame.boom1button.addActionListener(gameFrame::boomAction);
         gameFrame.boom2button.addActionListener(gameFrame::boomAction);
 

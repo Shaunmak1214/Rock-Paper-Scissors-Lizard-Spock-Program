@@ -33,6 +33,7 @@ import java.awt.Component;
 
 public class GameFrame extends FinalFrame {
 
+    //variable initialization
     int roundNumLeft = -1, roundNumRight = -1;
     int roundNum = 0;
     String imageName = "assets/rock.png"; //default image
@@ -58,6 +59,7 @@ public class GameFrame extends FinalFrame {
     //String name3;
     Color background;
 
+    //initalizing JComponenets
     JFrame f3 = new JFrame();
 
     JPanel firstpanel = new JPanel();
@@ -120,6 +122,7 @@ public class GameFrame extends FinalFrame {
         return this.totalPointT1P1;
     }*/
 
+    //Gameframe constructor
     GameFrame() {
 
 /////////////////// FIRST PANEL BELOW/////////////////////////////
@@ -349,6 +352,7 @@ public class GameFrame extends FinalFrame {
 
     }*/
 
+    //function to set every panels, label , frames's background color to match the chosen color by user
     public void setBackgrounds(Color background) {
 
         //Color background = Color.red;
@@ -370,6 +374,7 @@ public class GameFrame extends FinalFrame {
         System.out.println("background:"+this.background);
     }
 
+    //function of handling the action listener when button is pressed, actionlistener is implemented on Main.java
     public void boomAction(ActionEvent boom)
     {
 
@@ -741,6 +746,7 @@ public class GameFrame extends FinalFrame {
         System.out.println("Round: "+roundNumRight);
     }*/
 
+    //function of randomizing images when boom button is clicked
     public int randomizeImageNo() {
 
         double max = 5, min = 1;
@@ -751,6 +757,7 @@ public class GameFrame extends FinalFrame {
         return imageNo;
     }
 
+    //function of setting the image path according to what number is randomized on previous function
     public String setImageName(int imageNo)
     {
         System.out.println("\nimage: "+imageNo);
@@ -772,6 +779,7 @@ public class GameFrame extends FinalFrame {
         return imageName;
     }
 
+    //function to render the image for left section, also resize the image to fit with the label
     public void renderImageLeft(String imageName){
 
         //boom1button.addActionListener(this::storeHandsign);
@@ -796,6 +804,7 @@ public class GameFrame extends FinalFrame {
 
     }
 
+    //function to render the image for left section, also resize the image to fit with the label
     public void renderImageRight(String imageName) {
 
         //boom2button.addActionListener(this::storeHandsign);
@@ -855,6 +864,7 @@ public class GameFrame extends FinalFrame {
         //finalFrame.data[1][4] = String.valueOf(finalFrame.totalPointT1P1);
     }
 
+    //function to set all the names user typed in
     public void setName(){
 
         System.out.println("gameroundNum: !!"+gameRoundNum);
