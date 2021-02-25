@@ -33,16 +33,20 @@ public class MainFrame extends JFrame
 
         public String colorSelected;
 
+        //COMBO BOX
         JComboBox cb;
 
+        //PANEL
         JPanel firstpanel = new JPanel();
         JPanel secondpanel = new JPanel();
         JPanel thirdpanel = new JPanel();
 
+        //LABEL
         JLabel upperlabel = new JLabel();
         JLabel welcomelabel = new JLabel();
         JLabel descriptionlabel = new JLabel();
 
+        //BUTTON
         JButton proceed = new JButton("PROCEED");
 
         MainFrame()
@@ -50,9 +54,11 @@ public class MainFrame extends JFrame
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
                 firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-                firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
 
-                f.add(firstpanel,BorderLayout.NORTH);//panel position
+                firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR FIRST PANEL
+
+                f.add(firstpanel,BorderLayout.NORTH);//ADD FIRST PANEL TO FRAME
+
                 firstpanel.setBackground(new Color(253, 105, 0));//BACKGROUND COLOR OF FIRST PANEL
                 firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE
                 upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
@@ -68,26 +74,26 @@ public class MainFrame extends JFrame
 
                 //f.setLayout(new GridBagLayout());
                 //secondpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-                secondpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));
-                f.add(secondpanel,BorderLayout.CENTER);
+                secondpanel.setBorder((BorderFactory.createEmptyBorder(0,0,100,0)));//PANEL LAYOUT FOR SECOND PANEL
+                f.add(secondpanel,BorderLayout.CENTER);//ADD SECOND PANEL TO FRAME
 
-                secondpanel.setPreferredSize(new Dimension(1000,550));
+                secondpanel.setPreferredSize(new Dimension(1000,550));//SET SIZE FOR SECOND PANEL
 
                 welcomelabel.setBorder((BorderFactory.createEmptyBorder(50,500,0,500)));//PANEL LAYOUT FOR LABEL
                 descriptionlabel.setBorder((BorderFactory.createEmptyBorder(0,500,5,500)));//PANEL LAYOUT FOR LABEL
 
-                welcomelabel.setFont(new Font("Verdana",Font.PLAIN,22));
-                descriptionlabel.setFont(new Font("Verdana",Font.PLAIN,22));
+                welcomelabel.setFont(new Font("Verdana",Font.PLAIN,22));//SET FONT FOR WELCOME LABEL
+                descriptionlabel.setFont(new Font("Verdana",Font.PLAIN,22));//SET FONT FOR DESCRIPTION LABEL
 
                 //proceed.setBorder((BorderFactory.createEmptyBorder(900,0,900,0)));
                 //cb.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));
 
-                welcomelabel.setText("Welcome!");
-                descriptionlabel.setText("Please select the background colour before you proceed: ");
+                welcomelabel.setText("Welcome!"); //SET TEXT FOR WELCOME
+                descriptionlabel.setText("Please select the background colour before you proceed: "); //SET TEST FOR DESCRIPTION
 
                 //secondpanel.setLayout(new BoxLayout(secondpanel,BoxLayout.Y_AXIS));
 
-                String [] color =
+                String [] color = // STRING ARRAY FOR COLOR
                         {
                                 "Red",
                                 "Green",
@@ -97,12 +103,12 @@ public class MainFrame extends JFrame
                         };
                 //JComboBox = dropdown list
 
-                cb = new JComboBox(color);
-                cb.addActionListener(this::actionPerformed);
+                cb = new JComboBox(color); // DECLARE A COMBO BOX
+                cb.addActionListener(this::actionPerformed);// ADD ACTION LISTENER TO SEE USER SELECT WHICH COLOR
 
                 //secondpanel.add(cb);
                 //secondpanel.add(cb).setBounds(500,400,1000,80);
-                cb.setPreferredSize(new Dimension(80,30));
+                cb.setPreferredSize(new Dimension(80,30)); // PREFERRED SIZE FOR COMBO BOX
 
 
                 secondpanel.add(welcomelabel,BorderLayout.CENTER);//welcome added
@@ -117,16 +123,16 @@ public class MainFrame extends JFrame
 
 ///////////////////////THIRD PANEL BELOW////////////////////////////
 
-                thirdpanel.setLayout(new GridBagLayout());
-                thirdpanel.setBorder((BorderFactory.createEmptyBorder(0,10,10,10)));
+                thirdpanel.setLayout(new GridBagLayout()); // SETLAYOUT FOR THIRD PANEL
+                thirdpanel.setBorder((BorderFactory.createEmptyBorder(0,10,10,10))); // SET BORDER FOR THIRD PANEL
 
-                f.add(thirdpanel,BorderLayout.PAGE_END);
+                f.add(thirdpanel,BorderLayout.PAGE_END); // ADD THIRD PANEL TO FRAME
                 //thirdpanel.setBackground(Color.BLACK);
-                thirdpanel.setPreferredSize(new Dimension(1000,150));
+                thirdpanel.setPreferredSize(new Dimension(1000,150)); // SET SIZE FOR THIRD PANEL
 
                 proceed.setPreferredSize(new Dimension(100,30));//BUTTON SIZE
                 proceed.setFont(new Font("Sans Serif",Font.BOLD,12));//SIZE OF THE TEXT INSIDE BUTTON
-                proceed.setForeground(Color.BLUE);
+                proceed.setForeground(Color.BLUE); // SET COLOR FOR FONT INSIDE THE BUTTON
 
                 thirdpanel.add(proceed);//BUTTON ADDED
 
@@ -143,10 +149,10 @@ public class MainFrame extends JFrame
         public void actionPerformed(ActionEvent e)
         {
 
-                String colorSelect = (String) cb.getSelectedItem();
-                this.colorSelected = colorSelect;
+                String colorSelect = (String) cb.getSelectedItem(); // GET THE INPUT FROM THE COMBOBOX
+                this.colorSelected = colorSelect;// GET FIRST FRAME COLOUR TO SECOND FRAME
 
-                switch (colorSelect)
+                switch (colorSelect)// USING SWITCH CASE TO CHANGE COLOR WITH USER SELECTED COMBO BOX
                 {
                         case "Red":
                                 secondpanel.setBackground(Color.RED);
