@@ -167,9 +167,9 @@ public class MainFrame extends JFrame
                                 break;
 
                         case "Blue":
-                                secondpanel.setBackground(Color.BLUE);
+                                secondpanel.setBackground(Color.decode("#00ECFF"));
                                 //f.getContentPane().setBackground(Color.BLUE);
-                                thirdpanel.setBackground(Color.BLUE);
+                                thirdpanel.setBackground(Color.decode("#00ECFF"));
                                 break;
 
                         case "Yellow":
@@ -179,9 +179,9 @@ public class MainFrame extends JFrame
                                 break;
 
                         case "Grey":
-                                secondpanel.setBackground(Color.GRAY);
+                                secondpanel.setBackground(Color.decode("#A4A7AB"));
                                 //f.getContentPane().setBackground(Color.GRAY);
-                                thirdpanel.setBackground(Color.GRAY);
+                                thirdpanel.setBackground(Color.decode("#A4A7AB"));
                                 break;
                 }
 

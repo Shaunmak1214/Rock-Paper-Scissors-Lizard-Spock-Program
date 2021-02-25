@@ -36,27 +36,27 @@ public class GameFrame extends FinalFrame {
     //variable initialization
     int roundNumLeft = -1, roundNumRight = -1;
     int roundNum = 0;
+
     String imageName = "assets/rock.png"; //default image
     int imageNo = 0;
-    int team1 = 0, team2 = 0;
-    int point = 0;
-    int pointT1 = 0, pointT2 = 0;
-    int totalPointT1 = 0, totalPointT2 = 0;
-    int totalPointT1P1 = 0;
-    int totalPointT2P1 = 0;
-    int totalPointT1P2 = 0;
-    int totalPointT2P2 = 0;
-    //int totalPointP1 = 0, totalPointP2 = 0;
-    public int pointT1P1[] = new int[3];
-    public int pointT2P1[] = new int[3];
-    int pointT1P2[] = new int[3];
-    int pointT2P2[] = new int[3];
-    //int pointT2P1[] = new int[3];
-    //int pointT2P2[] = new int[3];
-    int visibleRowCount = 2;
-    int gameRoundNum = 0;
-    //int team1Checked = 0, team2Checked = 0;
-    //String name3;
+
+    int team1 = 0, team2 = 0; //The image number of player from team 1 and team 2
+    int point = 0; //Point awarded
+    int pointT1 = 0, pointT2 = 0; //Point of team 1 and team 2 from Each Round
+    int totalPointT1 = 0, totalPointT2 = 0; //Total point of team 1 and team 2 from Each Game
+    int totalPointT1P1 = 0; //Total point of team 1 player 1
+    int totalPointT2P1 = 0; //Total point of team 2 player 1
+    int totalPointT1P2 = 0; //Total point of team 1 player 2
+    int totalPointT2P2 = 0; //Total point of team 2 player 2
+
+    int pointT1P1[] = new int[3]; //Array to store the point of team 1 player 1 of every round
+    int pointT2P1[] = new int[3]; //Array to store the point of team 2 player 1 of every round
+    int pointT1P2[] = new int[3]; //Array to store the point of team 1 player 2 of every round
+    int pointT2P2[] = new int[3]; //Array to store the point of team 2 player 2 of every round
+
+    int visibleRowCount = 2; //Visible row count of table
+    int gameRoundNum = 0;    //The number of game after 3 round end
+
     Color background;
 
     //initalizing JComponenets
@@ -74,53 +74,30 @@ public class GameFrame extends FinalFrame {
     JPanel tablepanel = new JPanel();
     JPanel dialogpanel = new JPanel();
 
-    JLabel upperlabel = new JLabel();
-    JLabel roundCountLabel = new JLabel();
+    JLabel upperlabel = new JLabel(); //Label of displaying title
+    JLabel roundCountLabel = new JLabel(); //Label of display number of round
 
-    JLabel name1Label = new JLabel();
-    JLabel name2Label = new JLabel();
-    JLabel name3Label = new JLabel();
-    JLabel name4Label = new JLabel();
+    JLabel name1Label = new JLabel(); //Label of Team 1 Player 1
+    JLabel name2Label = new JLabel(); //Label of Team 2 Player 1
+    JLabel name3Label = new JLabel(); //Label of Team 1 Player 2
+    JLabel name4Label = new JLabel(); //Label of Team 2 Player 2
 
-    JLabel icon1Label = new JLabel();
-    JLabel icon2Label = new JLabel();
-    //JLabel team1label = new JLabel();
-    //JLabel team2label = new JLabel();
+    JLabel icon1Label = new JLabel(); //Label of rock, paper.... image (left side)
+    JLabel icon2Label = new JLabel(); //Label of rock, paper.... image (left side)
 
     JDialog dl = new JDialog(f3, "Scoreboard");
-    JLabel winnerLabel = new JLabel();
+    JLabel winnerLabel = new JLabel();  //Show winning team
     JButton nextButton = new JButton("Next Player");
     JButton viewResultButton = new JButton("View Result");
 
     JButton boom1button = new JButton("BOOM!");
     JButton boom2button = new JButton("BOOM!");
 
-/*    String testnama[][] ={
-            {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-            {"Team 1 : SINYIN"},
-            {"Team 2 : POHKANG"}
-    };*/
-
     JTable resultstable = new JTable(2, 5);
     String[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
     String[][] resultscolumn = {{"Team 1: "}, {"Team 2: "}};
-
-
-
     JScrollPane jsp = new JScrollPane(resultstable);
-
-    //Object[] rowPoint1 = new Object[4];
-    //Object[] rowPoint2 = new Object[4];
-
     DefaultTableModel headmodel = new DefaultTableModel(resultscolumn, resultshead);
-
-    //ImageIcon player1 = new ImageIcon("assets/paper.png");
-
-    /*public int getTotalPointT1P1()
-    {
-        System.out.println("total point:"+this.totalPointT1P1);
-        return this.totalPointT1P1;
-    }*/
 
     //Gameframe constructor
     GameFrame() {
@@ -129,13 +106,13 @@ public class GameFrame extends FinalFrame {
 
         firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
         firstpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
-
         f3.add(firstpanel, BorderLayout.NORTH);//panel position
-        firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
+        firstpanel.setBackground(new Color(253, 105, 0));//BACKGROUND COLOR OF FIRST PANEL
         firstpanel.setPreferredSize(new Dimension(1000, 60));//FIRST PANEL SIZE
+
         upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
         upperlabel.setFont(new Font("Verdana", Font.PLAIN, 18));//font of text
-        upperlabel.setBackground(Color.ORANGE);//text background color
+        upperlabel.setBackground(new Color(253, 105, 0));//text background color
 
         firstpanel.add(upperlabel);// ADD LABEL INTO THE PANEL
         upperlabel.setOpaque(true);// MAKE LABEL VISIBLE
@@ -145,7 +122,6 @@ public class GameFrame extends FinalFrame {
         secondpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
         f3.add(secondpanel, BorderLayout.BEFORE_LINE_BEGINS);
         secondpanel.setPreferredSize(new Dimension(1000, 200));
-        //secondpanel.setBackground(Color.GRAY);
 
         roundCountLabel.setBorder((BorderFactory.createEmptyBorder(35, 10, 10, 10)));
         roundCountLabel.setFont(new Font("Verdana", Font.PLAIN, 22));
@@ -166,7 +142,6 @@ public class GameFrame extends FinalFrame {
 
         thirdpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
         thirdpanel.setPreferredSize(new Dimension(450, 250));
-        //thirdpanel.setBackground(Color.ORANGE);
 
         thirdpanel.add(thirdeastpanel, BorderLayout.EAST);
         thirdpanel.add(thirdwestpanel, BorderLayout.WEST);
@@ -175,16 +150,11 @@ public class GameFrame extends FinalFrame {
 
         thirdeastpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
         thirdeastpanel.setPreferredSize(new Dimension(100, 200));
-        //thirdeastpanel.setBackground(Color.ORANGE);
-        //thirdeastpanel.setAlignmentY();
 
         name1Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
         name1Label.setFont(new Font("Verdana", Font.PLAIN, 22));
-
-        //name1Label.setText(team1player1.getText());
         name1Label.setOpaque(true);
         name1Label.setVerticalAlignment(JLabel.CENTER);
-        //name1Label.setBackground(Color.ORANGE);
 
         boom1button.setPreferredSize(new Dimension(100, 30));
         boom1button.setFont(new Font("Verdana", Font.BOLD, 12));
@@ -208,7 +178,6 @@ public class GameFrame extends FinalFrame {
 
         forthpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 100, 0)));
         forthpanel.setPreferredSize(new Dimension(450, 250));
-        //forthpanel.setBackground(Color.RED);
 
         forthpanel.add(fortheastpanel, BorderLayout.EAST);
         forthpanel.add(forthwestpanel, BorderLayout.WEST);
@@ -228,14 +197,11 @@ public class GameFrame extends FinalFrame {
 
         forthwestpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 0, 0)));
         forthwestpanel.setPreferredSize(new Dimension(100, 200));
-        //forthwestpanel.setBackground(Color.ORANGE);
 
         name2Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
         name2Label.setFont(new Font("Verdana", Font.PLAIN, 22));
-        //name2Label.setText(team1player2.getText());
         name2Label.setOpaque(true);
         name2Label.setVerticalAlignment(JLabel.CENTER);
-        //name2Label.setBackground(Color.ORANGE);
 
         boom2button.setPreferredSize(new Dimension(100, 30));
         boom2button.setFont(new Font("Verdana", Font.BOLD, 12));
@@ -244,58 +210,35 @@ public class GameFrame extends FinalFrame {
         forthwestpanel.add(name2Label, BorderLayout.CENTER);
         forthwestpanel.add(boom2button, BorderLayout.CENTER);
 
-        //boom1button.addActionListener(this::boom1Action);
-        //boom2button.addActionListener(this::boom2Action);
-
 //////////////// SCORE TABLE PANEL BELOW /////////////////////////
 
         wrapperpanel.add(tablepanel, BorderLayout.SOUTH);
-        //tablepanel.add(resultstable.getTableHeader(), BorderLayout.PAGE_START);
-        //tablepanel.setBorder(new LineBorder(Color.black, 5));
+
         tablepanel.setSize(950,160);
         tablepanel.setPreferredSize(new Dimension(960,165));
+
         resultstable.setFillsViewportHeight(true);
         resultstable.setRowHeight(50);
         resultstable.setPreferredScrollableViewportSize(new Dimension(940, visibleRowCount * resultstable.getRowHeight()));
-        //tablepanel.setSize(970,154);
-        //resultstable.setBounds(0, 0, 970, 154);
-
-        //resultstable.setSize(960,154);
-        //tablepanel.setSize(970,154);
-        //resultstable.setPreferredSize(tablepanel.getPreferredSize());
-        //resultstable.setPreferredSize(new Dimension(0,0));
-        resultstable.getTableHeader().setBorder(BorderFactory.createMatteBorder(5, 5, 0, 5, Color.BLACK));
         resultstable.setBorder(BorderFactory.createMatteBorder(0, 5, 5, 5, Color.BLACK));
         resultstable.setOpaque (false); //set false for non-transparent
 
+        //Properties of the header of table
+        resultstable.getTableHeader().setBorder(BorderFactory.createMatteBorder(5, 5, 0, 5, Color.BLACK));
         resultstable.getTableHeader().setBackground(Color.white);
         resultstable.getTableHeader().setFont(new Font("Verdana", Font.PLAIN, 19));
         resultstable.getTableHeader().setResizingAllowed(true);
         resultstable.getTableHeader().setPreferredSize(new Dimension(949, 55));
-        //resultstable.getTableHeader().setSize(960,154);
 
+        //Table model
         headmodel.setColumnIdentifiers(resultshead); //create table model and set column identifiers
         resultstable.setModel(headmodel); //set the model to the table
-        //resultstable.setBackground(Color.LIGHT_GRAY);
-        //resultstable.setForeground(Color.black);
-        //Font font = new Font("",1,30);
         resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
-        //resultstable.setFont(font);
-
-
-        //pane.setBounds(0, 0, 880, 200);
-
-        //jsp.setPreferredSize(new Dimension(951,150));
-        //resultstable.setAutoResizeMode(300);
-
-
 
         tablepanel.add(resultstable.getTableHeader(), BorderLayout.SOUTH);
-        //tablepanel.setLayout(null);
-
         tablepanel.add(jsp);
-        //jsp.setBorder(BorderFactory.createMatteBorder(0, 0, 50, 0, Color.BLACK));
 
+        //Table Cell Renderer
         DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
         centerer.setHorizontalAlignment(JLabel.CENTER);
         resultstable.getColumnModel().getColumn(0).setPreferredWidth(380);
@@ -309,53 +252,11 @@ public class GameFrame extends FinalFrame {
         resultstable.getColumnModel().getColumn(4).setPreferredWidth(120);
         resultstable.getColumnModel().getColumn(4).setCellRenderer(centerer);
 
-
-        //headmodel.setValueAt("Team 1: "+ name1Label.getText(), 0, 0);
-        headmodel.setValueAt("Team 2: "+ name2Label.getText(), 1, 0);
-
-        //System.out.println(playername[0][0]);
-        //f3.getContentPane();
-
-        //f3.pack();
-
-        /*tablepanel.add(resultstable, BorderLayout.CENTER);
-        resultstable.setRowHeight(50);
-
-
-        ///// Results Table /////
-        resultstable.setFont(new Font("Verdana", Font.PLAIN, 19));
-        resultstable.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.BLACK));
-
-
-
-
-        //wrapperpanel.add(resultstable, BorderLayout.SOUTH);
-        //tablepanel.add(resultstable.getTableHeader(), BorderLayout.NORTH);
-
-        tablepanel.add(new JScrollPane(resultstable));
-        resultstable.setFont(new Font("Verdana",Font.PLAIN,16));*/
-
-//////////////// SCORE DIALOG BELOW /////////////////////////
-
-
     }
-
-    /*public void changeName1(){
-
-        name1Label.setText(team1player2.getText());
-
-    }
-
-    public void changeName2(){
-
-        name2Label.setText(team2player2.getText());
-
-    }*/
 
     //function to set every panels, label , frames's background color to match the chosen color by user
     public void setBackgrounds(Color background) {
 
-        //Color background = Color.red;
         f3.setBackground(background);
         wrapperpanel.setBackground(background);
         thirdpanel.setBackground(background);
@@ -371,30 +272,31 @@ public class GameFrame extends FinalFrame {
         name4Label.setBackground(background);
 
         this.background = background;
-        System.out.println("background:"+this.background);
+
+        System.out.println("GameFrame Background: "+this.background); //Test output
     }
 
-    //function of handling the action listener when button is pressed, actionlistener is implemented on Main.java
+    //function of handling the action listener when button is pressed, some actionlistener is implemented on Main.java
     public void boomAction(ActionEvent boom)
     {
-
+        //If user clicked boom1button
         if(boom.getSource() == boom1button)
         {
+            //If the 3 round of game haven't end, another boom button will be disabled
             if(roundNumLeft<2)
             {
                 boom1button.setEnabled(false);
                 boom2button.setEnabled(true);
-                team1 = randomizeImageNo();
-                imageName = setImageName(team1);
-                renderImageLeft(imageName);
-                //gameFrame.storeHandsignLeft();
+                team1 = randomizeImageNo();      //Randomize image number for team 1
+                imageName = setImageName(team1); //Set image name based on image number
+                renderImageLeft(imageName);      //Display left image
             }
-            else if(roundNumLeft>=1)
+            else if(roundNumLeft>=1) //Button disabled when game round finished
             {
                 boom1button.setEnabled(false);
             }
             roundNumLeft++;
-            System.out.println("Round: "+roundNumLeft);
+            System.out.println("Left Round No: "+roundNumLeft); //Test output
         }
         else if(boom.getSource() == boom2button)
         {
@@ -405,139 +307,142 @@ public class GameFrame extends FinalFrame {
                 team2 = randomizeImageNo();
                 imageName = setImageName(team2);
                 renderImageRight(imageName);
-                //gameFrame.storeHandsignRight();
             }
             else if(roundNumRight>=1)
             {
                 boom2button.setEnabled(false);
             }
             roundNumRight++;
-            System.out.println("Round: "+roundNumRight);
+            System.out.println("Right Round No: "+roundNumRight); //Test output
         }
 
+        //If both buttons were clicked
         if(roundNumLeft == roundNumRight)
         {
-            pointT1 = setPoint(team1, team2);
+            pointT1 = setPoint(team1, team2);     //Compare image number to determine who get the point awarded
             pointT2 = setPoint(team2, team1);
-            System.out.println("point"+pointT1);
-            System.out.println("point"+pointT2);
+            System.out.println("Point Team1: "+pointT1);  //Test output
+            System.out.println("Point Team2: "+pointT2);  //Test output
 
+            //If it is not a tie
             if(pointT1!=pointT2)
             {
+                //First game
                 if(gameRoundNum == 0)
                 {
-                    pointT1P1[roundNum] = pointT1;
-                    System.out.println("saved point " + pointT1P1[roundNum]);
+                    pointT1P1[roundNum] = pointT1; //Store the point of every round into the array
                     pointT2P1[roundNum] = pointT2;
-                    System.out.println("saved point " + pointT2P1[roundNum]);
-                }
-                else if(gameRoundNum == 1) {
 
+                    System.out.println("T1P1 saved point:  " + pointT1P1[roundNum]); //Test output
+                    System.out.println("T2P1 saved point:  " + pointT2P1[roundNum]); //Test output
+                }
+                //Second game
+                else if(gameRoundNum == 1)
+                {
                     pointT1P2[roundNum] = pointT1;
-                    System.out.println("saved point " + pointT1P2[roundNum]);
                     pointT2P2[roundNum] = pointT2;
-                    System.out.println("saved point " + pointT2P2[roundNum]);
+
+                    System.out.println("T1P2 saved point:  " + pointT1P2[roundNum]); //Test output
+                    System.out.println("T2P2 saved point:  " + pointT2P2[roundNum]); //Test output
                 }
 
-                if (roundNumLeft == 0 && roundNumRight == 0) {
-                    //rowPoint1[0] = pointPlayer1[0];
-                    //rowPoint2[0] = pointPlayer2[0];
+                //If both buttons were clicked, set the point into the table
+                if (roundNumLeft == 0 && roundNumRight == 0)
+                {
                     headmodel.setValueAt(pointT1, 0, 1);
                     headmodel.setValueAt(pointT2, 1, 1);
-                    //headmodel.addRow(rowPoint2);
-                } else if (roundNumLeft == 1 && roundNumRight == 1) {
-                    /*rowPoint1[1] = pointPlayer1[1];
-                    rowPoint2[1] = pointPlayer2[1];
-                    headmodel.addRow(rowPoint1);
-                    headmodel.addRow(rowPoint2);*/
+                }
+                else if (roundNumLeft == 1 && roundNumRight == 1)
+                {
+
                     headmodel.setValueAt(pointT1, 0, 2);
                     headmodel.setValueAt(pointT2, 1, 2);
-                } else if (roundNumLeft == 2 && roundNumRight == 2) {
-                    /*rowPoint1[2] = pointPlayer1[2];
-                    rowPoint2[2] = pointPlayer2[2];
-                    headmodel.addRow(rowPoint1);
-                    headmodel.addRow(rowPoint2);*/
+                }
+                else if (roundNumLeft == 2 && roundNumRight == 2)
+                {
                     headmodel.setValueAt(pointT1, 0, 3);
                     headmodel.setValueAt(pointT2, 1, 3);
                 }
 
+                //Calculate total point
                 totalPointT1 += pointT1;
                 totalPointT2 += pointT2;
-                System.out.println(totalPointT1);
-                System.out.println(totalPointT2);
-                /*rowPoint1[3] = pointPlayer1[3];
-                rowPoint2[3] = pointPlayer2[3];
-                headmodel.addRow(rowPoint1);
-                headmodel.addRow(rowPoint2);*/
-                headmodel.setValueAt(totalPointT1, 0, 4);
+
+                System.out.println("Total team1 point: "+totalPointT1);  //Test output
+                System.out.println("Total team2 point: "+totalPointT2);  //Test output
+
+                headmodel.setValueAt(totalPointT1, 0, 4);  //Set total point on table
                 headmodel.setValueAt(totalPointT2, 1, 4);
 
                 roundNum++;
 
             }
+            //If it is a tie
             else if(pointT1 == pointT2)
             {
-                //roundNum--;
+                //Decrement to stay on the same round
                 roundNumLeft--;
                 roundNumRight--;
             }
         }
 
+        //If within round 3
         if(roundNum<4)
         {
+            //First game
             if(gameRoundNum == 0)
             {
-                totalPointT1P1 = totalPointT1;
-                System.out.println("totalPointT1P1"+totalPointT1P1);
+                totalPointT1P1 = totalPointT1; //Assign total point for each player
                 totalPointT2P1 = totalPointT2;
-                System.out.println("totalPointT1P1"+totalPointT2P1);
+
+                System.out.println("Total Point T1P1:  "+totalPointT1P1); //Test output
+                System.out.println("Total Point T1P1:  "+totalPointT2P1); //Test output
             }
+            //Second game
             else if(gameRoundNum == 1)
             {
                 totalPointT1P2 = totalPointT1;
-                System.out.println("totalPointT1P1"+totalPointT1P2);
                 totalPointT2P2 = totalPointT2;
-                System.out.println("totalPointT1P1"+totalPointT2P2);
+
+                System.out.println("Total Point T1P1:  "+totalPointT1P2); //Test output
+                System.out.println("Total Point T1P1:  "+totalPointT2P2); //Test output
             }
 
             if(roundNum<3)
             {
+                //Set round label for every round
                 roundCountLabel.setText("Round " + (int) (roundNum + 1));
             }
             else if(roundNum==4)
             {
+                //After clicked the third times of button, remain the round label
                 roundCountLabel.setText("Round " + roundNum);
             }
-
         }
 
-        /*if((roundNumLeft == 2 && roundNumRight == 2) && (totalPointP1 == totalPointP2))
-        {
-            roundNum--;
-        }*/
-
+        //End game
         if(roundNum==3)
         {
-            //setP1Result(totalPointT1P1, totalPointT2P1, pointT1P1, pointT2P1, totalPointT1P2, totalPointT2P2, pointT1P2, pointT2P2);
-            //setP2Result();
+            //Disable all buttons
             boom1button.setEnabled(false);
             boom2button.setEnabled(false);
 
+            //Add JDialog
             dl.add(dialogpanel);
             dialogpanel.setLayout(new BorderLayout());
-            dialogpanel.add(winnerLabel, BorderLayout.CENTER);
+            dialogpanel.add(winnerLabel, BorderLayout.CENTER); //Add to show winning team
 
             dl.setSize(250,200);
-            dl.setLocationRelativeTo(f3);
+            dl.setLocationRelativeTo(f3);   //Set on middle of frame
             dl.setVisible(true);
 
-            //winnerLabel.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
             winnerLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
             winnerLabel.setOpaque(true);
-            //winnerLabel.setVerticalAlignment(JLabel.CENTER);
 
+            //Determine the output in JDialog
             if(gameRoundNum == 0)
             {
+                //Compare point and display winning team
                 if(totalPointT1P1>totalPointT2P1)
                 {
                     winnerLabel.setText("The Winner is Team 1!");
@@ -547,9 +452,9 @@ public class GameFrame extends FinalFrame {
                     winnerLabel.setText("The Winner is Team 2!");
                 }
 
+                //Add next button on the panel of dialog
                 dialogpanel.add(nextButton, BorderLayout.SOUTH);
                 nextButton.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-                //nextButton.addActionListener(this::fakeAction);
                 nextButton.addActionListener(this::nextAction);
             }
 
@@ -564,63 +469,44 @@ public class GameFrame extends FinalFrame {
                     winnerLabel.setText("The Winner is Team 2!");
                 }
 
+                //Remove next button
                 dialogpanel.remove(nextButton);
+
+                //View result button
                 dialogpanel.add(viewResultButton, BorderLayout.SOUTH);
                 viewResultButton.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
                 viewResultButton.addActionListener(this::actionPerformed);
             }
-
         }
-        //System.out.println("saved point array "+pointPlayer1[0]+pointPlayer1[1]+pointPlayer1[2]);
-        //System.out.println("saved point array "+pointPlayer2[0]+pointPlayer2[1]+pointPlayer2[2]);
-   }
-
+    }
 
     public void nextAction(ActionEvent next)
     {
-        //public
+        //If clicked next button
         if(next.getSource() == nextButton)
         {
             if(gameRoundNum == 0)
             {
-                dl.dispose(); // close the JDialog
-                f3.dispose();
+                dl.dispose();  //Close the JDialog
+                f3.dispose();  //Close the frame 3
 
-                thirdeastpanel.remove(name1Label);
-                thirdeastpanel.remove(boom1button);
+                thirdeastpanel.remove(name1Label);  //Remove name1
+                thirdeastpanel.remove(boom1button); //Remove boom1button
 
-                forthwestpanel.remove(name2Label);
-                forthwestpanel.remove(boom2button);
-                //new GameFrame();
+                forthwestpanel.remove(name2Label);  //Remove name2
+                forthwestpanel.remove(boom2button); //Remove boom2button
                 f3.setVisible(true);
 
                 gameRoundNum++;
-                System.out.println(gameRoundNum);
-                setName();
+                System.out.println("Game Round Num: "+gameRoundNum); //Test output
 
+                setName(); //Set the player name of second game
+
+                //Reset the variable value for game 2
                 roundNumLeft = -1;
                 roundNumRight = -1;
                 roundNum = 0;
                 roundCountLabel.setText("Round " + (int)(roundNum+1));
-
-                /*name3Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
-                name3Label.setFont(new Font("Verdana", Font.PLAIN, 18));
-                name3Label.setOpaque(true);
-                name3Label.setVerticalAlignment(JLabel.CENTER);
-                thirdeastpanel.add(name3Label, BorderLayout.NORTH);*/
-
-                /*name4Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
-                name4Label.setFont(new Font("Verdana", Font.PLAIN, 18));
-                name4Label.setOpaque(true);
-                name4Label.setVerticalAlignment(JLabel.CENTER);
-                forthwestpanel.add(name4Label, BorderLayout.NORTH);*/
-
-                /*String name3 = Main.setName3();
-                System.out.println("NAME 3: "+name3);*/
-
-                imageName = "assets/rock.png"; //default image
-                renderImageLeft(imageName);
-                renderImageRight(imageName);
 
                 imageNo = 0;
                 team1 = 0;
@@ -633,6 +519,14 @@ public class GameFrame extends FinalFrame {
                 totalPointT1P2 = 0;
                 totalPointT2P2 = 0;
 
+                imageName = "assets/rock.png"; //Set default image
+                renderImageLeft(imageName);    //Set both images to default
+                renderImageRight(imageName);
+
+                //Set second game table for player 2
+                resultstable.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Player 2");
+
+                //Reset all value in table
                 headmodel.setValueAt("", 0, 1);
                 headmodel.setValueAt("", 1, 1);
                 headmodel.setValueAt("", 0, 2);
@@ -642,21 +536,11 @@ public class GameFrame extends FinalFrame {
                 headmodel.setValueAt("", 0, 4);
                 headmodel.setValueAt("", 1, 4);
 
-                /*boom1button.addActionListener(this::boomAction);
-                boom2button.addActionListener(this::boomAction);*/
-                //f3.add(f3);
-                //restart();*/
-
-                //System.out.println("roundNum"+roundNum);
-
-                /*String name3 = setName3();
-                String name4 = setName4();*/
-
+                //Reset boom button state
                 boom1button.setEnabled(true);
                 boom2button.setEnabled(true);
 
-                //gameRoundNum++;
-
+                //Call specific button
                 if(next.getSource() == boom1button)
                 {
                     boom1button.addActionListener(this::boomAction);
@@ -667,84 +551,7 @@ public class GameFrame extends FinalFrame {
                 }
             }
         }
-
-        /*SwingUtilities.updateComponentTreeUI(f3);
-        f3.invalidate();
-        f3.validate();
-        f3.repaint();*/
-
     }
-
-    /*public void setName3(String T1P2)
-    {
-        this.name3 = T1P2;
-    }/
-    /*public void setName3Label(JLabel name3Label)
-    {
-        this.name3Label = name3Label;
-    }*/
-    /*public void
-    {
-        if(next.getSource() == nextButton)
-        {
-
-    }*/
-    /*public void restart(){
-        stop(); // if necessary
-        setup(); // set everything to initial state
-        start(); // start game
-    }
-
-    public void stop(){
-        // stop any timers, threads, operations etc.
-    }
-
-    public void setup(){
-        // set to initial state.
-        // something like recreate the deck,
-        // clear hands and table, shuffle, and deal.
-    }
-
-    public void start(){
-        // code to initiate the game.
-    }*/
-
- /*  public void scorerecorder(ActionEvent scoring)
-   {
-       rowPoint1[0] = pointPlayer1[0];
-       rowPoint2[0] = pointPlayer2[0];
-
-       rowPoint1[1] = pointPlayer1[1];
-       rowPoint2[1] = pointPlayer2[1];
-
-       rowPoint1[2] = pointPlayer1[2];
-       rowPoint2[2] = pointPlayer2[2];
-
-       rowPoint1[3] = totalPointP1;
-       rowPoint2[3] = totalPointP2;
-
-       headmodel.addRow(rowPoint1);
-       headmodel.addRow(rowPoint2);
-   }*/
-
-    /*public void storeHandsign(ActionEvent storeHandsign)
-    {
-        if (storeHandsign.getSource() == boom1button) {
-
-            this.handsignLeft[roundNumLeft] = imageNo;
-            System.out.println("image: "+imageNo);
-
-        } else if (storeHandsign.getSource() == boom2button) {
-
-            this.handsignRight[roundNumRight] = imageNo;
-            System.out.println("image: "+imageNo);
-        }
-
-        System.out.println("Sign: "+handsignLeft[roundNumLeft]);
-        System.out.println("Round: "+roundNumLeft);
-        System.out.println("Sign: "+handsignRight[roundNumRight]);
-        System.out.println("Round: "+roundNumRight);
-    }*/
 
     //function of randomizing images when boom button is clicked
     public int randomizeImageNo() {
@@ -760,7 +567,8 @@ public class GameFrame extends FinalFrame {
     //function of setting the image path according to what number is randomized on previous function
     public String setImageName(int imageNo)
     {
-        System.out.println("\nimage: "+imageNo);
+        System.out.println("\nImage: "+imageNo); //Test output
+
         //1 - Rock
         //2 - Paper
         //3 - Scissors
@@ -775,19 +583,15 @@ public class GameFrame extends FinalFrame {
             case 5: imageName = "assets/spock.png"; break;
             default: System.out.println("Failed to display image."); break;
         }
-
         return imageName;
     }
 
     //function to render the image for left section, also resize the image to fit with the label
     public void renderImageLeft(String imageName){
 
-        //boom1button.addActionListener(this::storeHandsign);
-        //String imageName = setImageName(imageNo);
-
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File(imageName));
+            img = ImageIO.read(new File(imageName)); //Read image name
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -798,7 +602,7 @@ public class GameFrame extends FinalFrame {
         ImageIcon player1 = new ImageIcon(resImage);
 
         icon1Label.setIcon(player1);
-        icon1Label.setBackground(Color.decode("#589595"));
+        icon1Label.setBackground(Color.decode("#589595"));  //Set background for image
 
         thirdwestpanel.add(icon1Label, BorderLayout.CENTER);
 
@@ -806,9 +610,6 @@ public class GameFrame extends FinalFrame {
 
     //function to render the image for left section, also resize the image to fit with the label
     public void renderImageRight(String imageName) {
-
-        //boom2button.addActionListener(this::storeHandsign);
-        //String imageName = setImageName(imageNo);
 
         BufferedImage img1 = null;
         try {
@@ -829,10 +630,12 @@ public class GameFrame extends FinalFrame {
 
     }
 
+    //Compare the image number and return the point
     public int setPoint(int p1, int p2)
     {
         point = 0;
 
+        //If the image number is different, it is able to compare
         if(p1!=p2)
         {
             switch(p1)
@@ -845,6 +648,7 @@ public class GameFrame extends FinalFrame {
                 default: point = 0; break;
             }
         }
+        //If the image number is same, then it is a tie
         else if(p1==p2)
         {
             point = 0;
@@ -852,22 +656,19 @@ public class GameFrame extends FinalFrame {
         return point;
     }
 
+    //Action Listener of view result button which pass the table value to FinalFrame
     public void actionPerformed(ActionEvent openFrame) {
 
-        f3.setVisible(false);
-        //FinalFrame finalFrame = new FinalFrame();
-        //finalFrame.data[1][4] = String.valueOf(gameFrame.totalPointT1P1);
+        f3.setVisible(false); //Hide this frame
 
+        //Pass table value and background
         setP1Result(totalPointT1P1, totalPointT2P1, pointT1P1, pointT2P1, totalPointT1P2, totalPointT2P2, pointT1P2, pointT2P2, this.background);
-        //finalFrame.setFinalFrame();
-
-        //finalFrame.data[1][4] = String.valueOf(finalFrame.totalPointT1P1);
     }
 
     //function to set all the names user typed in
     public void setName(){
 
-        System.out.println("gameroundNum: !!"+gameRoundNum);
+        System.out.println("\nGame Round Number: "+gameRoundNum); //Test output
         int counter = 0;
 
         try {
@@ -875,16 +676,18 @@ public class GameFrame extends FinalFrame {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                System.out.println(data);
+                System.out.println("Name: "+data); //Test output
 
                 if(gameRoundNum==0) {
                     if (counter == 0) {
 
+                        //Set name for team 1 player 1
                         name1Label.setText(data);
                     }
 
                     if (counter == 1) {
 
+                        //Set name for team 2 player 1
                         name2Label.setText(data);
                     }
                 }
@@ -892,22 +695,23 @@ public class GameFrame extends FinalFrame {
                 {
                     if(counter == 2){
 
+                        //Set name for team 1 player 2
                         name3Label.setText( data );
                         name3Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
-                        name3Label.setFont(new Font("Verdana", Font.PLAIN, 18));
+                        name3Label.setFont(new Font("Verdana", Font.PLAIN, 22));
                         name3Label.setOpaque(true);
                         name3Label.setVerticalAlignment(JLabel.CENTER);
                         thirdeastpanel.add(name3Label, BorderLayout.NORTH);
                         headmodel.setValueAt( "Team 1: " +  data , 0, 0);
                         thirdeastpanel.add(boom1button, BorderLayout.CENTER);
-                        //System.out.println("yoo"+name3Label);
                     }
 
                     if(counter == 3){
 
+                        //Set name for team 2 player 2
                         name4Label.setText( data );
                         name4Label.setBorder((BorderFactory.createEmptyBorder(70, 0, 0, 0)));
-                        name4Label.setFont(new Font("Verdana", Font.PLAIN, 18));
+                        name4Label.setFont(new Font("Verdana", Font.PLAIN, 22));
                         name4Label.setOpaque(true);
                         name4Label.setVerticalAlignment(JLabel.CENTER);
                         forthwestpanel.add(name4Label, BorderLayout.NORTH);
@@ -924,40 +728,5 @@ public class GameFrame extends FinalFrame {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
-
-    /*public void storeHandsignLeft(int imgNo){
-
-        if(roundNumLeft==0)
-            handsignLeft[roundNumLeft] = imgNo;
-        else if(roundNumLeft==1)
-            handsignLeft[roundNumLeft] = imgNo;
-        else if(roundNumLeft==2)
-            handsignLeft[roundNumLeft] = imgNo;
-    }*/
-
-    /*public void storeHandsignRight(int imgNo){
-
-        if(roundNumRight==0)
-            handsignRight[roundNumRight] = imgNo;
-        else if(roundNumLeft==1)
-            handsignRight[roundNumRight] = imgNo;
-        else if(roundNumLeft==2)
-            handsignRight[roundNumRight] = imgNo;
-    }*/
-
-    /*public void setButtonState(boolean buttonState, JButton buttonName){
-
-        buttonName.setEnabled(buttonState);
-
-    }*/
-
-    //////////////// GAME RESULT TABLE BELOW /////////////////////////
-
-    /*public void setTable(){*/
-
-
-
-
 }

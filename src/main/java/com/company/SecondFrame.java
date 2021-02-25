@@ -16,8 +16,6 @@ import java.awt.*;
 
 public class SecondFrame {
 
-    String[][] playername = new String[2][2];// 2D ARRAY
-
     JFrame f2 = new JFrame();           //FRAME 2
 
     JPanel firstpanel = new JPanel();   // TITLE PANEL
@@ -76,7 +74,7 @@ public class SecondFrame {
 
         upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
         upperlabel.setFont(new Font("Sans Serif",Font.BOLD,18));//font of text
-        upperlabel.setBackground(Color.ORANGE);//text background color
+        upperlabel.setBackground(new Color(253, 105, 0));//text background color
 
         firstpanel.add(upperlabel);// ADDED LABEL TO TOP PANEL
 

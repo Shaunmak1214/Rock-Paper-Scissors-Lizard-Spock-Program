@@ -24,8 +24,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class FinalFrame {
 
-    //private int t1;
-
     public void setP1Result(int totalPointT1P1, int totalPointT2P1, int pointT1P1[], int pointT2P1[], int totalPointT1P2, int totalPointT2P2, int pointT1P2[], int pointT2P2[], Color bg)
     {
         JFrame f4 = new JFrame();
@@ -66,8 +64,6 @@ public class FinalFrame {
 
         int finalTotalPointT1 = totalPointT1P1 + totalPointT1P2;
         int finalTotalPointT2 = totalPointT2P1 + totalPointT2P2;
-        //int t1 = totalPointT1P1;//String data[][] = {};
-        //System.out.println("t1:" + t1);
 
         int counter = 0;
 
@@ -76,30 +72,26 @@ public class FinalFrame {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String dataFile = myReader.nextLine();
-                System.out.println(dataFile);
+                System.out.println("Name: "+dataFile);//Test output
 
-                if(counter == 0){
-
+                if(counter == 0)
+                {
                     data[1][0] =  "Team 1: " + dataFile;
-
                 }
 
-                if(counter == 1){
-
+                if(counter == 1)
+                {
                     data[2][0] = "Team 2: " + dataFile;
-
                 }
 
-                if(counter == 2){
-
+                if(counter == 2)
+                {
                     data2[1][0] = "Team 1: " + dataFile;
-
                 }
 
-                if(counter == 3){
-
+                if(counter == 3)
+                {
                     data2[2][0] = "Team 2: " + dataFile;
-
                 }
 
                 counter++;
@@ -111,6 +103,7 @@ public class FinalFrame {
             e.printStackTrace();
         }
 
+        //Data table 1 (setting value)
         data[1][1] = String.valueOf(pointT1P1[0]);
         data[2][1] = String.valueOf(pointT2P1[0]);
 
@@ -123,7 +116,7 @@ public class FinalFrame {
         data[1][4] = String.valueOf(totalPointT1P1);
         data[2][4] = String.valueOf(totalPointT2P1);
 
-        ///DATA 2
+        //Data table 2 (setting value)
         data2[1][1] = String.valueOf(pointT1P2[0]);
         data2[2][1] = String.valueOf(pointT2P2[0]);
 
@@ -137,39 +130,14 @@ public class FinalFrame {
         data2[2][4] = String.valueOf(totalPointT2P2);
 
 
+        //Test output
+        System.out.println("\nTable 1 value: " + totalPointT1P1 + totalPointT2P1 + pointT1P1[0] + pointT1P1[1] + pointT1P1[2] + pointT2P1[0] + pointT2P1[1] + pointT2P1[2]);
+        System.out.println("Table 2 value: " + totalPointT1P2 + totalPointT2P2 + pointT1P2[0] + pointT1P2[1] + pointT1P2[2] + pointT2P2[0] + pointT2P2[1] + pointT2P2[2]);
 
-        //System.out.println("this data" + data[1][4]);
-        /*data[][] = {
-                {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
-                {"Team 1 : Sheldon",  "", "", "", String.valueOf(totalPointT1P1)},
-                {"Team 2 : Howard", "", "", "", ""}
-        };*/
-
-        //data[1][3] = String.valueOf(totalPointT1P1);
-        System.out.println("fk me fk u" + totalPointT1P1 + totalPointT2P1 + pointT1P1[0] + pointT1P1[1] + pointT1P1[2] + pointT2P1[0] + pointT2P1[1] + pointT2P1[2]);
-        System.out.println("fk u fk me" + totalPointT1P2 + totalPointT2P2 + pointT1P2[0] + pointT1P2[1] + pointT1P2[2] + pointT2P2[0] + pointT2P2[1] + pointT2P2[2]);
-
-
-    /*public void setP2Result(int totalPointT1P2, int totalPointT2P2,  int pointT1P2[], int pointT2P2[])
-    {
-
-    }*/
-
-        /*public void setFinalFrame() {*/
-
-        //System.out.println("final t1:"+this.t1);
         ////////////////////////////thirdpanel labels////////////////////////////
         ///Table 1 data////
 
 
-
-
-
-        //GameFrame game = new GameFrame();
-        //data[1][4] = String.valueOf(totalPointT1P1);
-        /*System.out.println("get total"+getTotalPointT1P1());
-        data[1][4] = String.valueOf(getTotalPointT1P1());*/
-        //System.out.println(data[1][4]);
         secondpanel.setBackground(bg);
         thirdpanel.setBackground(bg);
         fourpanel.setBackground(bg);
@@ -177,9 +145,8 @@ public class FinalFrame {
         team1.setBackground(bg);
         team2.setBackground(bg);
 
-        System.out.println("BG: "+bg);
+        System.out.println("\nFinalFrame background: "+bg);//Test output
 
-        //f4.setVisible(true);
         f4.setSize(1000, 700);
         f4.setVisible(true);
 
@@ -190,11 +157,11 @@ public class FinalFrame {
         firstpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
 
         f4.add(firstpanel, BorderLayout.NORTH);//panel position
-        firstpanel.setBackground(Color.ORANGE);//BACKGROUND COLOR OF FIRST PANEL
+        firstpanel.setBackground(new Color(253, 105, 0));//BACKGROUND COLOR OF FIRST PANEL
         firstpanel.setPreferredSize(new Dimension(1000, 60));//FIRST PANEL SIZE
         upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
         upperlabel.setFont(new Font("Verdana", Font.PLAIN, 18));//font of text
-        upperlabel.setBackground(Color.ORANGE);//text background color
+        upperlabel.setBackground(new Color(253, 105, 0));//text background color
 
         firstpanel.add(upperlabel);// ADD LABEL INTO THE PANEL
         upperlabel.setOpaque(true);// MAKE LABEL VISIBLE
@@ -231,7 +198,7 @@ public class FinalFrame {
         winning_team.setText("Team 1");
         winning_team.setFont(new Font("Verdana", Font.PLAIN, 30));
         winning_team.setBounds(550, 110, 150, 40);
-        winning_team.setForeground(Color.RED);
+        winning_team.setForeground(Color.decode("#c10000"));
 
         /////PARTY IMAGE/////
         party.setText("");
@@ -321,26 +288,42 @@ public class FinalFrame {
 
         f4.add(fifthpanel, BorderLayout.SOUTH);
 
-        /*f4.setBackground(bg);
-        System.out.println("BG: "+bg);*/
-
         team1.setText("Team 1:  "+finalTotalPointT1);
         team2.setText("Team 2:  "+finalTotalPointT2);
 
-        if(finalTotalPointT1>finalTotalPointT2)
+        if(bg == Color.RED)
         {
-            winning_team.setText("Team 1");
+            winning_team.setForeground(Color.white);
+            if(finalTotalPointT1>finalTotalPointT2)
+            {
+                winning_team.setText("Team 1");
+            }
+            else if (finalTotalPointT1<finalTotalPointT2)
+            {
+                winning_team.setText("Team 2");
+            }
+            else if(finalTotalPointT1==finalTotalPointT2)
+            {
+                winning_team.setText("Draw");
+            }
         }
-        else if (finalTotalPointT1<finalTotalPointT2)
+        else
         {
-            winning_team.setText("Team 2");
-        }
-        else if(finalTotalPointT1==finalTotalPointT2)
-        {
-            winning_team.setText("Draw");
+            if(finalTotalPointT1>finalTotalPointT2)
+            {
+                winning_team.setText("Team 1");
+            }
+            else if (finalTotalPointT1<finalTotalPointT2)
+            {
+                winning_team.setText("Team 2");
+            }
+            else if(finalTotalPointT1==finalTotalPointT2)
+            {
+                winning_team.setText("Draw");
+            }
         }
 
-
+        //Action of delete the temp.txt when exit
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -354,7 +337,6 @@ public class FinalFrame {
             }
         });
     }
-
 }
 
 
