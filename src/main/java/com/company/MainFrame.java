@@ -51,7 +51,7 @@ public class MainFrame extends JFrame
 
                 firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
                 firstpanel.setBorder((BorderFactory.createEmptyBorder(10,10,10,10)));//PANEL LAYOUT FOR LABEL
-
+                //f.setLocationRelativeTo(null);
                 f.add(firstpanel,BorderLayout.NORTH);//panel position
                 firstpanel.setBackground(new Color(253, 105, 0));//BACKGROUND COLOR OF FIRST PANEL
                 firstpanel.setPreferredSize(new Dimension(1000,60));//FIRST PANEL SIZE

@@ -139,6 +139,9 @@ public class Main{
                 {
                     case "Red": backgrounds = Color.RED; break;
                     case "Green": backgrounds = Color.GREEN; break;
+                    case "Blue": backgrounds = Color.BLUE; break;
+                    case "Yellow": backgrounds = Color.YELLOW; break;
+                    case "Grey": backgrounds = Color.GRAY; break;
                 }
                 gameFrame.setBackgrounds(backgrounds);
             }
@@ -213,8 +216,8 @@ public class Main{
 
                         gameFrame.setName();
 
-                        gameFrame.name1Label.setText(T1P1);
-                        gameFrame.name2Label.setText(T2P1);
+                        //gameFrame.name1Label.setText(T1P1);
+                        //gameFrame.name2Label.setText(T2P1);
                         //gameFrame.name3Label.setText(T1P2);
                         //gameFrame.name4Label.setText(T2P2);
 
@@ -304,8 +307,8 @@ public class Main{
 
                         gameFrame.setName();
 
-                        gameFrame.name1Label.setText(T1P1);
-                        gameFrame.name2Label.setText(T2P1);
+                        //gameFrame.name1Label.setText(T1P1);
+                        //gameFrame.name2Label.setText(T2P1);
 
 
                         //name3Label.setText(T1P2);
