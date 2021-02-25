@@ -269,15 +269,15 @@ public class FinalFrame {
         team1.setText("Team 1:  "+finalTotalPointT1);
         team2.setText("Team 2:  "+finalTotalPointT2);
 
-        if(finalTotalPointT1>finalTotalPointT1)
+        if(finalTotalPointT1>finalTotalPointT2)
         {
             winning_team.setText("Team 1");
         }
-        else if (finalTotalPointT1<finalTotalPointT1)
+        else if (finalTotalPointT1<finalTotalPointT2)
         {
             winning_team.setText("Team 2");
         }
-        else if(finalTotalPointT1==finalTotalPointT1)
+        else if(finalTotalPointT1==finalTotalPointT2)
         {
             winning_team.setText("Draw");
         }

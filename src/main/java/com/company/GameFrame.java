@@ -53,6 +53,7 @@ public class GameFrame extends FinalFrame {
     int visibleRowCount = 2;
     int gameRoundNum = 0;
     int team1Checked = 0, team2Checked = 0;
+    String name3;
 
     JFrame f3 = new JFrame();
 
@@ -73,8 +74,8 @@ public class GameFrame extends FinalFrame {
 
     JLabel name1Label = new JLabel();
     JLabel name2Label = new JLabel();
-    JLabel name3Label = new JLabel();
-    JLabel name4Label = new JLabel();
+    //JLabel name3Label = new JLabel();
+    //JLabel name4Label = new JLabel();
 
     JLabel icon1Label = new JLabel();
     JLabel icon2Label = new JLabel();
@@ -110,11 +111,11 @@ public class GameFrame extends FinalFrame {
 
     //ImageIcon player1 = new ImageIcon("assets/paper.png");
 
-    public int getTotalPointT1P1()
+    /*public int getTotalPointT1P1()
     {
         System.out.println("total point:"+this.totalPointT1P1);
         return this.totalPointT1P1;
-    }
+    }*/
 
     GameFrame() {
 /////////////////// FIRST PANEL BELOW/////////////////////////////
@@ -513,6 +514,7 @@ public class GameFrame extends FinalFrame {
             if(gameRoundNum == 0)
             {
                 dialogpanel.add(nextButton, BorderLayout.SOUTH);
+                //nextButton.addActionListener(this::fakeAction);
                 nextButton.addActionListener(this::nextAction);
             }
 
@@ -528,8 +530,10 @@ public class GameFrame extends FinalFrame {
         //System.out.println("saved point array "+pointPlayer2[0]+pointPlayer2[1]+pointPlayer2[2]);
    }
 
+
     public void nextAction(ActionEvent next)
     {
+        //public
         if(next.getSource() == nextButton)
         {
             if(gameRoundNum == 0)
@@ -544,6 +548,11 @@ public class GameFrame extends FinalFrame {
                 roundNum = 0;
                 roundCountLabel.setText("Round " + (int)(roundNum+1));
 
+                thirdeastpanel.remove(name1Label);
+                //thirdeastpanel.remove(name2Label);
+                //thirdeastpanel.add(name3Label, BorderLayout.CENTER);
+                /*String name3 = Main.setName3();
+                System.out.println("NAME 3: "+name3);*/
 
                 imageName = "assets/rock.png"; //default image
                 renderImageLeft(imageName);
@@ -579,6 +588,9 @@ public class GameFrame extends FinalFrame {
 
                 //System.out.println("roundNum"+roundNum);
 
+                /*String name3 = setName3();
+                String name4 = setName4();*/
+
                 boom1button.setEnabled(true);
                 boom2button.setEnabled(true);
 
@@ -600,10 +612,16 @@ public class GameFrame extends FinalFrame {
         f3.validate();
         f3.repaint();*/
 
-
-
     }
 
+    /*public void setName3(String T1P2)
+    {
+        this.name3 = T1P2;
+    }/
+    /*public void setName3Label(JLabel name3Label)
+    {
+        this.name3Label = name3Label;
+    }*/
     /*public void
     {
         if(next.getSource() == nextButton)

@@ -19,13 +19,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.File;
+import java.io.IOException;
 
 public class Main{
 
-    /*static String T1P1 = "";
+    static String T1P1 = "";
     static String T2P1 = "";
     static String T1P2 = "";
-    static String T2P2 = "";*/
+    static String T2P2 = "";
     //static int totalPointT1P1 = 0;/DELETE LAAAAAA
 
     public static void main(String[] args) {
@@ -34,6 +36,10 @@ public class Main{
         SecondFrame frame2 = new SecondFrame();
         GameFrame gameFrame = new GameFrame();
         //FinalFrame finalFrame = new FinalFrame();
+
+        File storeName = new File("name.txt");
+
+        //JLabel name3Label = new JLabel();
 
         String[][] playername = new String[2][2];
         /*String T1P1 = "";
@@ -164,10 +170,10 @@ public class Main{
                         //System.out.println(frame2.team1player1.getText());
                         System.out.println(Arrays.deepToString(playername));//DELETE THIS AFTER FINISH PROJECT
 
-                        String T1P1 = "";
+                        /*String T1P1 = "";
                         String T2P1 = "";
                         String T1P2 = "";
-                        String T2P2 = "";
+                        String T2P2 = "";*/
 
                         T1P1 = playername[0][0];
                         T2P1 = playername[0][1];
@@ -176,9 +182,11 @@ public class Main{
 
                         gameFrame.name1Label.setText(T1P1);
                         gameFrame.name2Label.setText(T2P1);
+                        //gameFrame.name3Label.setText(T1P2);
+                        //gameFrame.name4Label.setText(T2P2);
 
                         gameFrame.headmodel.setValueAt("Team 1: "+ T1P1, 0, 0);
-                        gameFrame.headmodel.setValueAt("Team 1: "+ T2P1, 1, 0);
+                        gameFrame.headmodel.setValueAt("Team 2: "+ T2P1, 1, 0);
 
                         //Color backgrounds = frame2.f2.getBackground();
                         //gameFrame.setBackgrounds(backgrounds);
@@ -232,10 +240,10 @@ public class Main{
 
                         System.out.println(Arrays.deepToString(playername)); //DELETE THIS AFTER FINISH PROJECT
 
-                        String T1P1 = "";
+                        /*String T1P1 = "";
                         String T2P1 = "";
                         String T1P2 = "";
-                        String T2P2 = "";
+                        String T2P2 = "";*/
 
                         T1P1 = playername[0][0];
                         T2P1 = playername[0][1];
@@ -244,6 +252,15 @@ public class Main{
 
                         gameFrame.name1Label.setText(T1P1);
                         gameFrame.name2Label.setText(T2P1);
+
+
+                        //name3Label.setText(T1P2);
+                        //gameFrame.thirdeastpanel.add(name3Label);
+                        //gameFrame.name4Label.setText(T2P2);
+                        /*JLabel name3label = new JLabel(T1P2);*/
+
+                        /*gameFrame.setName3Label(name3label);*/
+                        //gameFrame.setName3(T1P2);
 
                         gameFrame.headmodel.setValueAt("Team 1: "+ T1P1, 0, 0);
                         gameFrame.headmodel.setValueAt("Team 2: "+ T2P1, 1, 0);
@@ -254,6 +271,18 @@ public class Main{
 
         gameFrame.boom1button.addActionListener(gameFrame::boomAction);
         gameFrame.boom2button.addActionListener(gameFrame::boomAction);
+
+        /*gameFrame.nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent fake) {
+                String name3;
+                gameFrame.dl.dispose();
+                gameFrame.name3Label.setText(T1P2);
+                System.out.println("Player-name: "+T1P2);
+                gameFrame.thirdeastpanel.remove(gameFrame.name1Label);
+                gameFrame.thirdeastpanel.add(gameFrame.name3Label, BorderLayout.CENTER);
+            }
+        });*/
 
         /*gameFrame.viewResultButton.addActionListener(new ActionListener() {
             @Override
@@ -335,24 +364,35 @@ public class Main{
         gameFrame.renderImageRight();
         gameFrame.renderImageLeft();
     }*/
-
-    /*public static void setName(GameFrame gameFrame){
-        gameFrame.changeName1();
-        gameFrame.changeName2();
+    /*public static void setImage(GameFrame gameFrame){
+        gameFrame.renderImageRight();
+        gameFrame.renderImageLeft();
     }*/
 
+    /*public static String setName3 (){
+
+        return T1P2;
+    }*/
+
+    /*public static String setName3 (String playername[][]){
+
+        return playername[1][1];
+    }*/
+
+            /*gameFrame.changeName1();
+        gameFrame.changeName2();*/
     /*public static void gameEnd(GameFrame gameFrame){
         gameFrame.setButtonState(false, gameFrame.boom1button);
         gameFrame.setButtonState(false, gameFrame.boom2button);
     }*/
 
-    public static void storeData(){
+    /*public static void storeData(){
 
     }
 
     public static void setRoundCount(GameFrame gameFrame, Number roundCount){
         gameFrame.roundCountLabel.setText(String.valueOf(roundCount));
-    }
+    }*/
 
     /*public static void displayTable(GameFrame gameFrame){
         gameFrame.setTable();
