@@ -33,8 +33,8 @@ public class Main{
 
     public static void main(String[] args){
 
-        MainFrame frame = new MainFrame();
-        SecondFrame frame2 = new SecondFrame();
+        MainFrame frame = new MainFrame();// Color changer frame
+        SecondFrame frame2 = new SecondFrame();// Enter player name frame
         GameFrame gameFrame = new GameFrame();
         //FinalFrame finalFrame = new FinalFrame();
 
@@ -59,21 +59,21 @@ public class Main{
         String T1P2 = "";
         String T2P2 = "";*///DELETE LAAAAAA
 
-        frame.cb.addActionListener(frame::actionPerformed);
+        frame.cb.addActionListener(frame::actionPerformed);//get COMBO BUTTON ACTION PERFORM FROM FIRST FRAME
 
-        frame.proceed.addActionListener(new ActionListener() {
+        frame.proceed.addActionListener(new ActionListener() {//WHEN PROCEED BUTTON IS CLICKED
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String colorSelected = frame.getSelectedColor();
+                String colorSelected = frame.getSelectedColor(); //GET COLOR FROM FIRST FRAME
 
                 //System.out.println("Color Selected" + colorSelected );
 
-                frame.f.setVisible(false);//frame 1 visible false
-                frame2.f2.setSize(1000,700);
-                frame2.f2.setResizable(false);
+                frame.f.setVisible(false);//SET frame 1 visible false
+                frame2.f2.setSize(1000,700);// SET SIZE FOR FRAME 2
+                frame2.f2.setResizable(false);// SET FRAME 2 NOT RESIZABLE
 
-                switch (colorSelected)
+                switch (colorSelected)//SWITCH COLOR FOR SECOND FRAME
                 {
                     case "Red":
                         frame2.secondpanel.setBackground(Color.RED);
@@ -144,32 +144,32 @@ public class Main{
             }
         });
 
-        frame2.button1.addActionListener(new ActionListener() {
+        frame2.button1.addActionListener(new ActionListener() { //WHEN SECOND FRAME ENTER BUTTON FOR TEAM 1 IS CLICKED
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(frame2.team1player1.getText().trim().isEmpty() && frame2.team1player2.getText().trim().isEmpty())
+                if(frame2.team1player1.getText().trim().isEmpty() && frame2.team1player2.getText().trim().isEmpty()) //IF BOTH PLAYER 1 AND 2 DIDNT ENTER ANY INPUT
                 {
-                    frame2.results1.setText("Please enter name for both Player");
+                    frame2.results1.setText("Please enter name for both Player");// DISPLAY THIS TO USER
                 }
-                else if(frame2.team1player1.getText().trim().isEmpty())
+                else if(frame2.team1player1.getText().trim().isEmpty())// IF PLAYER 1 DIDNT ENTER ANY INPUT
                 {
-                    frame2.results1.setText("Please enter name for Player 1");
+                    frame2.results1.setText("Please enter name for Player 1");// DISPLAY THIS TO USER
                 }
-                else if(frame2.team1player2.getText().trim().isEmpty())
+                else if(frame2.team1player2.getText().trim().isEmpty())// IF PLAYER 2 DIDNT ENTER ANY INPUT
                 {
-                    frame2.results1.setText("Please enter name for Player 2");
+                    frame2.results1.setText("Please enter name for Player 2");// DISPLAY THIS TO USER
                 }
-                else
+                else// IF BOTH PLAYER HAS ENTER THE INPUT
                 {
 
-                    frame2.results1.setText("Ready!");
+                    frame2.results1.setText("Ready!"); // DISPLAY THIS TO USER
 
-                    if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
+                    if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!")) // IF BOTH TEAM 1 AND TEAM 2 HAS READY
                     {
-                        frame2.f2.setVisible(false);
-                        gameFrame.f3.setVisible(true);
-                        gameFrame.f3.setSize(1000,700);
-                        gameFrame.f3.setResizable(false);
+                        frame2.f2.setVisible(false);// SET FRAME 2 VISIBLE TO FALSE
+                        gameFrame.f3.setVisible(true);// SET FRAME 3 VISIBLE TO TRUE
+                        gameFrame.f3.setSize(1000,700);// SET FRAME 3 SIZE
+                        gameFrame.f3.setResizable(false);// SET FRAME 3 NOT RESIZABLE
 
                         //System.out.println(backgrounds);
 
@@ -239,28 +239,28 @@ public class Main{
         frame2.button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(frame2.team2player1.getText().trim().isEmpty() && frame2.team2player2.getText().trim().isEmpty())
+                if(frame2.team2player1.getText().trim().isEmpty() && frame2.team2player2.getText().trim().isEmpty()) //IF BOTH PLAYER 1 AND 2 DIDNT ENTER ANY INPUT
                 {
-                    frame2.results2.setText("Please enter name for both Player");
+                    frame2.results2.setText("Please enter name for both Player");// DISPLAY THIS TO USER
                 }
-                else if(frame2.team2player1.getText().trim().isEmpty())
+                else if(frame2.team2player1.getText().trim().isEmpty()) // IF PLAYER 1 DIDNT ENTER ANY INPUT
                 {
-                    frame2.results2.setText("Please enter name for Player 1");
+                    frame2.results2.setText("Please enter name for Player 1");// DISPLAY THIS TO USER
                 }
-                else if(frame2.team2player2.getText().trim().isEmpty())
+                else if(frame2.team2player2.getText().trim().isEmpty()) // IF PLAYER 2 DIDNT ENTER ANY INPUT
                 {
-                    frame2.results2.setText("Please enter name for Player 2");
+                    frame2.results2.setText("Please enter name for Player 2");// DISPLAY THIS TO USER
                 }
-                else
+                else // IF BOTH PLAYER HAS READY
                 {
-                    frame2.results2.setText("Ready!");
+                    frame2.results2.setText("Ready!");// DISPLAY THIS TO USER
 
-                    if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!"))
+                    if(frame2.results1.getText().equals("Ready!") && frame2.results2.getText().equals("Ready!")) // IF BOTH TEAM 1 AND TEAM 2 HAS READY
                     {
-                        frame2.f2.setVisible(false);
-                        gameFrame.f3.setVisible(true);
-                        gameFrame.f3.setSize(1000,700);
-                        gameFrame.f3.setResizable(false);
+                        frame2.f2.setVisible(false);// SET FRAME 2 VISIBLE TO FALSE
+                        gameFrame.f3.setVisible(true);// SET FRAME 3 VISIBLE TO TRUE
+                        gameFrame.f3.setSize(1000,700);// SET FRAME 3 SIZE
+                        gameFrame.f3.setResizable(false);// SET FRAME 3 TO NOT RESIZABLE
 
                         //Color backgrounds = frame2.f2.getBackground();
                         //gameFrame.setBackgrounds(backgrounds);
