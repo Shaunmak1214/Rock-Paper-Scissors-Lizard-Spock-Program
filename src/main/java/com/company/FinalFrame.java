@@ -13,6 +13,9 @@ package com.company;
 
 import java.awt.event.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -63,6 +66,48 @@ public class FinalFrame {
         int finalTotalPointT2 = totalPointT2P1 + totalPointT2P2;
         //int t1 = totalPointT1P1;//String data[][] = {};
         //System.out.println("t1:" + t1);
+
+        int counter = 0;
+
+        try {
+            File myObj = new File("temp.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String dataFile = myReader.nextLine();
+                System.out.println(dataFile);
+
+                if(counter == 0){
+
+                    data[1][0] =  "Team 1: " + dataFile;
+
+                }
+
+                if(counter == 1){
+
+                    data[2][0] = "Team 2: " + dataFile;
+
+                }
+
+                if(counter == 2){
+
+                    data2[1][0] = "Team 1: " + dataFile;
+
+                }
+
+                if(counter == 3){
+
+                    data2[2][0] = "Team 2: " + dataFile;
+
+                }
+
+                counter++;
+
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         data[1][1] = String.valueOf(pointT1P1[0]);
         data[2][1] = String.valueOf(pointT2P1[0]);
@@ -286,6 +331,12 @@ public class FinalFrame {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                File myObj = new File("temp.txt");
+                if (myObj.delete()) {
+                    System.out.println("Deleted the file: " + myObj.getName());
+                } else {
+                    System.out.println("Failed to delete the file.");
+                }
                 System.exit(0);
             }
         });

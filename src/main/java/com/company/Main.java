@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.File;
@@ -30,14 +31,25 @@ public class Main{
     static String T2P2 = "";
     //static int totalPointT1P1 = 0;/DELETE LAAAAAA
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         MainFrame frame = new MainFrame();
         SecondFrame frame2 = new SecondFrame();
         GameFrame gameFrame = new GameFrame();
         //FinalFrame finalFrame = new FinalFrame();
 
-        File storeName = new File("name.txt");
+        File storeName = new File("temp.txt");
+
+        try {
+            if (storeName.createNewFile()) {
+                System.out.println("File created: " + storeName.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         //JLabel name3Label = new JLabel();
 
@@ -180,6 +192,27 @@ public class Main{
                         T1P2 = playername[1][0];
                         T2P2 = playername[1][1];
 
+                        FileWriter myWriter = null;
+                        try {
+                            myWriter = new FileWriter("temp.txt");
+                            myWriter.write(T1P1);
+                            myWriter.write("\n");
+                            myWriter.write(T2P1);
+                            myWriter.write("\n");
+                            myWriter.write(T1P2);
+                            myWriter.write("\n");
+                            myWriter.write(T2P2);
+                            myWriter.write("\n");
+                            myWriter.close();
+                            System.out.println("success");
+
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                            System.out.println("failed");
+                        }
+
+                        gameFrame.setName();
+
                         gameFrame.name1Label.setText(T1P1);
                         gameFrame.name2Label.setText(T2P1);
                         //gameFrame.name3Label.setText(T1P2);
@@ -247,8 +280,29 @@ public class Main{
 
                         T1P1 = playername[0][0];
                         T2P1 = playername[0][1];
-                        T2P1 = playername[1][0];
+                        T1P2 = playername[1][0];
                         T2P2 = playername[1][1];
+
+                        FileWriter myWriter = null;
+                        try {
+                            myWriter = new FileWriter("temp.txt");
+                            myWriter.write(T1P1);
+                            myWriter.write("\n");
+                            myWriter.write(T2P1);
+                            myWriter.write("\n");
+                            myWriter.write(T1P2);
+                            myWriter.write("\n");
+                            myWriter.write(T2P2);
+                            myWriter.write("\n");
+                            myWriter.close();
+                            System.out.println("success");
+
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                            System.out.println("failed");
+                        }
+
+                        gameFrame.setName();
 
                         gameFrame.name1Label.setText(T1P1);
                         gameFrame.name2Label.setText(T2P1);

@@ -24,7 +24,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.io.IOException;
-import java.io.File;
+import java.io.File;  // Import the File class
+import java.util.Scanner; // Import the Scanner class to read text files
+import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Vector;
 import javax.swing.border.LineBorder;
 import java.awt.Component;
@@ -74,8 +76,8 @@ public class GameFrame extends FinalFrame {
 
     JLabel name1Label = new JLabel();
     JLabel name2Label = new JLabel();
-    //JLabel name3Label = new JLabel();
-    //JLabel name4Label = new JLabel();
+    JLabel name3Label = new JLabel();
+    JLabel name4Label = new JLabel();
 
     JLabel icon1Label = new JLabel();
     JLabel icon2Label = new JLabel();
@@ -118,6 +120,7 @@ public class GameFrame extends FinalFrame {
     }*/
 
     GameFrame() {
+
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
         firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
@@ -550,7 +553,8 @@ public class GameFrame extends FinalFrame {
 
                 thirdeastpanel.remove(name1Label);
                 //thirdeastpanel.remove(name2Label);
-                //thirdeastpanel.add(name3Label, BorderLayout.CENTER);
+                thirdeastpanel.add(name3Label, BorderLayout.NORTH);
+                forthwestpanel.add(name4Label, BorderLayout.NORTH);
                 /*String name3 = Main.setName3();
                 System.out.println("NAME 3: "+name3);*/
 
@@ -571,6 +575,8 @@ public class GameFrame extends FinalFrame {
 
                 gameRoundNum++;
                 System.out.println(gameRoundNum);
+
+                setName();
 
                 headmodel.setValueAt("", 0, 1);
                 headmodel.setValueAt("", 1, 1);
@@ -797,6 +803,42 @@ public class GameFrame extends FinalFrame {
         //finalFrame.setFinalFrame();
 
         //finalFrame.data[1][4] = String.valueOf(finalFrame.totalPointT1P1);
+    }
+
+    public void setName(){
+
+        int counter = 0;
+
+        try {
+            File myObj = new File("temp.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+
+                if(counter == 2){
+
+                    name3Label.setText( data );
+                    headmodel.setValueAt( "Team 1 :" +  data , 0, 0);
+
+                }
+
+                if(counter == 3){
+
+                    name4Label.setText( data );
+                    headmodel.setValueAt( "Team 2 :" + data , 1, 0);
+
+                }
+
+                counter++;
+
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
     }
 
     /*public void storeHandsignLeft(int imgNo){
