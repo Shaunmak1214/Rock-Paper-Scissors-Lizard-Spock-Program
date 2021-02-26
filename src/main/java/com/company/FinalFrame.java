@@ -149,7 +149,7 @@ public class FinalFrame {
 
         f4.setSize(1000, 700);
         f4.setVisible(true);
-
+        f4.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
