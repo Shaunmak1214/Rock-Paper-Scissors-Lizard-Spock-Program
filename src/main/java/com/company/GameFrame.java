@@ -60,7 +60,7 @@ public class GameFrame extends FinalFrame {
     Color background;
 
     //initalizing JComponenets
-    JFrame f3 = new JFrame();
+    JFrame f3 = new JFrame("Java Assignment");
 
     JPanel firstpanel = new JPanel();
     JPanel secondpanel = new JPanel();

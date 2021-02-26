@@ -29,7 +29,7 @@ import java.awt.GridBagConstraints;
 
 public class MainFrame extends JFrame
 {
-        JFrame f = new JFrame();
+        JFrame f = new JFrame("Java Assignment");
 
         public String colorSelected;
 
@@ -137,7 +137,7 @@ public class MainFrame extends JFrame
                 thirdpanel.add(proceed);//BUTTON ADDED
 
                 // JFrame = GUI window
-                f.setTitle("Rock Paper Scissors");//set title
+                f.setTitle("Java Assignment");//set title
                 f.setResizable(false);//cant resize
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//exit application
 

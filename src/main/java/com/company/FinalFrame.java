@@ -26,7 +26,7 @@ public class FinalFrame {
 
     public void setP1Result(int totalPointT1P1, int totalPointT2P1, int pointT1P1[], int pointT2P1[], int totalPointT1P2, int totalPointT2P2, int pointT1P2[], int pointT2P2[], Color bg)
     {
-        JFrame f4 = new JFrame();
+        JFrame f4 = new JFrame("Java Assignment");
         ImageIcon image = new ImageIcon("assets/party2.png");
 
         JPanel firstpanel = new JPanel();

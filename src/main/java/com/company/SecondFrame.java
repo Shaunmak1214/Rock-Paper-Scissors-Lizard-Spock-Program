@@ -16,7 +16,7 @@ import java.awt.*;
 
 public class SecondFrame {
 
-    JFrame f2 = new JFrame();           //FRAME 2
+    JFrame f2 = new JFrame("Java Assignment");           //FRAME 2
 
     JPanel firstpanel = new JPanel();   // TITLE PANEL
     JPanel secondpanel = new JPanel();  // ENTER PLAYER 1 NAME PANEL (TEAM 1)
