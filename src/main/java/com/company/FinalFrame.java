@@ -24,9 +24,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class FinalFrame {
 
+    //pass variable and show frame//
     public void setP1Result(int totalPointT1P1, int totalPointT2P1, int pointT1P1[], int pointT2P1[], int totalPointT1P2, int totalPointT2P2, int pointT1P2[], int pointT2P2[], Color bg)
     {
-        JFrame f4 = new JFrame("Java Assignment");
+        JFrame f4 = new JFrame("Java Assignment"); //name of the frame//
         ImageIcon image = new ImageIcon("assets/party2.png");
 
         JPanel firstpanel = new JPanel();
@@ -44,8 +45,9 @@ public class FinalFrame {
         JLabel party = new JLabel(image);
         JButton b = new JButton("EXIT");
 
+        /////////////////default table data////////////////////
 
-
+        ///Table 1 data////
         String data[][] = {
                 {"Player 1", "Round 1", "Round 2", "Round 3", "Total"},
                 {"Team 1 : Sheldon", "", "", "", ""},
@@ -59,11 +61,10 @@ public class FinalFrame {
                 {"Team 1 : Sheldon", "", "", "", ""},
                 {"Team 2 : Howard", "", "", "", ""}
         };
-
         String column2[] = {"Player 2", "Round 1", "Round 2", "Round 3", "Total"};
 
-        int finalTotalPointT1 = totalPointT1P1 + totalPointT1P2;
-        int finalTotalPointT2 = totalPointT2P1 + totalPointT2P2;
+        int finalTotalPointT1 = totalPointT1P1 + totalPointT1P2; //set point for team 1//
+        int finalTotalPointT2 = totalPointT2P1 + totalPointT2P2; //set point for team 2//
 
         int counter = 0;
 
@@ -134,10 +135,7 @@ public class FinalFrame {
         System.out.println("\nTable 1 value: " + totalPointT1P1 + totalPointT2P1 + pointT1P1[0] + pointT1P1[1] + pointT1P1[2] + pointT2P1[0] + pointT2P1[1] + pointT2P1[2]);
         System.out.println("Table 2 value: " + totalPointT1P2 + totalPointT2P2 + pointT1P2[0] + pointT1P2[1] + pointT1P2[2] + pointT2P2[0] + pointT2P2[1] + pointT2P2[2]);
 
-        ////////////////////////////thirdpanel labels////////////////////////////
-        ///Table 1 data////
-
-
+        ////////////////////////////panels' labels for bg////////////////////////////
         secondpanel.setBackground(bg);
         thirdpanel.setBackground(bg);
         fourpanel.setBackground(bg);
@@ -154,79 +152,79 @@ public class FinalFrame {
 
 /////////////////// FIRST PANEL BELOW/////////////////////////////
 
-        firstpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-        firstpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
+        firstpanel.setLayout(new GridBagLayout()); // PANEL GRID LAYOUT//
+        firstpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10))); //PANEL LAYOUT FOR LABEL//
 
-        f4.add(firstpanel, BorderLayout.NORTH);//panel position
-        firstpanel.setBackground(new Color(253, 105, 0));//BACKGROUND COLOR OF FIRST PANEL
-        firstpanel.setPreferredSize(new Dimension(1000, 60));//FIRST PANEL SIZE
-        upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock");// the label text
-        upperlabel.setFont(new Font("Verdana", Font.PLAIN, 18));//font of text
-        upperlabel.setBackground(new Color(253, 105, 0));//text background color
+        f4.add(firstpanel, BorderLayout.NORTH); //panel position//
+        firstpanel.setBackground(new Color(253, 105, 0)); //BACKGROUND COLOR OF FIRST PANEL//
+        firstpanel.setPreferredSize(new Dimension(1000, 60)); //FIRST PANEL SIZE//
+        upperlabel.setText("Rock-Paper-Scissors-Lizard-Spock"); // the label text//
+        upperlabel.setFont(new Font("Verdana", Font.PLAIN, 18)); //font of text//
+        upperlabel.setBackground(new Color(253, 105, 0)); //text background color//
 
-        firstpanel.add(upperlabel);// ADD LABEL INTO THE PANEL
-        upperlabel.setOpaque(true);// MAKE LABEL VISIBLE
+        firstpanel.add(upperlabel); // ADD LABEL INTO THE PANEL//
+        upperlabel.setOpaque(true); // MAKE LABEL VISIBLE//
 
 
 /////////////////// Second PANEL BELOW/////////////////////////////
 
-        secondpanel.setLayout(new GridBagLayout());// PANEL GRID LAYOUT
-        secondpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));//PANEL LAYOUT FOR LABEL
+        secondpanel.setLayout(new GridBagLayout()); // PANEL GRID LAYOUT
+        secondpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10))); //PANEL LAYOUT FOR LABEL//
 
         /////EXIT BUTTON/////
-        f4.add(secondpanel, BorderLayout.CENTER);
+        f4.add(secondpanel, BorderLayout.CENTER); //panel position//
         secondpanel.setLayout(null);
         secondpanel.add(b);
-        b.setBounds(850, 20, 75, 35);
+        b.setBounds(850, 20, 75, 35); //set position and size for button//
         secondpanel.add(party);
 
         /////TEAM 1/////
         team1.setText("Team 1:  1");
         team1.setFont(new Font("Verdana", Font.PLAIN, 25));
-        team1.setBounds(250, 50, 150, 30);
+        team1.setBounds(250, 50, 150, 30); //set position and size for team1//
 
         /////TEAM 2/////
         team2.setText("Team 2:  2");
         team2.setFont(new Font("Verdana", Font.PLAIN, 25));
-        team2.setBounds(600, 50, 150, 30);
+        team2.setBounds(600, 50, 150, 30); //set position and size for team2//
 
         /////CONGRATULATION/////
         congraz.setText("Congratulation!!");
         congraz.setFont(new Font("Verdana", Font.PLAIN, 30));
-        congraz.setBounds(290, 110, 250, 40);
+        congraz.setBounds(290, 110, 250, 40); //set position and size for congraz//
 
         /////WINNING TEAM/////
         winning_team.setText("Team 1");
         winning_team.setFont(new Font("Verdana", Font.PLAIN, 30));
-        winning_team.setBounds(550, 110, 150, 40);
+        winning_team.setBounds(550, 110, 150, 40); //set position and size for winning team//
         winning_team.setForeground(Color.decode("#c10000"));
 
         /////PARTY IMAGE/////
         party.setText("");
         party.setFont(new Font("Verdana", Font.PLAIN, 30));
-        party.setBounds(35, 50, 180, 130);
+        party.setBounds(35, 50, 180, 130); //set position and size for image//
 
 
-        secondpanel.add(team1);// ADD LABEL INTO THE PANEL
-        team1.setOpaque(true);// MAKE LABEL VISIBLE
+        secondpanel.add(team1); // ADD LABEL INTO THE PANEL//
+        team1.setOpaque(true); // MAKE LABEL VISIBLE//
 
-        secondpanel.add(team2);// ADD LABEL INTO THE PANEL
-        team2.setOpaque(true);// MAKE LABEL VISIBLE
+        secondpanel.add(team2); // ADD LABEL INTO THE PANEL//
+        team2.setOpaque(true); // MAKE LABEL VISIBLE//
 
-        secondpanel.add(congraz);// ADD LABEL INTO THE PANEL
-        team2.setOpaque(true);// MAKE LABEL VISIBLE
+        secondpanel.add(congraz); // ADD LABEL INTO THE PANEL//
+        team2.setOpaque(true); // MAKE LABEL VISIBLE//
 
-        secondpanel.add(winning_team);// ADD LABEL INTO THE PANEL
-        team2.setOpaque(true);// MAKE LABEL VISIBLE
+        secondpanel.add(winning_team); // ADD LABEL INTO THE PANEL//
+        team2.setOpaque(true); // MAKE LABEL VISIBLE//
 
 
 /////////////////// Third PANEL BELOW/////////////////////////////
 
-        fifthpanel.setLayout(new GridLayout(2, 1));
+        fifthpanel.setLayout(new GridLayout(2, 1)); //set layout for fifth panel//
         fifthpanel.setBorder((BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        thirdpanel.setLayout(new GridLayout());
+        thirdpanel.setLayout(new GridLayout()); //set layout for third panel//
         thirdpanel.setBorder((BorderFactory.createEmptyBorder(0, 0, 30, 0)));
-        fourpanel.setLayout(new GridLayout());
+        fourpanel.setLayout(new GridLayout()); //set layout for four panel//
         fourpanel.setBorder((BorderFactory.createEmptyBorder(20, 0, 10, 0)));
 
 
@@ -282,6 +280,7 @@ public class FinalFrame {
         jt.setVisible(true);
         jt2.setVisible(true);
 
+        /////fifthpanel add both third and fourth panel//
         thirdpanel.add(jt);
         fourpanel.add(jt2);
         fifthpanel.add(thirdpanel);

@@ -96,8 +96,8 @@ public class GameFrame extends FinalFrame {
     JTable resultstable = new JTable(2, 5);
     String[] resultshead = {"Player 1", "Round 1", "Round 2", "Round 3", "Total"};
     String[][] resultscolumn = {{"Team 1: "}, {"Team 2: "}};
-    JScrollPane jsp = new JScrollPane(resultstable);
-    DefaultTableModel headmodel = new DefaultTableModel(resultscolumn, resultshead);
+    JScrollPane jsp = new JScrollPane(resultstable); //provides a scrollable view
+    DefaultTableModel headmodel = new DefaultTableModel(resultscolumn, resultshead); //implement TableModel to store cell value objects
 
     //Gameframe constructor
     GameFrame() {
@@ -217,9 +217,10 @@ public class GameFrame extends FinalFrame {
         tablepanel.setSize(950,160);
         tablepanel.setPreferredSize(new Dimension(960,165));
 
-        resultstable.setFillsViewportHeight(true);
-        resultstable.setRowHeight(50);
-        resultstable.setPreferredScrollableViewportSize(new Dimension(940, visibleRowCount * resultstable.getRowHeight()));
+        resultstable.setFillsViewportHeight(true); //set this table is always made large enough to fill the height of an enclosing viewport
+        resultstable.setRowHeight(50); //set the row height in pixels
+        resultstable.setPreferredScrollableViewportSize(new Dimension(940, visibleRowCount * resultstable.getRowHeight())); //set the preferred size of the viewport for this table
+        //if preferred height of table is smaller than viewport, then the table will be stretched to fill the viewport
         resultstable.setBorder(BorderFactory.createMatteBorder(0, 5, 5, 5, Color.BLACK));
         resultstable.setOpaque (false); //set false for non-transparent
 
@@ -239,7 +240,7 @@ public class GameFrame extends FinalFrame {
         tablepanel.add(jsp);
 
         //Table Cell Renderer
-        DefaultTableCellRenderer centerer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer centerer = new DefaultTableCellRenderer(); //create default table cell renderer
         centerer.setHorizontalAlignment(JLabel.CENTER);
         resultstable.getColumnModel().getColumn(0).setPreferredWidth(380);
         resultstable.getColumnModel().getColumn(0).setCellRenderer(centerer);
