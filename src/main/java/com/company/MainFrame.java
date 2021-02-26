@@ -156,31 +156,26 @@ public class MainFrame extends JFrame
                 {
                         case "Red":
                                 secondpanel.setBackground(Color.RED);
-                                //f.getContentPane().setBackground(Color.RED);
                                 thirdpanel.setBackground(Color.RED);
                                 break;
 
                         case "Green":
                                 secondpanel.setBackground(Color.GREEN);
-                                //f.getContentPane().setBackground(Color.GREEN);
                                 thirdpanel.setBackground(Color.GREEN);
                                 break;
 
                         case "Blue":
                                 secondpanel.setBackground(Color.decode("#00ECFF"));
-                                //f.getContentPane().setBackground(Color.BLUE);
                                 thirdpanel.setBackground(Color.decode("#00ECFF"));
                                 break;
 
                         case "Yellow":
                                 secondpanel.setBackground(Color.YELLOW);
-                                //f.getContentPane().setBackground(Color.YELLOW);
                                 thirdpanel.setBackground(Color.YELLOW);
                                 break;
 
                         case "Grey":
                                 secondpanel.setBackground(Color.decode("#A4A7AB"));
-                                //f.getContentPane().setBackground(Color.GRAY);
                                 thirdpanel.setBackground(Color.decode("#A4A7AB"));
                                 break;
                 }
